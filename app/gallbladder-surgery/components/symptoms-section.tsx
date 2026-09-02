@@ -11,11 +11,6 @@ const symptoms = [
   { icon: Siren, label: "Fever or signs of infection" },
 ];
 
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export function SymptomsSection() {
   return (
     <section className="bg-[#FDECEC]">
@@ -33,8 +28,6 @@ export function SymptomsSection() {
           {symptoms.map((symptom) => (
             <motion.div
               key={symptom.label}
-              variants={item}
-              transition={{ duration: 0.5, ease: "easeOut" }}
               whileHover={{ y: -4 }}
               className="flex flex-col items-center gap-3 rounded-2xl border border-[#C94B4B]/15 bg-white p-6 text-center shadow-[0_10px_28px_-22px_rgba(201,75,75,0.5)]"
             >

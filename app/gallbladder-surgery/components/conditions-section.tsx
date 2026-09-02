@@ -35,11 +35,6 @@ const conditions = [
   },
 ];
 
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export function ConditionsSection() {
   return (
     <section id="conditions" className="scroll-mt-24 bg-gradient-to-b from-[#F8FAFC] to-[#EFF6F6]">
@@ -60,8 +55,6 @@ export function ConditionsSection() {
           {conditions.map((condition) => (
             <motion.div
               key={condition.title}
-              variants={item}
-              transition={{ duration: 0.5, ease: "easeOut" }}
               whileHover={{ y: -6 }}
               className="group relative overflow-hidden rounded-[22px] border border-slate-200/80 bg-white p-6 shadow-[0_10px_28px_-20px_rgba(11,31,51,0.35)] transition-shadow hover:shadow-[0_24px_44px_-20px_rgba(11,31,51,0.35)]"
             >

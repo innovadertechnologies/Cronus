@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { MessageSquare, Stethoscope, ClipboardList, HeartPulse } from "lucide-react";
 
 const steps = [
@@ -42,26 +39,11 @@ export function CareJourney() {
 
         {/* Desktop: horizontal journey */}
         <div className="relative mt-16 hidden sm:block">
-          <div className="absolute left-0 right-0 top-[27px] h-0.5 bg-slate-200" />
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            style={{ transformOrigin: "left" }}
-            className="absolute left-0 right-0 top-[27px] h-0.5 bg-[#129EA8]"
-          />
+          <div className="absolute left-0 right-0 top-[27px] h-0.5 bg-[#129EA8]" />
 
           <div className="relative grid grid-cols-4 gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
-                className="flex flex-col items-center text-center"
-              >
+            {steps.map((step) => (
+              <div key={step.number} className="flex flex-col items-center text-center">
                 <span className="flex h-14 w-14 items-center justify-center rounded-2xl border-4 border-[#F8FAFC] bg-[#005F70] text-white shadow-md">
                   <step.icon className="h-6 w-6" strokeWidth={2} />
                 </span>
@@ -72,7 +54,7 @@ export function CareJourney() {
                 <p className="mt-2 max-w-[220px] text-sm leading-relaxed text-[#64748B]">
                   {step.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -80,14 +62,7 @@ export function CareJourney() {
         {/* Mobile: vertical timeline */}
         <div className="mt-10 flex flex-col sm:hidden">
           {steps.map((step, index) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-              className="relative flex gap-4 pb-8 pl-1 last:pb-0"
-            >
+            <div key={step.number} className="relative flex gap-4 pb-8 pl-1 last:pb-0">
               {index < steps.length - 1 && (
                 <span className="absolute left-[27px] top-14 h-full w-0.5 bg-slate-200" />
               )}
@@ -103,7 +78,7 @@ export function CareJourney() {
                   {step.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

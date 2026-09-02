@@ -12,11 +12,6 @@ const points = [
   { icon: HeartHandshake, label: "Comprehensive Pre & Post-Surgery Care" },
 ];
 
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export function WhyChooseCronus() {
   return (
     <section id="why-cronus" className="relative overflow-hidden bg-[#005F70]">
@@ -50,8 +45,6 @@ export function WhyChooseCronus() {
           {points.map((point) => (
             <motion.div
               key={point.label}
-              variants={item}
-              transition={{ duration: 0.55, ease: "easeOut" }}
               whileHover={{ y: -4, backgroundColor: "rgba(255,255,255,0.08)" }}
               className="flex flex-col gap-4 rounded-[22px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm"
             >

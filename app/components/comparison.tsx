@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Sparkles, ShieldAlert, CheckCircle2, XCircle } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
 
@@ -27,11 +26,7 @@ function ComparisonCard({
   const isLap = variant === "lap";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+    <div
       className={`relative flex-1 rounded-[28px] border-2 p-6 sm:p-8 ${
         isLap
           ? "border-[#129EA8]/25 bg-[#E3F6F7]/60"
@@ -88,7 +83,7 @@ function ComparisonCard({
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 

@@ -27,11 +27,6 @@ const risks = [
   },
 ];
 
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export function WhyNotDelay() {
   return (
     <section className="bg-[#F8FAFC]">
@@ -50,8 +45,6 @@ export function WhyNotDelay() {
           {risks.map((risk) => (
             <motion.div
               key={risk.title}
-              variants={item}
-              transition={{ duration: 0.55, ease: "easeOut" }}
               whileHover={{ y: -6 }}
               className="group relative overflow-hidden rounded-[22px] border border-red-100 bg-white p-6 shadow-[0_10px_30px_-20px_rgba(239,83,80,0.4)] transition-shadow hover:shadow-[0_20px_40px_-20px_rgba(239,83,80,0.35)]"
             >

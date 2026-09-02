@@ -1,8 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
-
 export function StatCounter({
   value,
   suffix = "",
@@ -12,24 +7,10 @@ export function StatCounter({
   suffix?: string;
   className?: string;
 }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const motionValue = useMotionValue(0);
-  const spring = useSpring(motionValue, { duration: 1400, bounce: 0 });
-
-  useEffect(() => {
-    if (inView) motionValue.set(value);
-  }, [inView, value, motionValue]);
-
-  useEffect(() => {
-    return spring.on("change", (latest) => {
-      if (ref.current) ref.current.textContent = Math.round(latest).toLocaleString("en-IN") + suffix;
-    });
-  }, [spring, suffix]);
-
   return (
-    <motion.span ref={ref} className={className}>
-      0{suffix}
-    </motion.span>
+    <span className={className}>
+      {value.toLocaleString("en-IN")}
+      {suffix}
+    </span>
   );
 }

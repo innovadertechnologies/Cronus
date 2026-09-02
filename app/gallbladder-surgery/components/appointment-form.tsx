@@ -151,7 +151,7 @@ export function AppointmentForm({
                   <textarea
                     id={`${idPrefix}-condition`}
                     name="condition"
-                    rows={3}
+                    rows={2}
                     placeholder="Message / Condition"
                     className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
                   />

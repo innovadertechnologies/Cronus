@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Stethoscope, Building2, ClipboardList, HeartHandshake } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
 
@@ -46,13 +43,9 @@ export function WhyChooseUs() {
         </Reveal>
 
         <div className="flex flex-col gap-4">
-          {features.map((feature, index) => (
-            <motion.div
+          {features.map((feature) => (
+            <div
               key={feature.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
               className="group relative overflow-hidden rounded-[22px] border border-slate-200/80 bg-white p-6 pl-8"
             >
               <span className="absolute left-0 top-0 h-full w-1 origin-top scale-y-0 bg-[#129EA8] transition-transform duration-300 group-hover:scale-y-100" />
@@ -70,7 +63,7 @@ export function WhyChooseUs() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

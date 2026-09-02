@@ -1,16 +1,7 @@
-"use client";
-
-import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
-
-const variants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
 
 export function Reveal({
   children,
-  delay = 0,
   className = "",
   as = "div",
 }: {
@@ -19,39 +10,17 @@ export function Reveal({
   className?: string;
   as?: "div" | "li";
 }) {
-  const MotionTag = as === "li" ? motion.li : motion.div;
-  return (
-    <MotionTag
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      variants={variants}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
-    >
-      {children}
-    </MotionTag>
-  );
+  const Tag = as;
+  return <Tag className={className}>{children}</Tag>;
 }
 
 export function RevealGroup({
   children,
   className = "",
-  stagger = 0.1,
 }: {
   children: ReactNode;
   className?: string;
   stagger?: number;
 }) {
-  return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ staggerChildren: stagger }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }

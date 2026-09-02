@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { RevealGroup } from "@/app/components/reveal";
 
@@ -33,11 +32,6 @@ const types = [
   },
 ];
 
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export function HerniaTypes() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -54,11 +48,9 @@ export function HerniaTypes() {
           {types.map((type, index) => {
             const isOpen = openIndex === index;
             return (
-              <motion.button
+              <button
                 key={type.name}
                 type="button"
-                variants={item}
-                transition={{ duration: 0.5, ease: "easeOut" }}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 aria-expanded={isOpen}
                 className="group relative overflow-hidden rounded-[22px] border border-slate-200/80 bg-white p-6 text-left shadow-[0_10px_28px_-20px_rgba(11,31,51,0.35)] transition-all hover:-translate-y-1 hover:border-[#129EA8]/30 hover:shadow-[0_20px_40px_-20px_rgba(11,31,51,0.35)]"
@@ -79,7 +71,7 @@ export function HerniaTypes() {
                 >
                   {type.description}
                 </p>
-              </motion.button>
+              </button>
             );
           })}
         </RevealGroup>

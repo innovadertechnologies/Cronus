@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { CheckCircle2, Users, ShieldCheck, ArrowRight, Phone } from "lucide-react";
 import { LeadForm } from "@/app/components/lead-form";
 import { Reveal } from "@/app/components/reveal";
@@ -25,7 +24,7 @@ export function Hero() {
         className="pointer-events-none absolute -left-24 top-40 h-72 w-72 rounded-full bg-[#129EA8]/10 blur-3xl"
       />
 
-      <div className="relative mx-auto grid max-w-7xl gap-14 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:py-24">
+      <div className="relative mx-auto grid max-w-7xl gap-14 px-5 py-8 sm:px-8 sm:py-12 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:py-14">
         <div>
           <Reveal>
             <span className="inline-flex items-center rounded-full bg-white px-4 py-1.5 text-xs font-bold tracking-[0.14em] text-[#129EA8] shadow-sm ring-1 ring-[#129EA8]/10">
@@ -88,18 +87,7 @@ export function Hero() {
 
         <Reveal delay={0.2} className="relative">
           <div className="relative mx-auto max-w-md lg:max-w-none">
-            <div className="absolute -inset-x-6 -top-8 -z-10 hidden overflow-hidden rounded-[32px] lg:block">
-              <Image
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80"
-                alt="Surgical team preparing for a laparoscopic procedure"
-                width={900}
-                height={700}
-                className="h-56 w-full rounded-[32px] object-cover opacity-90"
-              />
-              <div className="absolute inset-0 rounded-[32px] bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/10 to-transparent" />
-            </div>
-
-            <LeadForm id="lead-form" className="relative lg:mt-16" />
+            <LeadForm id="lead-form" className="relative" />
 
             <div className="mt-5 flex flex-wrap justify-center gap-3 lg:justify-start">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#1B2936] shadow-md ring-1 ring-slate-100">
