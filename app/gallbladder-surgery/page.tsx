@@ -12,7 +12,7 @@ import { SymptomsSection } from "@/app/gallbladder-surgery/components/symptoms-s
 import { Faq } from "@/app/gallbladder-surgery/components/faq";
 import { FinalCta } from "@/app/gallbladder-surgery/components/final-cta";
 import { Footer } from "@/app/gallbladder-surgery/components/footer";
-import { StickyMobileCta } from "@/app/components/sticky-mobile-cta";
+import { StickyMobileCta } from "@/app/gallbladder-surgery/components/sticky-mobile-cta";
 
 export const metadata: Metadata = {
   title: "Best Laparoscopic Gallbladder Surgery Hospital in Delhi | Cronus Multispeciality Hospital",
