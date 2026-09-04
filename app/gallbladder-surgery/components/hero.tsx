@@ -18,7 +18,7 @@ const badges = [
   { icon: ShieldCheck, label: "Advanced Laparoscopic Care" },
   { icon: Users, label: "Experienced Specialists" },
 ];
-
+// th
 export function Hero() {
   return (
     <section
