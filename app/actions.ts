@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { recordLead } from "@/app/lib/leads";
 
 export type LeadFormState = {
@@ -33,7 +34,7 @@ export async function submitHerniaLead(
     submittedAt: new Date().toISOString(),
   });
 
-  return { success: true };
+  redirect("/thank-you");
 }
 
 export async function submitGallbladderLead(

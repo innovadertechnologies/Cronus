@@ -1,106 +1,124 @@
-import { CheckCircle2, Users, ShieldCheck, ArrowRight, Phone } from "lucide-react";
+"use client";
+
+import Image from "next/image";
+import { CheckCircle2, Phone, Stethoscope, ShieldCheck, Users } from "lucide-react";
 import { LeadForm } from "@/app/components/lead-form";
+import { StatCounter } from "@/app/components/stat-counter";
 import { Reveal } from "@/app/components/reveal";
 import { CLINIC_PHONE_TEL } from "@/app/lib/site-config";
+import { useLeadFormModal } from "@/app/components/lead-form-modal-provider";
 
-const trustCards = [
-  { icon: CheckCircle2, label: "Advanced Laparoscopic Procedure" },
-  { icon: Users, label: "16K+ Surgeries Performed", highlight: "16K+" },
-  { icon: ShieldCheck, label: "Insurance & Cashless Facility" },
+const checklist = [
+  "Advanced Laparoscopic Procedure",
+  "16000+ Surgeries Performed",
+  "Insurance/Cashless Facility Available",
+];
+
+const trustStrip = [
+  {
+    icon: Stethoscope,
+    stat: "16000+",
+    label: "Surgeries Performed",
+  },
+  {
+    icon: ShieldCheck,
+    stat: "Trusted by Patients",
+    label: "Across Delhi-NCR",
+  },
+  {
+    icon: Users,
+    stat: "Cashless Treatment",
+    label: "with Major Insurance Providers",
+  },
 ];
 
 export function Hero() {
+  const { openLeadForm } = useLeadFormModal();
+
   return (
-    <section
-      id="hero"
-      className="relative overflow-hidden bg-gradient-to-b from-[#E3F6F7] via-[#F8FAFC] to-[#F8FAFC]"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#129EA8]/10 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-24 top-40 h-72 w-72 rounded-full bg-[#129EA8]/10 blur-3xl"
-      />
+    <section id="hero" className="relative overflow-hidden bg-[#EAF6F8]">
+      <div className="relative">
+        <Image
+          src="/harnibg.png"
+          alt=""
+          aria-hidden
+          fill
+          priority
+          className="absolute inset-0 object-cover object-right"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#EAF6F8] via-[#EAF6F8]/85 to-[#EAF6F8]/10 lg:via-[#EAF6F8]/60" />
 
-      <div className="relative mx-auto grid max-w-7xl gap-14 px-5 py-8 sm:px-8 sm:py-12 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:py-14">
-        <div>
-          <Reveal>
-            <span className="inline-flex items-center rounded-full bg-white px-4 py-1.5 text-xs font-bold tracking-[0.14em] text-[#129EA8] shadow-sm ring-1 ring-[#129EA8]/10">
-              ADVANCED HERNIA CARE · DELHI-NCR
-            </span>
-          </Reveal>
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
+          <div>
+            <Reveal>
+              <p className="text-sm font-semibold tracking-wide text-[#1B2936]/70">
+                Expert Care. Safer Solutions. Better Tomorrow.
+              </p>
+            </Reveal>
 
-          <Reveal delay={0.08}>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight text-[#005F70] sm:text-5xl lg:text-[3.4rem]">
-              Best Hernia Treatment in Delhi-NCR
-            </h1>
-          </Reveal>
+            <Reveal delay={0.08}>
+              <h1 className="mt-3 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#0B3446] sm:text-5xl lg:text-[3.15rem]">
+                Best Hernia Treatment in Delhi-NCR
+              </h1>
+            </Reveal>
 
-          <Reveal delay={0.16}>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#64748B]">
-              Expert evaluation and advanced laparoscopic treatment with complete
-              pre and post-surgery care at Cronus Multispeciality Hospital.
-            </p>
-          </Reveal>
+            <Reveal delay={0.16}>
+              <ul className="mt-7 flex flex-col gap-3">
+                {checklist.map((item) => (
+                  <li key={item} className="flex items-center gap-2.5">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#DCFCE7] text-[#16A34A]">
+                      <CheckCircle2 className="h-3.5 w-3.5" strokeWidth={2.5} />
+                    </span>
+                    <span className="text-[15px] font-semibold text-[#1B2936]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
 
-          <Reveal delay={0.24}>
-            <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-              {trustCards.map(({ icon: Icon, label, highlight }) => (
-                <li
-                  key={label}
-                  className="flex items-start gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-[0_8px_24px_-16px_rgba(11,31,51,0.3)] transition-transform hover:-translate-y-0.5"
+            <Reveal delay={0.24}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={openLeadForm}
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(11,52,70,0.55)] transition-all hover:brightness-110"
                 >
-                  {highlight ? (
-                    <span className="text-lg font-extrabold text-[#129EA8]">{highlight}</span>
-                  ) : (
-                    <Icon className="h-5 w-5 shrink-0 text-[#129EA8]" strokeWidth={2.25} />
-                  )}
-                  <span className="text-sm font-semibold leading-snug text-[#1B2936]">
-                    {highlight ? "Surgeries Performed" : label}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+                  Book Appointment
+                </button>
+                <a
+                  href={`tel:${CLINIC_PHONE_TEL}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#0B3446] bg-white px-7 py-3.5 text-base font-semibold text-[#0B3446] transition-colors hover:bg-[#0B3446] hover:text-white"
+                >
+                  <Phone className="h-4 w-4" />
+                  Call Now
+                </a>
+              </div>
+            </Reveal>
+          </div>
 
-          <Reveal delay={0.32}>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#lead-form"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#129EA8] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(22,163,106,0.55)] transition-all hover:brightness-105"
-              >
-                Book Appointment
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                href={`tel:${CLINIC_PHONE_TEL}`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#005F70] px-7 py-3.5 text-base font-semibold text-[#005F70] transition-colors hover:bg-[#005F70] hover:text-white"
-              >
-                <Phone className="h-4 w-4" />
-                Call Now
-              </a>
+          <Reveal delay={0.2} className="relative">
+            <div className="mx-auto max-w-md lg:ml-auto lg:mr-0">
+              <LeadForm id="lead-form" className="relative" />
             </div>
           </Reveal>
         </div>
+      </div>
 
-        <Reveal delay={0.2} className="relative">
-          <div className="relative mx-auto max-w-md lg:max-w-none">
-            <LeadForm id="lead-form" className="relative" />
-
-            <div className="mt-5 flex flex-wrap justify-center gap-3 lg:justify-start">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#1B2936] shadow-md ring-1 ring-slate-100">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[#129EA8]" />
-                Experienced Surgeons
+      <div className="relative border-t border-[#129EA8]/15 bg-[#E3F6F7]">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 divide-y divide-[#129EA8]/15 px-5 py-6 sm:grid-cols-3 sm:gap-4 sm:divide-x sm:divide-y-0 sm:px-8">
+          {trustStrip.map(({ icon: Icon, stat, label }) => (
+            <div key={label} className="flex items-center justify-center gap-3 pt-6 first:pt-0 sm:pt-0 sm:first:pl-0 sm:[&:not(:first-child)]:pl-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-[#129EA8] shadow-sm">
+                <Icon className="h-5 w-5" strokeWidth={2.25} />
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#1B2936] shadow-md ring-1 ring-slate-100">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[#129EA8]" />
-                Modern Surgical Facilities
+              <span className="flex flex-col">
+                <span className="text-base font-extrabold text-[#0B3446] sm:text-lg">
+                  {stat === "16000+" ? <StatCounter value={16000} suffix="+" /> : stat}
+                </span>
+                <span className="text-xs font-medium text-[#3F5A66] sm:text-sm">{label}</span>
               </span>
             </div>
-          </div>
-        </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

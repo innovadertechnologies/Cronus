@@ -1,35 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Plus } from "lucide-react";
+import Image from "next/image";
+import { Plus, Minus } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
 
 const faqs = [
   {
     question: "What is a hernia?",
     answer:
-      "A hernia occurs when an organ or tissue pushes through a weak area in the surrounding muscle or tissue.",
+      "A hernia occurs when an internal organ or tissue pushes through a weak spot in the surrounding muscle wall, often causing a visible bulge.",
   },
   {
     question: "Is hernia surgery necessary?",
     answer:
-      "Treatment depends on the type, size, symptoms and overall condition of the patient. A specialist can recommend the appropriate treatment.",
+      "Not every hernia needs immediate surgery, but most require evaluation since they don't resolve on their own and can worsen over time.",
   },
   {
     question: "What is laparoscopic hernia surgery?",
     answer:
-      "It is a minimally invasive surgical technique performed through small incisions using a camera and specialized instruments.",
+      "It's a minimally invasive technique performed through small incisions using a camera and specialized instruments, which may mean less pain and a quicker recovery.",
   },
   {
     question: "Can a hernia come back after surgery?",
     answer:
-      "There is a possibility of recurrence after hernia repair. Your surgeon can discuss the risks and factors that may affect recurrence.",
+      "Recurrence is possible, though modern surgical techniques and mesh reinforcement significantly reduce the chances compared to older methods.",
   },
   {
     question: "When should I see a doctor for a hernia?",
     answer:
-      "If you notice a new or growing bulge, pain, or discomfort in the abdomen or groin, consult a specialist for evaluation.",
+      "See a doctor as soon as you notice a bulge, pain, or discomfort, especially if it worsens with activity or is accompanied by sudden severe pain.",
   },
 ];
 
@@ -38,57 +38,62 @@ export function Faq() {
 
   return (
     <section id="faq" className="bg-white">
-      <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
-        <Reveal>
-          <h2 className="text-center text-3xl font-extrabold tracking-tight text-[#005F70] sm:text-4xl">
-            Frequently Asked Questions About Hernia Surgery
-          </h2>
-        </Reveal>
+      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr]">
+          <Reveal>
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#0B3446] sm:text-4xl">
+              Frequently Asked Questions About Hernia Surgery
+            </h2>
+            <span className="mt-3 block h-1 w-14 rounded-full bg-[#129EA8]" />
 
-        <div className="mt-10 flex flex-col gap-3">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <Reveal key={faq.question} delay={index * 0.05}>
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#F8FAFC]">
-                  <h3>
+            <div className="mt-8 flex flex-col gap-3">
+              {faqs.map((faq, index) => {
+                const isOpen = openIndex === index;
+                return (
+                  <div
+                    key={faq.question}
+                    className="overflow-hidden rounded-xl border border-slate-200/80 bg-white"
+                  >
                     <button
                       type="button"
                       onClick={() => setOpenIndex(isOpen ? null : index)}
                       aria-expanded={isOpen}
-                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
+                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                     >
-                      <span className="text-base font-semibold text-[#1B2936]">
+                      <span className="text-sm font-semibold text-[#0B3446] sm:text-base">
                         {faq.question}
                       </span>
-                      <motion.span
-                        animate={{ rotate: isOpen ? 45 : 0 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[#129EA8] shadow-sm"
-                      >
-                        <Plus className="h-4 w-4" />
-                      </motion.span>
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center text-[#129EA8]">
+                        {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                      </span>
                     </button>
-                  </h3>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="overflow-hidden"
-                      >
-                        <p className="px-5 pb-5 text-sm leading-relaxed text-[#64748B] sm:px-6">
+                    <div
+                      className={`grid transition-all duration-300 ${
+                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="px-5 pb-4 text-sm leading-relaxed text-[#64748B]">
                           {faq.answer}
                         </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </Reveal>
-            );
-          })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="hidden lg:block">
+            <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl">
+              <Image
+                src="/docf.png"
+                alt="Doctor at Cronus Multispeciality Hospital — Your Health, Our Priority"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
