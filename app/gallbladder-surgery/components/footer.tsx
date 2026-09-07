@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, CalendarCheck } from "lucide-react";
+import { BookTrigger } from "@/app/gallbladder-surgery/components/booking-modal";
 import { CLINIC_LOCATION, CLINIC_NAME, CLINIC_PHONE_DISPLAY, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 
 const links = [
@@ -13,7 +14,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#005F70] pb-24 pt-12 sm:pb-12">
+    <footer className="border-t border-white/10 bg-[#0F2544] pb-24 pt-12 sm:pb-12">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 md:flex-row md:items-start md:justify-between">
         <div>
           <span className="inline-block rounded-xl bg-white p-2.5">
@@ -55,13 +56,10 @@ export function Footer() {
             <Phone className="h-4 w-4" />
             Call Now
           </a>
-          <a
-            href="#lead-form"
-            className="flex items-center justify-center gap-2 rounded-xl bg-[#129EA8] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:brightness-105"
-          >
+          <BookTrigger className="flex items-center justify-center gap-2 rounded-xl bg-[#15803D] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:brightness-105">
             <CalendarCheck className="h-4 w-4" />
             Book Appointment
-          </a>
+          </BookTrigger>
         </div>
       </div>
 

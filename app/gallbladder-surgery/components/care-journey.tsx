@@ -29,25 +29,25 @@ const steps = [
 
 export function CareJourney() {
   return (
-    <section className="bg-white">
+    <section className="bg-[#E3F5EA]">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight text-[#005F70] sm:text-4xl">
+          <h2 className="text-3xl font-extrabold tracking-tight text-[#0F2544] sm:text-4xl">
             Your Care Journey
           </h2>
         </div>
 
         {/* Desktop: horizontal journey */}
         <div className="relative mt-16 hidden sm:block">
-          <div className="absolute left-0 right-0 top-[27px] h-0.5 bg-[#129EA8]" />
+          <div className="absolute left-0 right-0 top-[27px] h-0.5 bg-[#15803D]/25" />
 
           <div className="relative grid grid-cols-4 gap-8">
             {steps.map((step) => (
               <div key={step.number} className="flex flex-col items-center text-center">
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl border-4 border-[#F8FAFC] bg-[#005F70] text-white shadow-md">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl border-4 border-[#E3F5EA] bg-[#0F2544] text-white shadow-md">
                   <step.icon className="h-6 w-6" strokeWidth={2} />
                 </span>
-                <span className="mt-4 text-xs font-extrabold tracking-widest text-[#129EA8]">
+                <span className="mt-4 text-xs font-extrabold tracking-widest text-[#15803D]">
                   {step.number}
                 </span>
                 <h3 className="mt-1.5 text-base font-bold text-[#1B2936]">{step.title}</h3>
@@ -64,13 +64,13 @@ export function CareJourney() {
           {steps.map((step, index) => (
             <div key={step.number} className="relative flex gap-4 pb-8 pl-1 last:pb-0">
               {index < steps.length - 1 && (
-                <span className="absolute left-[27px] top-14 h-full w-0.5 bg-slate-200" />
+                <span className="absolute left-[27px] top-14 h-full w-0.5 bg-[#15803D]/20" />
               )}
-              <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#005F70] text-white shadow-md">
+              <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#0F2544] text-white shadow-md">
                 <step.icon className="h-6 w-6" strokeWidth={2} />
               </span>
               <div className="pt-1">
-                <span className="text-xs font-extrabold tracking-widest text-[#129EA8]">
+                <span className="text-xs font-extrabold tracking-widest text-[#15803D]">
                   {step.number}
                 </span>
                 <h3 className="mt-0.5 text-base font-bold text-[#1B2936]">{step.title}</h3>

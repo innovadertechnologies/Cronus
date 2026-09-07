@@ -1,15 +1,15 @@
 import Image from "next/image";
-import { Minimize2, Layers, BedDouble, TimerReset } from "lucide-react";
+import { Scissors, ShieldCheck, BedDouble, Clock } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
 
 const benefits = [
   {
-    icon: Minimize2,
+    icon: Scissors,
     title: "Small Incisions",
     description: "Performed through small surgical openings.",
   },
   {
-    icon: Layers,
+    icon: ShieldCheck,
     title: "Less Tissue Disruption",
     description: "Minimally invasive approach compared with traditional open surgery.",
   },
@@ -19,7 +19,7 @@ const benefits = [
     description: "Hospital stay may be shorter for suitable patients.",
   },
   {
-    icon: TimerReset,
+    icon: Clock,
     title: "Recovery",
     description:
       "Many patients can return to normal activities sooner, depending on their individual condition.",
@@ -28,41 +28,31 @@ const benefits = [
 
 export function SurgerySection() {
   return (
-    <section id="surgery" className="scroll-mt-24 overflow-hidden bg-white">
+    <section id="surgery" className="scroll-mt-24 bg-white">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
-          <Reveal className="relative order-2 lg:order-1">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -inset-6 -z-10 rounded-[36px] bg-gradient-to-br from-[#E3F6F7] to-[#129EA8]/10 blur-2xl"
-            />
-            <div className="relative mx-auto max-w-md overflow-hidden rounded-[26px] shadow-[0_30px_60px_-24px_rgba(0,95,112,0.35)]">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.3fr] lg:items-start">
+          <Reveal>
+            <div className="relative mx-auto max-w-md overflow-hidden rounded-[22px] shadow-[0_20px_44px_-24px_rgba(15,37,68,0.35)] lg:max-w-none">
               <Image
-                src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1000&q=80"
-                alt="Surgeon operating laparoscopic instruments in a modern operating theatre"
+                src="/docimage.png"
+                alt="Surgeon reviewing diagnostic imaging during a laparoscopic procedure"
                 width={800}
                 height={900}
-                className="h-80 w-full object-cover transition-transform duration-500 hover:scale-105 sm:h-[26rem]"
+                className="h-72 w-full object-cover sm:h-80 lg:h-full"
               />
-
-              <span className="absolute left-4 top-4 inline-flex items-center rounded-full border border-white/40 bg-white/80 px-3.5 py-1.5 text-xs font-semibold text-[#005F70] shadow-md backdrop-blur-md">
-                Minimally Invasive
-              </span>
-              <span className="absolute bottom-4 right-4 inline-flex items-center rounded-full border border-white/40 bg-white/80 px-3.5 py-1.5 text-xs font-semibold text-[#005F70] shadow-md backdrop-blur-md">
-                Small Incisions
-              </span>
             </div>
           </Reveal>
 
-          <div className="order-1 lg:order-2">
+          <div>
             <Reveal>
-              <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#129EA8]">
+              <h2 className="text-3xl font-extrabold tracking-tight text-[#0F2544] sm:text-4xl">
                 Laparoscopic Gallbladder Surgery
-              </span>
-              <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#005F70] sm:text-4xl">
-                A Minimally Invasive Approach to Gallbladder Surgery
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-[#64748B]">
+              <p className="mt-4 text-base leading-relaxed text-[#64748B]">
+                A minimally invasive surgical procedure to remove the gallbladder
+                when gallstones or other gallbladder problems require surgery.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-[#64748B]">
                 Laparoscopic gallbladder surgery is commonly recommended for
                 patients with symptomatic gallstones, recurring gallbladder pain,
                 inflammation or certain gallbladder complications.
@@ -74,25 +64,29 @@ export function SurgerySection() {
                 treatment based on your diagnosis.
               </p>
             </Reveal>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {benefits.map((benefit, index) => (
-                <Reveal key={benefit.title} delay={index * 0.08}>
-                  <div className="flex h-full flex-col gap-3 rounded-2xl border border-slate-200/80 bg-[#F8FAFC] p-5 transition-colors hover:border-[#129EA8]/30">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E3F6F7] text-[#129EA8]">
-                      <benefit.icon className="h-5 w-5" strokeWidth={2.25} />
-                    </span>
-                    <div>
-                      <h3 className="text-sm font-bold text-[#1B2936]">{benefit.title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-[#64748B]">
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
           </div>
+        </div>
+
+        <Reveal delay={0.1}>
+          <h3 className="mt-16 text-center text-3xl font-bold text-[#0F2544] sm:text-4xl">
+            Why Laparoscopic Surgery?
+          </h3>
+        </Reveal>
+
+        <div className="mx-auto mt-8 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {benefits.map((benefit, index) => (
+            <Reveal key={benefit.title} delay={0.1 + index * 0.06}>
+              <div className="flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200/80 bg-[#F8FAFC] px-6 py-8 text-center transition-colors hover:border-[#15803D]/30">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E3F5EA] text-[#15803D]">
+                  <benefit.icon className="h-7 w-7" strokeWidth={2} />
+                </span>
+                <h4 className="text-xl font-bold text-[#1B2936]">{benefit.title}</h4>
+                <p className="text-base leading-relaxed text-[#64748B]">
+                  {benefit.description}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

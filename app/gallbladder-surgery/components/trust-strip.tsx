@@ -10,7 +10,7 @@ const points = [
 
 export function TrustStrip() {
   return (
-    <section className="bg-[#005F70]">
+    <section className="bg-[#15803D]">
       <div className="mx-auto max-w-7xl overflow-x-auto px-5 py-6 sm:px-8 sm:py-7">
         <div className="flex min-w-max justify-start gap-8 sm:min-w-0 sm:justify-between sm:gap-6">
           {points.map((point, index) => (
