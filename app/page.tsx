@@ -1,7 +1,6 @@
 import { AnnouncementBar } from "@/app/components/announcement-bar";
 import { Navbar } from "@/app/components/navbar";
 import { Hero } from "@/app/components/hero";
-import { TrustMetrics } from "@/app/components/trust-metrics";
 import { DiagnosisToRecovery } from "@/app/components/diagnosis-to-recovery";
 import { Comparison } from "@/app/components/comparison";
 import { HerniaTypes } from "@/app/components/hernia-types";
@@ -21,7 +20,6 @@ export default function Home() {
 
         <main className="flex-1">
           <Hero />
-          <TrustMetrics />
           <DiagnosisToRecovery />
           <HerniaTypes />
           <HerniaBanner />

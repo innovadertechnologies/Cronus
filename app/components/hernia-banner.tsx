@@ -14,7 +14,7 @@ export function HerniaBanner() {
         src="/hncbanner.png"
         alt="A couple walking outdoors, smiling"
         fill
-        className="object-cover"
+        className="object-cover object-[20%_center] sm:object-center"
       />
 
       <div className="absolute inset-0 flex items-center">
