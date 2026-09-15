@@ -2,6 +2,7 @@ export type LeadPayload = {
   page: string;
   name: string;
   phone: string;
+  email?: string;
   problem: string;
   submittedAt: string;
 };

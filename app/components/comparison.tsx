@@ -24,7 +24,7 @@ export function Comparison() {
           <Reveal className="hidden lg:block">
             <div className="relative h-full w-full overflow-hidden rounded-2xl">
               <Image
-                src="/docimage.png"
+                src="/compimg.jpeg"
                 alt="Surgeon reviewing laparoscopic imaging during a procedure"
                 fill
                 className="object-cover"

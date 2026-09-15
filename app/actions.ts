@@ -16,6 +16,7 @@ export async function submitHerniaLead(
 ): Promise<LeadFormState> {
   const name = String(formData.get("name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim().replace(/[\s-]/g, "");
+  const email = String(formData.get("email") ?? "").trim();
   const problem = String(formData.get("problem") ?? "").trim();
 
   if (!name) {
@@ -30,6 +31,7 @@ export async function submitHerniaLead(
     page: "hernia-treatment-delhi-ncr",
     name,
     phone,
+    email: email || undefined,
     problem: problem || "Not specified",
     submittedAt: new Date().toISOString(),
   });
@@ -43,6 +45,7 @@ export async function submitGallbladderLead(
 ): Promise<LeadFormState> {
   const name = String(formData.get("name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim().replace(/[\s-]/g, "");
+  const email = String(formData.get("email") ?? "").trim();
   const preferredDate = String(formData.get("preferredDate") ?? "").trim();
   const condition = String(formData.get("condition") ?? "").trim();
 
@@ -62,6 +65,7 @@ export async function submitGallbladderLead(
     page: "gallbladder-surgery-delhi",
     name,
     phone,
+    email: email || undefined,
     problem: details || "Not specified",
     submittedAt: new Date().toISOString(),
   });

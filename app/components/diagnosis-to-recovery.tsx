@@ -17,10 +17,11 @@ const cards = [
     icon: AlertTriangle,
     title: "Why You Should Not Delay Hernia Treatment?",
     items: [
-      "Risk of Hernia Complications",
       "Pain & Discomfort May Increase",
-      "Hernia May Become Difficult to Treat",
-      "Strangulation Can Require Urgent Medical Care",
+      "Hernia May Grow Bigger",
+      "Bowel or Tissue May Get Trapped",
+      "Blood Supply May Get Blocked",
+      "May Require Emergency Surgery",
     ],
     bg: "bg-[#FDF0F2]",
     ring: "ring-[#F8D7DC]",
@@ -33,10 +34,11 @@ const cards = [
     icon: UserCircle2,
     title: "Why Choose Cronus?",
     items: [
+      "30+ Years of Trusted Care",
+      "16,000+ Surgeries Performed",
       "Experienced Surgical Specialists",
-      "Advanced Laparoscopic Procedures",
+      "Advanced Laparoscopic Surgery",
       "Modern Surgical Facilities",
-      "Comprehensive Pre & Post-Surgery Care",
     ],
     bg: "bg-[#EEF5FD]",
     ring: "ring-[#D3E6FA]",
@@ -54,6 +56,7 @@ const cards = [
       "Less Tissue Disruption",
       "Potentially Shorter Hospital Stay",
       "Recovery May Be Quicker for Suitable Patients",
+      "Chances of Recurrence Are Very Less",
     ],
     bg: "bg-[#EFFAF3]",
     ring: "ring-[#CFEEDA]",
@@ -108,9 +111,9 @@ export function DiagnosisToRecovery() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="relative mx-auto aspect-square w-full max-w-lg overflow-hidden rounded-[24px] shadow-[0_30px_60px_-28px_rgba(11,52,70,0.35)]">
+            <div className="relative mx-auto aspect-[1061/1137] w-full max-w-lg overflow-hidden rounded-[24px] shadow-[0_30px_60px_-28px_rgba(11,52,70,0.35)]">
               <Image
-                src="/hptl.png"
+                src="/hospitalog.jpeg"
                 alt="Cronus Multispeciality Hospital building"
                 fill
                 className="object-cover"

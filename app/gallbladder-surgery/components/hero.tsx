@@ -28,7 +28,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#EAF6F8] to-transparent" />
       </div>
 
-      <div className="relative mx-auto flex max-w-[1440px] flex-col gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:min-h-[640px] lg:flex-row lg:items-center lg:justify-between lg:py-24">
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:min-h-[640px] lg:flex-row lg:items-center lg:justify-between lg:py-24">
         <div className="max-w-xl">
           <Reveal>
             <span className="inline-flex items-center rounded-full bg-white px-4 py-1.5 text-xs font-bold tracking-[0.14em] text-[#129EA8] shadow-sm ring-1 ring-[#129EA8]/10">
@@ -77,7 +77,7 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <div className="w-full max-w-md lg:mx-0">
+        <div className="w-full max-w-lg lg:mx-0">
           <Reveal delay={0.2}>
             <AppointmentForm id="lead-form" idPrefix="hero" variant="hero" />
           </Reveal>

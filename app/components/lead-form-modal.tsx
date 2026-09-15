@@ -28,7 +28,7 @@ export function LeadFormModal({
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={(event) => event.stopPropagation()}
-            className="relative w-full max-w-md"
+            className="relative w-full max-w-lg"
           >
             <button
               type="button"

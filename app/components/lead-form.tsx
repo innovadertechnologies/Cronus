@@ -20,59 +20,82 @@ function SubmitButton() {
   );
 }
 
-export function LeadForm({ id, className = "" }: { id?: string; className?: string }) {
+export function LeadForm({
+  id,
+  idPrefix = "lead",
+  className = "",
+}: {
+  id?: string;
+  idPrefix?: string;
+  className?: string;
+}) {
   const [state, formAction] = useActionState(submitHerniaLead, initialState);
 
   return (
     <div
       id={id}
-      className={`relative rounded-[28px] border border-[#129EA8]/15 bg-white p-6 shadow-[0_30px_60px_-20px_rgba(11,31,51,0.25)] sm:p-8 ${className}`}
+      className={`relative scroll-mt-24 rounded-[28px] border border-[#129EA8]/15 bg-white p-6 shadow-[0_30px_60px_-20px_rgba(11,31,51,0.25)] sm:p-8 ${className}`}
     >
       <h3 className="text-xl font-bold text-[#1B2936]">Need Hernia Treatment?</h3>
       <p className="mt-1.5 text-sm leading-relaxed text-[#64748B]">
         Get an expert evaluation and understand the right treatment option for you.
       </p>
 
-      <form action={formAction} className="mt-6 flex flex-col gap-3.5" noValidate>
+      <form action={formAction} className="mt-6 flex flex-col gap-3" noValidate>
         <div>
-          <label htmlFor="lead-name" className="sr-only">
+          <label htmlFor={`${idPrefix}-name`} className="sr-only">
             Name
           </label>
           <input
-            id="lead-name"
+            id={`${idPrefix}-name`}
             name="name"
             type="text"
             required
             autoComplete="name"
             placeholder="Name"
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
           />
         </div>
-        <div>
-          <label htmlFor="lead-phone" className="sr-only">
-            Phone Number
-          </label>
-          <input
-            id="lead-phone"
-            name="phone"
-            type="tel"
-            required
-            inputMode="tel"
-            autoComplete="tel"
-            placeholder="Phone Number"
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
-          />
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label htmlFor={`${idPrefix}-phone`} className="sr-only">
+              Phone Number
+            </label>
+            <input
+              id={`${idPrefix}-phone`}
+              name="phone"
+              type="tel"
+              required
+              inputMode="tel"
+              autoComplete="tel"
+              placeholder="Phone Number"
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+            />
+          </div>
+          <div>
+            <label htmlFor={`${idPrefix}-email`} className="sr-only">
+              Email Address
+            </label>
+            <input
+              id={`${idPrefix}-email`}
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="Email Address"
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+            />
+          </div>
         </div>
         <div>
-          <label htmlFor="lead-problem" className="sr-only">
+          <label htmlFor={`${idPrefix}-problem`} className="sr-only">
             Your Problem
           </label>
-          <textarea
-            id="lead-problem"
+          <input
+            id={`${idPrefix}-problem`}
             name="problem"
-            rows={3}
+            type="text"
             placeholder="Your Problem"
-            className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
           />
         </div>
 

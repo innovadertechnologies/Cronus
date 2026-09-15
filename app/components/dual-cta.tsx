@@ -1,67 +1,64 @@
 "use client";
 
-import { Phone, ArrowRight, PhoneIncoming } from "lucide-react";
+import { Phone, CalendarCheck } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
 import { CLINIC_NAME, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
+import { LeadForm } from "@/app/components/lead-form";
 import { useLeadFormModal } from "@/app/components/lead-form-modal-provider";
+
+const tags = [
+  "Inguinal Hernia",
+  "Umbilical Hernia",
+  "Incisional Hernia",
+  "Ventral Hernia",
+  "Recurrent Hernia",
+];
 
 export function DualCta() {
   const { openLeadForm } = useLeadFormModal();
 
   return (
-    <section className="grid lg:grid-cols-2">
-      <div className="bg-[#0B3446] px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
-        <Reveal className="mx-auto max-w-md">
-          <h2 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
-            Get Expert Hernia Care at
-            <br />
-            {CLINIC_NAME}
+    <section id="contact" className="scroll-mt-24 bg-[#0B3446]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[1.3fr_0.9fr] lg:items-center">
+        <Reveal>
+          <span className="text-xs font-bold uppercase tracking-[0.16em] text-white/70">
+            Your Health. Our Priority.
+          </span>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            Need Hernia Surgery?
           </h2>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <button
-              type="button"
-              onClick={openLeadForm}
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-[#0B3446] shadow-lg transition-transform hover:-translate-y-0.5"
-            >
-              Book a Consultation
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </button>
+          <p className="mt-3 max-w-lg text-base leading-relaxed text-white/80">
+            Get expert evaluation and surgical care at {CLINIC_NAME}, Delhi.
+          </p>
+          <p className="mt-4 text-sm font-semibold text-white/70">
+            {tags.join("  •  ")}
+          </p>
+
+          <h3 className="mt-7 text-lg font-bold text-white">
+            Book Your Consultation Today
+          </h3>
+
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <a
               href={`tel:${CLINIC_PHONE_TEL}`}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/70 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#0B3446]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#129EA8] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(18,158,168,0.55)] transition-all hover:brightness-105"
             >
               <Phone className="h-4 w-4" />
               Call Now
             </a>
-          </div>
-        </Reveal>
-      </div>
-
-      <div className="bg-[#DCEEF7] px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
-        <Reveal delay={0.1} className="mx-auto max-w-md">
-          <h2 className="text-2xl font-extrabold leading-tight text-[#0B3446] sm:text-3xl">
-            Need Help With Your Hernia?
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-[#3F5A66] sm:text-base">
-            Don&rsquo;t let hernia pain or discomfort affect your daily life. Get
-            expert evaluation and understand the right treatment option for you.
-          </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <button
               type="button"
               onClick={openLeadForm}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/70 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white hover:text-[#0B3446]"
             >
-              Book your consultation
+              <CalendarCheck className="h-4 w-4" />
+              Book Appointment
             </button>
-            <a
-              href="#lead-form"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#0B3446]/30 bg-white px-6 py-3.5 text-sm font-semibold text-[#0B3446] transition-colors hover:border-[#0B3446]"
-            >
-              <PhoneIncoming className="h-4 w-4" />
-              Get a call back
-            </a>
           </div>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <LeadForm id="contact-form" idPrefix="contact" />
         </Reveal>
       </div>
     </section>

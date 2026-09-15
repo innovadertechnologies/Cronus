@@ -96,7 +96,7 @@ export function Hero() {
           </div>
 
           <Reveal delay={0.2} className="relative">
-            <div className="mx-auto max-w-md lg:ml-auto lg:mr-0">
+            <div className="mx-auto max-w-lg lg:ml-auto lg:mr-0">
               <LeadForm id="lead-form" className="relative" />
             </div>
           </Reveal>

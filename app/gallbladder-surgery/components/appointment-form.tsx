@@ -82,7 +82,7 @@ export function AppointmentForm({
               </p>
             )}
 
-            <form action={formAction} className="mt-6 flex flex-col gap-3.5" noValidate>
+            <form action={formAction} className="mt-6 flex flex-col gap-3" noValidate>
               <div>
                 <label htmlFor={`${idPrefix}-name`} className="sr-only">
                   {isCompact ? "Full Name" : "Name"}
@@ -94,24 +94,39 @@ export function AppointmentForm({
                   required
                   autoComplete="name"
                   placeholder={isCompact ? "Full Name" : "Name"}
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
                 />
               </div>
 
-              <div>
-                <label htmlFor={`${idPrefix}-phone`} className="sr-only">
-                  Phone Number
-                </label>
-                <input
-                  id={`${idPrefix}-phone`}
-                  name="phone"
-                  type="tel"
-                  required
-                  inputMode="tel"
-                  autoComplete="tel"
-                  placeholder="Phone Number"
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
-                />
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor={`${idPrefix}-phone`} className="sr-only">
+                    Phone Number
+                  </label>
+                  <input
+                    id={`${idPrefix}-phone`}
+                    name="phone"
+                    type="tel"
+                    required
+                    inputMode="tel"
+                    autoComplete="tel"
+                    placeholder="Phone Number"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+                  />
+                </div>
+                <div>
+                  <label htmlFor={`${idPrefix}-email`} className="sr-only">
+                    Email Address
+                  </label>
+                  <input
+                    id={`${idPrefix}-email`}
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Email Address"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+                  />
+                </div>
               </div>
 
               <div>
@@ -122,7 +137,7 @@ export function AppointmentForm({
                   id={`${idPrefix}-condition`}
                   name="condition"
                   defaultValue=""
-                  className="w-full appearance-none rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+                  className="w-full appearance-none rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
                 >
                   <option value="" disabled>
                     {isCompact ? "Select Condition" : "Select Concern"}
