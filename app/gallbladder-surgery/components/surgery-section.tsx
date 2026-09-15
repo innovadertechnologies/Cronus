@@ -32,7 +32,7 @@ export function SurgerySection() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.3fr] lg:items-start">
           <Reveal>
-            <div className="relative mx-auto max-w-md overflow-hidden rounded-[22px] shadow-[0_20px_44px_-24px_rgba(15,37,68,0.35)] lg:max-w-none">
+            <div className="relative mx-auto max-w-md overflow-hidden rounded-[22px] shadow-[0_20px_44px_-24px_rgba(11,52,70,0.35)] lg:max-w-none">
               <Image
                 src="/docimage.png"
                 alt="Surgeon reviewing diagnostic imaging during a laparoscopic procedure"
@@ -45,7 +45,7 @@ export function SurgerySection() {
 
           <div>
             <Reveal>
-              <h2 className="text-3xl font-extrabold tracking-tight text-[#0F2544] sm:text-4xl">
+              <h2 className="text-3xl font-extrabold tracking-tight text-[#0B3446] sm:text-4xl">
                 Laparoscopic Gallbladder Surgery
               </h2>
               <p className="mt-4 text-base leading-relaxed text-[#64748B]">
@@ -68,7 +68,7 @@ export function SurgerySection() {
         </div>
 
         <Reveal delay={0.1}>
-          <h3 className="mt-16 text-center text-3xl font-bold text-[#0F2544] sm:text-4xl">
+          <h3 className="mt-16 text-center text-3xl font-bold text-[#0B3446] sm:text-4xl">
             Why Laparoscopic Surgery?
           </h3>
         </Reveal>
@@ -76,8 +76,8 @@ export function SurgerySection() {
         <div className="mx-auto mt-8 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit, index) => (
             <Reveal key={benefit.title} delay={0.1 + index * 0.06}>
-              <div className="flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200/80 bg-[#F8FAFC] px-6 py-8 text-center transition-colors hover:border-[#15803D]/30">
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E3F5EA] text-[#15803D]">
+              <div className="flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200/80 bg-[#F8FAFC] px-6 py-8 text-center transition-colors hover:border-[#129EA8]/30">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#DCEEF7] text-[#129EA8]">
                   <benefit.icon className="h-7 w-7" strokeWidth={2} />
                 </span>
                 <h4 className="text-xl font-bold text-[#1B2936]">{benefit.title}</h4>

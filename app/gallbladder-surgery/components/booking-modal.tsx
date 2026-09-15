@@ -91,7 +91,7 @@ function BookingModal() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0F2544]/60 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0B3446]/60 p-4 backdrop-blur-sm"
           onClick={close}
         >
           <motion.div
@@ -106,7 +106,7 @@ function BookingModal() {
               type="button"
               onClick={close}
               aria-label="Close booking form"
-              className="absolute -right-3 -top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#0F2544] shadow-md transition-colors hover:bg-slate-100"
+              className="absolute -right-3 -top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#0B3446] shadow-md transition-colors hover:bg-slate-100"
             >
               <X className="h-4 w-4" />
             </button>

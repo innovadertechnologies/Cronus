@@ -17,7 +17,7 @@ export function FinalCta() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0F2544] via-[#0F2544]/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B3446] via-[#0B3446]/55 to-transparent" />
       </div>
 
       <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[1.3fr_0.9fr] lg:items-center">
@@ -43,12 +43,12 @@ export function FinalCta() {
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <a
               href={`tel:${CLINIC_PHONE_TEL}`}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(21,128,61,0.55)] transition-all hover:brightness-105"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#129EA8] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(18,158,168,0.55)] transition-all hover:brightness-105"
             >
               <Phone className="h-4 w-4" />
               Call Now
             </a>
-            <BookTrigger className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/70 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white hover:text-[#0F2544]">
+            <BookTrigger className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/70 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white hover:text-[#0B3446]">
               <CalendarCheck className="h-4 w-4" />
               Book Appointment
             </BookTrigger>

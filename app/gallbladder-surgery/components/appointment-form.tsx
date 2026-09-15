@@ -22,7 +22,7 @@ function SubmitButton({ label }: { label: string }) {
     <button
       type="submit"
       disabled={pending}
-      className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white shadow-[0_10px_24px_-8px_rgba(21,128,61,0.5)] transition-all hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+      className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-6 py-3.5 text-base font-semibold text-white shadow-[0_10px_24px_-8px_rgba(11,52,70,0.5)] transition-all hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
     >
       {pending ? "Sending..." : label}
     </button>
@@ -46,7 +46,7 @@ export function AppointmentForm({
   return (
     <div
       id={id}
-      className={`relative scroll-mt-24 rounded-[28px] border border-[#15803D]/15 bg-white p-6 shadow-[0_30px_60px_-20px_rgba(15,37,68,0.25)] sm:p-8 ${className}`}
+      className={`relative scroll-mt-24 rounded-[28px] border border-[#129EA8]/15 bg-white p-6 shadow-[0_30px_60px_-20px_rgba(11,52,70,0.25)] sm:p-8 ${className}`}
     >
       <AnimatePresence mode="wait">
         {state.success ? (
@@ -57,7 +57,7 @@ export function AppointmentForm({
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="flex flex-col items-center gap-3 py-6 text-center"
           >
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E3F5EA] text-[#15803D]">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#DCEEF7] text-[#129EA8]">
               <ShieldCheck className="h-7 w-7" strokeWidth={2} />
             </span>
             <h3 className="text-xl font-bold text-[#1B2936]">Request Received</h3>
@@ -94,7 +94,7 @@ export function AppointmentForm({
                   required
                   autoComplete="name"
                   placeholder={isCompact ? "Full Name" : "Name"}
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#15803D] focus:outline-none focus:ring-4 focus:ring-[#15803D]/15"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
                 />
               </div>
 
@@ -110,7 +110,7 @@ export function AppointmentForm({
                   inputMode="tel"
                   autoComplete="tel"
                   placeholder="Phone Number"
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#15803D] focus:outline-none focus:ring-4 focus:ring-[#15803D]/15"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
                 />
               </div>
 
@@ -122,7 +122,7 @@ export function AppointmentForm({
                   id={`${idPrefix}-condition`}
                   name="condition"
                   defaultValue=""
-                  className="w-full appearance-none rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] transition-colors focus:border-[#15803D] focus:outline-none focus:ring-4 focus:ring-[#15803D]/15"
+                  className="w-full appearance-none rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[#1B2936] transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
                 >
                   <option value="" disabled>
                     {isCompact ? "Select Condition" : "Select Concern"}

@@ -55,7 +55,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-[#1B2936]/80 transition-colors hover:text-[#15803D]"
+              className="text-sm font-medium text-[#1B2936]/80 transition-colors hover:text-[#129EA8]"
             >
               {link.label}
             </a>
@@ -65,12 +65,12 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href={`tel:${CLINIC_PHONE_TEL}`}
-            className="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-[#0F2544] transition-colors hover:border-[#15803D] hover:text-[#15803D]"
+            className="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-[#0B3446] transition-colors hover:border-[#129EA8] hover:text-[#129EA8]"
           >
             <Phone className="h-4 w-4" />
             Call Now
           </a>
-          <BookTrigger className="flex items-center gap-2 rounded-xl bg-[#15803D] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:brightness-105">
+          <BookTrigger className="flex items-center gap-2 rounded-xl bg-[#0B3446] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:brightness-105">
             <CalendarCheck className="h-4 w-4" />
             Book Appointment
           </BookTrigger>
@@ -80,7 +80,7 @@ export function Navbar() {
           <a
             href={`tel:${CLINIC_PHONE_TEL}`}
             aria-label="Call Now"
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-[#0F2544]"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-[#0B3446]"
           >
             <Phone className="h-5 w-5" />
           </a>
@@ -89,7 +89,7 @@ export function Navbar() {
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-[#0F2544]"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-[#0B3446]"
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -119,14 +119,14 @@ export function Navbar() {
               <div className="mt-2 flex flex-col gap-2 border-t border-slate-100 pt-3">
                 <a
                   href={`tel:${CLINIC_PHONE_TEL}`}
-                  className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-[#0F2544]"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-[#0B3446]"
                 >
                   <Phone className="h-4 w-4" />
                   Call Now
                 </a>
                 <BookTrigger
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-[#15803D] px-4 py-3 text-sm font-semibold text-white"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-4 py-3 text-sm font-semibold text-white"
                 >
                   <CalendarCheck className="h-4 w-4" />
                   Book Appointment

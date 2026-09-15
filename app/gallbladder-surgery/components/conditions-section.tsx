@@ -42,10 +42,10 @@ export function ConditionsSection() {
     <section id="conditions" className="scroll-mt-24 bg-white">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight text-[#0F2544] sm:text-4xl">
+          <h2 className="text-3xl font-extrabold tracking-tight text-[#0B3446] sm:text-4xl">
             Gallbladder Problems We Treat
           </h2>
-          <span className="mx-auto mt-3 block h-1 w-14 rounded-full bg-[#15803D]" />
+          <span className="mx-auto mt-3 block h-1 w-14 rounded-full bg-[#129EA8]" />
           <p className="mt-4 text-lg leading-relaxed text-[#64748B]">
             Expert evaluation and surgical care for common gallbladder conditions.
           </p>
@@ -72,7 +72,7 @@ export function ConditionsSection() {
                 <p className="mt-2.5 text-sm leading-relaxed text-[#64748B]">
                   {condition.description}
                 </p>
-                <span className="mt-4 inline-flex h-7 w-9 items-center justify-center rounded-full bg-[#E3F5EA] text-xs font-bold text-[#15803D]">
+                <span className="mt-4 inline-flex h-7 w-9 items-center justify-center rounded-full bg-[#DCEEF7] text-xs font-bold text-[#129EA8]">
                   {condition.number}
                 </span>
               </div>
@@ -81,16 +81,16 @@ export function ConditionsSection() {
         </RevealGroup>
 
         <Reveal delay={0.2}>
-          <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl bg-[#E3F5EA] px-6 py-5 sm:flex-row sm:px-8">
+          <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl bg-[#DCEEF7] px-6 py-5 sm:flex-row sm:px-8">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-[#15803D]">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-[#129EA8]">
                 <Stethoscope className="h-5 w-5" strokeWidth={2} />
               </span>
-              <span className="text-base font-bold text-[#0F2544] sm:text-lg">
+              <span className="text-base font-bold text-[#0B3446] sm:text-lg">
                 Experiencing Gallbladder Problems?
               </span>
             </div>
-            <BookTrigger className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_28px_-10px_rgba(21,128,61,0.5)] transition-all hover:brightness-105 sm:w-auto sm:text-base">
+            <BookTrigger className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_28px_-10px_rgba(11,52,70,0.5)] transition-all hover:brightness-105 sm:w-auto sm:text-base">
               Consult a Specialist
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </BookTrigger>

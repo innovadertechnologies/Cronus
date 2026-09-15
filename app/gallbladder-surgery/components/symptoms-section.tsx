@@ -16,10 +16,10 @@ export function SymptomsSection() {
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#15803D]">
+          <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#129EA8]">
             Know the Signs
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#0F2544] sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#0B3446] sm:text-4xl">
             When Should You Seek Medical Evaluation?
           </h2>
         </div>
@@ -31,7 +31,7 @@ export function SymptomsSection() {
               whileHover={{ y: -4 }}
               className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200/80 bg-white p-6 text-center shadow-[0_10px_28px_-22px_rgba(11,31,51,0.35)]"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E3F5EA] text-[#15803D]">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#DCEEF7] text-[#129EA8]">
                 <symptom.icon className="h-5 w-5" strokeWidth={2.25} />
               </span>
               <span className="text-sm font-semibold leading-snug text-[#1B2936]">
