@@ -4,7 +4,7 @@ import { Reveal } from "@/app/components/reveal";
 const points = [
   { icon: UserCheck, label: "Experienced Specialists" },
   { icon: Building2, label: "Modern Surgical Facilities" },
-  { icon: HeartHandshake, label: "Comprehensive Care" },
+  { icon: HeartHandshake, label: "Cashless Treatment Available" },
   { icon: ShieldCheck, label: "Patient-Focused Treatment" },
 ];
 

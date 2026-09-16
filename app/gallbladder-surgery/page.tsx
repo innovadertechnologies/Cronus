@@ -7,6 +7,7 @@ import { ConditionsSection } from "@/app/gallbladder-surgery/components/conditio
 import { SurgerySection } from "@/app/gallbladder-surgery/components/surgery-section";
 import { DiagnosisCta } from "@/app/gallbladder-surgery/components/diagnosis-cta";
 import { WhyChooseUs } from "@/app/gallbladder-surgery/components/why-choose-us";
+import { DoctorProfile } from "@/app/gallbladder-surgery/components/doctor-profile";
 import { CareJourney } from "@/app/gallbladder-surgery/components/care-journey";
 import { SymptomsSection } from "@/app/gallbladder-surgery/components/symptoms-section";
 import { FinalCta } from "@/app/gallbladder-surgery/components/final-cta";
@@ -32,6 +33,7 @@ export default function GallbladderSurgeryPage() {
           <SurgerySection />
           <DiagnosisCta />
           <WhyChooseUs />
+          <DoctorProfile />
           <CareJourney />
           <SymptomsSection />
           <FinalCta />

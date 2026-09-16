@@ -5,6 +5,7 @@ import { DiagnosisToRecovery } from "@/app/components/diagnosis-to-recovery";
 import { Comparison } from "@/app/components/comparison";
 import { HerniaTypes } from "@/app/components/hernia-types";
 import { HerniaBanner } from "@/app/components/hernia-banner";
+import { DoctorProfile } from "@/app/components/doctor-profile";
 import { Faq } from "@/app/components/faq";
 import { DualCta } from "@/app/components/dual-cta";
 import { Footer } from "@/app/components/footer";
@@ -24,6 +25,7 @@ export default function Home() {
           <HerniaTypes />
           <HerniaBanner />
           <Comparison />
+          <DoctorProfile />
           <Faq />
           <DualCta />
         </main>
