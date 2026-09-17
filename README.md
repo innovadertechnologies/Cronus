@@ -1,5 +1,22 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Cronus Multispeciality Hospital Website
+
+This website includes multiple medical service landing pages:
+
+- **Home Page** (`/`) - General hernia treatment information
+- **Gallbladder Surgery** (`/gallbladder-surgery`) - Specialized gallbladder care
+- **Maternity Care** (`/maternity`) - Complete pregnancy and maternity services
+
+### Pages Available
+
+- **Maternity Landing Page** - Complete maternity care services with:
+  - Pregnancy care journey
+  - Expert medical team information  
+  - Appointment booking system
+  - Patient testimonials and FAQ
+  - Responsive design with mobile-first approach
+
 ## Getting Started
 
 First, run the development server:
