@@ -59,32 +59,43 @@ function AnimatedCounter({
   );
 }
 
-const features = [
+const features: Array<{
+  icon: any;
+  title: string;
+  description: string;
+  isCounter: boolean;
+  counterValue?: number;
+  counterSuffix?: string;
+}> = [
   {
     icon: Heart,
-    title: "",
-    description: "Babies Normally Delivered",
+    title: "Babies Normally Delivered",
+    description: "",
     isCounter: true,
     counterValue: 8900,
   },
   {
     icon: Users,
-    title: "",
-    description: "Years Experienced Medical Team",
+    title: "Years Experienced Medical Team",
+    description: "",
     isCounter: true,
     counterValue: 25,
   },
   {
     icon: Shield,
     title: "Complete Maternity Support",
-    description: "Pregnancy, delivery and postnatal care under one roof.",
-    isCounter: false,
+    description: "Pregnancy, delivery and postnatal care under one roof",
+    isCounter: true,
+    counterValue: 100,
+    counterSuffix: "%",
   },
   {
     icon: Baby,
     title: "Mother & Baby Focused Care",
-    description: "Compassionate care for every step of your parenting journey.",
-    isCounter: false,
+    description: "Compassionate care for every step of your parenting journey",
+    isCounter: true,
+    counterValue: 24,
+    counterSuffix: "/7",
   },
 ];
 
@@ -110,13 +121,10 @@ export function WhyChooseCronus() {
                   <feature.icon className="h-8 w-8" strokeWidth={1.5} />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-[#1B2936]">
-                  {feature.isCounter ? (
-                    <>
-                      <AnimatedCounter value={feature.counterValue} suffix="+" /> {feature.title}
-                    </>
-                  ) : (
-                    feature.title
-                  )}
+                  <AnimatedCounter 
+                    value={feature.counterValue ?? 0} 
+                    suffix={feature.counterSuffix ?? "+"} 
+                  /> {feature.title}
                 </h3>
                 {feature.description && (
                   <p className="mt-2 text-sm text-[#64748B] leading-relaxed">
