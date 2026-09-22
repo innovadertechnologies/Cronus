@@ -1,29 +1,90 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import { Heart, Users, Shield, Baby } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
 import { useBookingModal } from "./booking-modal-provider";
 
+// Animated Counter Component
+function AnimatedCounter({ 
+  value, 
+  suffix = "", 
+  duration = 2000 
+}: { 
+  value: number; 
+  suffix?: string; 
+  duration?: number; 
+}) {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const counterRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasStarted) {
+          setHasStarted(true);
+          
+          let start = 0;
+          const end = value;
+          const increment = end / (duration / 16); // 60fps
+          
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) {
+              setCount(end);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, 16);
+          
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [value, duration, hasStarted]);
+
+  return (
+    <span ref={counterRef}>
+      {count.toLocaleString("en-IN")}{suffix}
+    </span>
+  );
+}
+
 const features = [
   {
     icon: Heart,
-    title: "Personalized Pregnancy Care",
-    description: "Care plans designed around your pregnancy needs.",
+    title: "",
+    description: "Babies Normally Delivered",
+    isCounter: true,
+    counterValue: 8900,
   },
   {
     icon: Users,
-    title: "Experienced Medical Team",
-    description: "Guidance from qualified doctors and healthcare professionals.",
+    title: "",
+    description: "Years Experienced Medical Team",
+    isCounter: true,
+    counterValue: 25,
   },
   {
     icon: Shield,
     title: "Complete Maternity Support",
     description: "Pregnancy, delivery and postnatal care under one roof.",
+    isCounter: false,
   },
   {
     icon: Baby,
     title: "Mother & Baby Focused Care",
-    description: "A supportive approach for both mother and baby.",
+    description: "Compassionate care for every step of your parenting journey.",
+    isCounter: false,
   },
 ];
 
@@ -49,11 +110,19 @@ export function WhyChooseCronus() {
                   <feature.icon className="h-8 w-8" strokeWidth={1.5} />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-[#1B2936]">
-                  {feature.title}
+                  {feature.isCounter ? (
+                    <>
+                      <AnimatedCounter value={feature.counterValue} suffix="+" /> {feature.title}
+                    </>
+                  ) : (
+                    feature.title
+                  )}
                 </h3>
-                <p className="mt-2 text-sm text-[#64748B] leading-relaxed">
-                  {feature.description}
-                </p>
+                {feature.description && (
+                  <p className="mt-2 text-sm text-[#64748B] leading-relaxed">
+                    {feature.description}
+                  </p>
+                )}
               </div>
             </Reveal>
           ))}

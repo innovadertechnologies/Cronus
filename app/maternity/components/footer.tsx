@@ -12,8 +12,8 @@ import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/app/components/socia
 import { FooterMap } from "@/app/components/footer-map";
 
 const links = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "#why-choose-cronus" },
+  { label: "Home", href: "#hero" },
+  { label: "Why Choose Cronus", href: "#why-choose-cronus" },
   { label: "Maternity Care", href: "#care-journey" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },

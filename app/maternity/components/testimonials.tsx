@@ -5,19 +5,19 @@ import { Reveal } from "@/app/components/reveal";
 
 const testimonials = [
   {
-    name: "Happy Mother",
+    name: "Neha Sharma",
     image: "/testimonial-1.jpg",
     rating: 5,
     text: "Supportive care and a wonderful experience throughout my pregnancy.",
   },
   {
-    name: "Happy Mother",
+    name: "Priya Mehta",
     image: "/testimonial-2.jpg", 
     rating: 5,
     text: "The team was caring, attentive and made us feel comfortable.",
   },
   {
-    name: "Happy Parents",
+    name: "Mr. & Mrs.Kapoor",
     image: "/testimonial-3.jpg",
     rating: 5,
     text: "We felt well-guided and supported at every step.",

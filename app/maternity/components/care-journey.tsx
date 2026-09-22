@@ -1,39 +1,39 @@
 "use client";
 
-import { MessageSquare, Heart, Bed, User, Baby } from "lucide-react";
+import Image from "next/image";
 import { Reveal } from "@/app/components/reveal";
 import { useBookingModal } from "./booking-modal-provider";
 
 const journeySteps = [
   {
     number: "01",
-    icon: MessageSquare,
     title: "First Consultation",
     description: "Understand your pregnancy and get personalized medical guidance.",
+    image: "/First_Consultation.png",
   },
   {
     number: "02", 
-    icon: Heart,
     title: "Antenatal Care",
     description: "Regular check-ups and monitoring to track your pregnancy journey.",
+     image: "/anetalcare.png",
   },
   {
     number: "03",
-    icon: Bed,
     title: "Delivery Care", 
     description: "Get medical support and guidance throughout your delivery.",
+     image: "/deliverycare.png",
   },
   {
     number: "04",
-    icon: User,
     title: "Postnatal Care",
     description: "Continued care for mother and baby after delivery.",
+     image: "/postnantalcare.png",
   },
   {
     number: "05",
-    icon: Baby,
     title: "Newborn Care",
     description: "Support and medical attention for your little one's early days.",
+     image: "/newborncare.png",
   },
 ];
 
@@ -61,23 +61,28 @@ export function CareJourney() {
           </Reveal>
         </div>
 
-        {/* Timeline - Clean icons only */}
+        {/* Timeline - Clean design without icons */}
         <div className="relative mb-16">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 relative">
             {journeySteps.map((step, index) => (
               <Reveal key={step.number} delay={index * 0.1}>
                 <div className="text-center relative">
-                  {/* Icon */}
-                  <div className="relative inline-flex mb-6">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white border-2 border-pink-200 text-pink-500 shadow-lg">
-                      <step.icon className="h-8 w-8" strokeWidth={1.5} />
+                  {/* Image for First Consultation or Step Number */}
+                  {step.image ? (
+                    <div className="relative inline-flex mb-6">
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        width={120}
+                        height={90}
+                        className="rounded-lg shadow-md"
+                      />
                     </div>
-                  </div>
-
-                  {/* Step number */}
-                  <div className="mb-3">
-                    <span className="text-2xl font-bold text-[#1e3a5f]">{step.number}</span>
-                  </div>
+                  ) : (
+                    <div className="mb-6">
+                      <span className="text-3xl font-bold text-[#1e3a5f]">{step.number}</span>
+                    </div>
+                  )}
 
                   {/* Title */}
                   <h3 className="text-lg font-semibold text-[#1e3a5f] mb-3">

@@ -22,13 +22,13 @@ const trustStrip = [
   },
   {
     icon: Baby,
-    stat: "Safe Deliveries",
-    label: "with Expert Care",
+    stat: "Safe Normal Deliveries",
+    // label: "with Expert Care",
   },
   {
     icon: ShieldCheck,
     stat: "24/7 Support",
-    label: "During Pregnancy",
+    // label: "During Pregnancy",
   },
 ];
 
