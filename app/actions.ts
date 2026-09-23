@@ -10,6 +10,8 @@ export type LeadFormState = {
 
 const INDIAN_PHONE = /^(?:\+91[\s-]?)?[6-9]\d{9}$/;
 
+const SAVE_FAILED = "We couldn't submit your request. Please try again or call us directly.";
+
 export async function submitHerniaLead(
   _prevState: LeadFormState,
   formData: FormData
@@ -27,16 +29,19 @@ export async function submitHerniaLead(
     return { success: false, error: "Please enter a valid 10-digit Indian phone number." };
   }
 
-  await recordLead({
-    page: "hernia-treatment-delhi-ncr",
-    name,
-    phone,
-    email: email || undefined,
-    problem: problem || "Not specified",
-    submittedAt: new Date().toISOString(),
-  });
+  try {
+    await recordLead("hernia", {
+      Name: name,
+      Phone: phone,
+      Email: email,
+      Problem: problem,
+    });
+  } catch (error) {
+    console.error("[lead] hernia", error);
+    return { success: false, error: SAVE_FAILED };
+  }
 
-  redirect("/thank-you");
+  redirect("/thank-you?service=hernia");
 }
 
 export async function submitGallbladderLead(
@@ -57,18 +62,18 @@ export async function submitGallbladderLead(
     return { success: false, error: "Please enter a valid 10-digit Indian phone number." };
   }
 
-  const details = [preferredDate && `Preferred date: ${preferredDate}`, condition]
-    .filter(Boolean)
-    .join(" | ");
+  try {
+    await recordLead("gallbladder", {
+      Name: name,
+      Phone: phone,
+      Email: email,
+      Condition: condition,
+      "Preferred Date": preferredDate,
+    });
+  } catch (error) {
+    console.error("[lead] gallbladder", error);
+    return { success: false, error: SAVE_FAILED };
+  }
 
-  await recordLead({
-    page: "gallbladder-surgery-delhi",
-    name,
-    phone,
-    email: email || undefined,
-    problem: details || "Not specified",
-    submittedAt: new Date().toISOString(),
-  });
-
-  return { success: true };
+  redirect("/thank-you?service=gallbladder");
 }

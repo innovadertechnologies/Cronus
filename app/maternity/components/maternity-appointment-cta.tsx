@@ -1,32 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import Image from "next/image";
 import { Phone } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
+import { submitMaternityLead, type MaternityLeadFormState } from "@/app/maternity/actions";
 
+const initialState: MaternityLeadFormState = { success: false };
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full rounded-xl bg-[#F52D8A] py-3.5 text-base font-semibold text-white transition-all hover:brightness-110 shadow-[0_14px_28px_-10px_rgba(245,45,138,0.4)] disabled:cursor-not-allowed disabled:opacity-60"
+    >
+      {pending ? "Sending..." : "BOOK MY APPOINTMENT →"}
+    </button>
+  );
+}
 
 export function MaternityAppointmentCTA() {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    pregnancyStage: "",
-    preferredDate: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [state, formAction] = useActionState(submitMaternityLead, initialState);
 
   return (
     <section id="book-appointment" className="relative overflow-hidden bg-[#EAF6F8]">
@@ -70,15 +67,13 @@ export function MaternityAppointmentCTA() {
               <div className="rounded-2xl bg-white p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)]">
                 <h3 className="mb-6 text-xl font-bold text-[#0B3446]">Book Your Appointment</h3>
                 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form action={formAction} className="space-y-4">
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <input
                         type="text"
                         name="name"
                         placeholder="Name"
-                        value={formData.name}
-                        onChange={handleChange}
                         className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#129EA8] focus:outline-none focus:ring-2 focus:ring-[#129EA8]/20"
                         required
                       />
@@ -88,8 +83,6 @@ export function MaternityAppointmentCTA() {
                         type="tel"
                         name="phone"
                         placeholder="Phone Number"
-                        value={formData.phone}
-                        onChange={handleChange}
                         className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#129EA8] focus:outline-none focus:ring-2 focus:ring-[#129EA8]/20"
                         required
                       />
@@ -100,37 +93,34 @@ export function MaternityAppointmentCTA() {
                     <div>
                       <select
                         name="pregnancyStage"
-                        value={formData.pregnancyStage}
-                        onChange={handleChange}
                         className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#129EA8] focus:outline-none focus:ring-2 focus:ring-[#129EA8]/20 bg-white"
                         required
                       >
                         <option value="">Pregnancy Stage</option>
-                        <option value="first-trimester">First Trimester</option>
-                        <option value="second-trimester">Second Trimester</option>
-                        <option value="third-trimester">Third Trimester</option>
-                        <option value="trying-to-conceive">Trying to Conceive</option>
-                        <option value="postnatal">Postnatal Care</option>
+                        <option>First Trimester</option>
+                        <option>Second Trimester</option>
+                        <option>Third Trimester</option>
+                        <option>Trying to Conceive</option>
+                        <option>Postnatal Care</option>
                       </select>
                     </div>
                     <div>
                       <input
                         type="date"
-                        name="preferredDate"
-                        value={formData.preferredDate}
-                        onChange={handleChange}
+                        name="appointmentDate"
                         className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#129EA8] focus:outline-none focus:ring-2 focus:ring-[#129EA8]/20"
                         required
                       />
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full rounded-xl bg-[#F52D8A] py-3.5 text-base font-semibold text-white transition-all hover:brightness-110 shadow-[0_14px_28px_-10px_rgba(245,45,138,0.4)]"
-                  >
-                    BOOK MY APPOINTMENT →
-                  </button>
+                  {state.error && (
+                    <p role="alert" className="text-sm font-medium text-red-500">
+                      {state.error}
+                    </p>
+                  )}
+
+                  <SubmitButton />
                 </form>
 
                 <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-600">

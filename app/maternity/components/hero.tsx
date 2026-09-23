@@ -108,7 +108,7 @@ export function Hero() {
       <div className="relative border-t border-[#129EA8]/15 bg-[#E3F6F7]">
         <div className="mx-auto grid max-w-7xl grid-cols-3 gap-4 divide-x divide-[#129EA8]/15 px-5 py-4 sm:py-6 sm:px-8">
           {trustStrip.map(({ icon: Icon, stat, label }) => (
-            <div key={label} className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 px-2 sm:px-0 sm:first:pl-0 sm:[&:not(:first-child)]:pl-4">
+            <div key={stat} className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 px-2 sm:px-0 sm:first:pl-0 sm:[&:not(:first-child)]:pl-4">
               <span className="flex h-8 w-8 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-white text-[#129EA8] shadow-sm">
                 <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.25} />
               </span>

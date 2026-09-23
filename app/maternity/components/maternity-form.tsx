@@ -81,11 +81,11 @@ export function MaternityForm({
             className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] transition-colors focus:border-pink-300 focus:outline-none focus:ring-4 focus:ring-pink-100"
           >
             <option value="">Select Pregnancy Stage</option>
-            <option value="planning">Planning to Conceive</option>
-            <option value="first-trimester">First Trimester (0-12 weeks)</option>
-            <option value="second-trimester">Second Trimester (13-26 weeks)</option>
-            <option value="third-trimester">Third Trimester (27-40 weeks)</option>
-            <option value="postnatal">Postnatal Care</option>
+            <option>Planning to Conceive</option>
+            <option>First Trimester (0-12 weeks)</option>
+            <option>Second Trimester (13-26 weeks)</option>
+            <option>Third Trimester (27-40 weeks)</option>
+            <option>Postnatal Care</option>
           </select>
         </div>
         <div>

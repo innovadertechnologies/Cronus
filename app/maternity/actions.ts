@@ -1,54 +1,47 @@
+"use server";
+
 import { redirect } from "next/navigation";
+import { recordLead } from "@/app/lib/leads";
 
 export interface MaternityLeadFormState {
   success: boolean;
   error?: string;
 }
 
+const INDIAN_PHONE = /^(?:\+91[\s-]?)?[6-9]\d{9}$/;
+
 export async function submitMaternityLead(
-  prevState: MaternityLeadFormState,
+  _prevState: MaternityLeadFormState,
   formData: FormData
 ): Promise<MaternityLeadFormState> {
-  const name = formData.get("name") as string;
-  const phone = formData.get("phone") as string;
-  const pregnancyStage = formData.get("pregnancyStage") as string;
-  const appointmentDate = formData.get("appointmentDate") as string;
+  const name = String(formData.get("name") ?? "").trim();
+  const phone = String(formData.get("phone") ?? "").trim().replace(/[\s-]/g, "");
+  const pregnancyStage = String(formData.get("pregnancyStage") ?? "").trim();
+  const appointmentDate = String(formData.get("appointmentDate") ?? "").trim();
 
-  if (!name || !phone) {
-    return {
-      success: false,
-      error: "Name and phone number are required.",
-    };
+  if (!name) {
+    return { success: false, error: "Please enter your name." };
   }
 
-  if (!/^\d{10}$/.test(phone.replace(/\D/g, ""))) {
-    return {
-      success: false,
-      error: "Please enter a valid 10-digit phone number.",
-    };
+  if (!INDIAN_PHONE.test(phone)) {
+    return { success: false, error: "Please enter a valid 10-digit Indian phone number." };
   }
 
   try {
-    // Here you would typically save to a database or send to an API
-    console.log("Maternity lead submitted:", {
-      name,
-      phone,
-      pregnancyStage,
-      appointmentDate,
-      service: "maternity",
-      timestamp: new Date().toISOString(),
+    await recordLead("maternity", {
+      Name: name,
+      Phone: phone,
+      "Pregnancy Stage": pregnancyStage,
+      "Preferred Date": appointmentDate,
     });
-
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Redirect to thank you page
-    redirect("/thank-you?service=maternity");
   } catch (error) {
-    console.error("Error submitting maternity lead:", error);
+    console.error("[lead] maternity", error);
     return {
       success: false,
-      error: "Something went wrong. Please try again.",
+      error: "We couldn't submit your request. Please try again or call us directly.",
     };
   }
+
+  // redirect() throws, so it must stay outside the try/catch.
+  redirect("/thank-you?service=maternity");
 }
