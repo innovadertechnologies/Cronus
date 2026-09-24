@@ -1,16 +1,15 @@
 "use client";
 
-import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
+import { useLeadForm } from "@/app/lib/use-lead-form";
 import Image from "next/image";
 import { Phone } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
+import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 import { submitMaternityLead, type MaternityLeadFormState } from "@/app/maternity/actions";
 
 const initialState: MaternityLeadFormState = { success: false };
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+function SubmitButton({ pending }: { pending: boolean }) {
   return (
     <button
       type="submit"
@@ -23,7 +22,7 @@ function SubmitButton() {
 }
 
 export function MaternityAppointmentCTA() {
-  const [state, formAction] = useActionState(submitMaternityLead, initialState);
+  const { state, onSubmit, pending } = useLeadForm(submitMaternityLead, initialState);
 
   return (
     <section id="book-appointment" className="relative overflow-hidden bg-[#EAF6F8]">
@@ -67,7 +66,7 @@ export function MaternityAppointmentCTA() {
               <div className="rounded-2xl bg-white p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)]">
                 <h3 className="mb-6 text-xl font-bold text-[#0B3446]">Book Your Appointment</h3>
                 
-                <form action={formAction} className="space-y-4">
+                <form onSubmit={onSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <input
@@ -120,12 +119,17 @@ export function MaternityAppointmentCTA() {
                     </p>
                   )}
 
-                  <SubmitButton />
+                  <SubmitButton pending={pending} />
                 </form>
 
                 <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-600">
                   <Phone className="h-4 w-4 text-green-600" />
-                  <span>Call us for maternity care & appointment assistance</span>
+                  <span>
+                    Call us at{" "}
+                    <a href={`tel:${CLINIC_PHONE_TEL}`} className="font-semibold text-[#0B3446] hover:underline">
+                      {CLINIC_PHONE_DISPLAY}
+                    </a>
+                  </span>
                 </div>
               </div>
             </div>

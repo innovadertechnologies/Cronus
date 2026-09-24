@@ -1,14 +1,12 @@
 "use client";
 
-import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
+import { useLeadForm } from "@/app/lib/use-lead-form";
 import { Lock } from "lucide-react";
 import { submitHerniaLead, type LeadFormState } from "@/app/actions";
 
 const initialState: LeadFormState = { success: false };
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+function SubmitButton({ pending }: { pending: boolean }) {
   return (
     <button
       type="submit"
@@ -29,7 +27,7 @@ export function LeadForm({
   idPrefix?: string;
   className?: string;
 }) {
-  const [state, formAction] = useActionState(submitHerniaLead, initialState);
+  const { state, onSubmit, pending } = useLeadForm(submitHerniaLead, initialState);
 
   return (
     <div
@@ -41,7 +39,7 @@ export function LeadForm({
         Get an expert evaluation and understand the right treatment option for you.
       </p>
 
-      <form action={formAction} className="mt-6 flex flex-col gap-3" noValidate>
+      <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3" noValidate>
         <div>
           <label htmlFor={`${idPrefix}-name`} className="sr-only">
             Name
@@ -105,7 +103,7 @@ export function LeadForm({
           </p>
         )}
 
-        <SubmitButton />
+        <SubmitButton pending={pending} />
 
         <p className="flex items-center justify-center gap-1.5 text-center text-xs text-[#64748B]">
           <Lock className="h-3.5 w-3.5" />

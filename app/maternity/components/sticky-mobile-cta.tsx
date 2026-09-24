@@ -18,7 +18,7 @@ export function StickyMobileCTA() {
           Call Now
         </a>
         <a
-          href={`https://wa.me/${CLINIC_PHONE_TEL}`}
+          href={`https://wa.me/${CLINIC_PHONE_TEL.replace("+", "")}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white"

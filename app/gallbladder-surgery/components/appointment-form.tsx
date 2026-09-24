@@ -1,7 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
+import { useLeadForm } from "@/app/lib/use-lead-form";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, ShieldCheck } from "lucide-react";
 import { submitGallbladderLead, type LeadFormState } from "@/app/actions";
@@ -16,8 +15,7 @@ const conditions = [
   "Not Sure / Other",
 ];
 
-function SubmitButton({ label }: { label: string }) {
-  const { pending } = useFormStatus();
+function SubmitButton({ label, pending }: { label: string; pending: boolean }) {
   return (
     <button
       type="submit"
@@ -40,7 +38,7 @@ export function AppointmentForm({
   variant?: "hero" | "compact";
   className?: string;
 }) {
-  const [state, formAction] = useActionState(submitGallbladderLead, initialState);
+  const { state, onSubmit, pending } = useLeadForm(submitGallbladderLead, initialState);
   const isCompact = variant === "compact";
 
   return (
@@ -82,7 +80,7 @@ export function AppointmentForm({
               </p>
             )}
 
-            <form action={formAction} className="mt-6 flex flex-col gap-3" noValidate>
+            <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3" noValidate>
               <div>
                 <label htmlFor={`${idPrefix}-name`} className="sr-only">
                   {isCompact ? "Full Name" : "Name"}
@@ -156,7 +154,7 @@ export function AppointmentForm({
                 </p>
               )}
 
-              <SubmitButton label={isCompact ? "Submit" : "Submit Request"} />
+              <SubmitButton label={isCompact ? "Submit" : "Submit Request"} pending={pending} />
 
               {!isCompact && (
                 <p className="flex items-center justify-center gap-1.5 text-center text-xs text-[#64748B]">

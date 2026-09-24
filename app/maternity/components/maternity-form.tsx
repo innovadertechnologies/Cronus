@@ -1,14 +1,13 @@
 "use client";
 
-import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
+import { useLeadForm } from "@/app/lib/use-lead-form";
 import { Lock } from "lucide-react";
+import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 import { submitMaternityLead, type MaternityLeadFormState } from "@/app/maternity/actions";
 
 const initialState: MaternityLeadFormState = { success: false };
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+function SubmitButton({ pending }: { pending: boolean }) {
   return (
     <button
       type="submit"
@@ -29,7 +28,7 @@ export function MaternityForm({
   idPrefix?: string;
   className?: string;
 }) {
-  const [state, formAction] = useActionState(submitMaternityLead, initialState);
+  const { state, onSubmit, pending } = useLeadForm(submitMaternityLead, initialState);
 
   return (
     <div
@@ -41,7 +40,7 @@ export function MaternityForm({
         Get the care, guidance and support you need throughout your pregnancy.
       </p>
 
-      <form action={formAction} className="mt-6 flex flex-col gap-3" noValidate>
+      <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3" noValidate>
         <div>
           <label htmlFor={`${idPrefix}-name`} className="sr-only">
             Name
@@ -106,11 +105,14 @@ export function MaternityForm({
           </p>
         )}
 
-        <SubmitButton />
+        <SubmitButton pending={pending} />
 
         <p className="flex items-center justify-center gap-1.5 text-center text-xs text-[#64748B]">
           <Lock className="h-3.5 w-3.5" />
-          📞 Call us for maternity care & appointment assistance
+          📞 Call us at{" "}
+          <a href={`tel:${CLINIC_PHONE_TEL}`} className="font-semibold text-[#1B2936] hover:underline">
+            {CLINIC_PHONE_DISPLAY}
+          </a>
         </p>
       </form>
     </div>
