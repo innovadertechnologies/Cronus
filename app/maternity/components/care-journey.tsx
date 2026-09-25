@@ -1,8 +1,22 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Reveal } from "@/app/components/reveal";
 import { useBookingModal } from "./booking-modal-provider";
+
+// Connection Line Animation Component
+function ConnectingLine({ isVisible }: { isVisible: boolean }) {
+  return (
+    <div className="absolute left-1/2 transform -translate-x-1/2 top-0 h-full w-0.5 md:hidden">
+      <div 
+        className={`bg-gradient-to-b from-pink-300 to-pink-500 w-full transition-all duration-1000 ease-out ${
+          isVisible ? 'h-full opacity-100' : 'h-0 opacity-0'
+        }`}
+      />
+    </div>
+  );
+}
 
 const journeySteps = [
   {
@@ -39,6 +53,28 @@ const journeySteps = [
 
 export function CareJourney() {
   const { openBookingModal } = useBookingModal();
+  const [visibleSteps, setVisibleSteps] = useState<number>(0);
+  const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const stepIndex = parseInt(entry.target.getAttribute('data-step') || '0');
+            setVisibleSteps((prev) => Math.max(prev, stepIndex + 1));
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    stepsRef.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="care-journey" className="py-20 bg-gray-50 relative overflow-hidden">
@@ -61,36 +97,49 @@ export function CareJourney() {
           </Reveal>
         </div>
 
-        {/* Timeline - Clean design without icons */}
+        {/* Timeline with connecting animation */}
         <div className="relative mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 relative">
+          {/* Connecting line for mobile */}
+          <div className="md:hidden relative">
+            <ConnectingLine isVisible={visibleSteps >= journeySteps.length} />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 relative">
             {journeySteps.map((step, index) => (
               <Reveal key={step.number} delay={index * 0.1}>
-                <div className="text-center relative">
+                <div 
+                  ref={(el) => (stepsRef.current[index] = el)}
+                  data-step={index}
+                  className="text-center relative"
+                >
                   {/* Image for First Consultation or Step Number */}
                   {step.image ? (
                     <div className="relative inline-flex mb-6">
                       <Image
                         src={step.image}
                         alt={step.title}
-                        width={120}
-                        height={90}
-                        className="rounded-lg shadow-md"
+                        width={180}
+                        height={135}
+                        className="rounded-xl shadow-lg md:w-48 md:h-36"
                       />
                     </div>
                   ) : (
-                    <div className="mb-6">
-                      <span className="text-3xl font-bold text-[#1e3a5f]">{step.number}</span>
+                    <div className="mb-6 relative">
+                      {/* Connection dot for mobile */}
+                      <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 -top-6 w-4 h-4 bg-pink-500 rounded-full z-10" />
+                      <span className="text-4xl md:text-5xl font-bold text-[#1e3a5f] relative z-20 bg-white px-2">
+                        {step.number}
+                      </span>
                     </div>
                   )}
 
                   {/* Title */}
-                  <h3 className="text-lg font-semibold text-[#1e3a5f] mb-3">
+                  <h3 className="text-xl md:text-2xl font-semibold text-[#1e3a5f] mb-4">
                     {step.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-[#64748b] leading-relaxed max-w-xs mx-auto">
+                  <p className="text-sm md:text-base text-[#64748b] leading-relaxed max-w-xs mx-auto">
                     {step.description}
                   </p>
                 </div>

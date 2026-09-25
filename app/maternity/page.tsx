@@ -3,6 +3,7 @@ import { Hero } from "./components/hero";
 import { WhyChooseCronus } from "./components/why-choose-cronus";
 import { CareJourney } from "./components/care-journey";
 import { WhyChooseMaternity } from "./components/why-choose-maternity";
+import { DoctorProfiles } from "./components/doctor-profiles";
 import { Testimonials } from "./components/testimonials";
 import { FAQ } from "./components/faq";
 import { MaternityAppointmentCTA } from "./components/maternity-appointment-cta";
@@ -27,7 +28,7 @@ export default function MaternityPage() {
           <Hero />
           <WhyChooseCronus />
           <CareJourney />
-          <WhyChooseMaternity />
+          <DoctorProfiles />
           <Testimonials />
           <FAQ />
           <MaternityAppointmentCTA />

@@ -84,19 +84,36 @@ const features: Array<{
   {
     icon: Shield,
     title: "Complete Maternity Support",
-    description: "Pregnancy, delivery and postnatal care under one roof",
+    description: "",
     isCounter: true,
     counterValue: 100,
     counterSuffix: "%",
   },
   {
     icon: Baby,
-    title: "Mother & Baby Focused Care",
-    description: "Compassionate care for every step of your parenting journey",
+    title: "Mother & Baby Focused Care", 
+    description: "",
     isCounter: true,
     counterValue: 24,
     counterSuffix: "/7",
   },
+  {
+    icon: Shield,
+    title: "Success Rate",
+    description: "",
+    isCounter: true,
+    counterValue: 95,
+    counterSuffix: "%",
+  },
+  {
+    icon: Heart,
+    title: "Cashless Insurance Available",
+    description: "",
+    isCounter: true,
+    counterValue: 100,
+    counterSuffix: "%",
+  },
+  
 ];
 
 export function WhyChooseCronus() {
@@ -113,7 +130,7 @@ export function WhyChooseCronus() {
           </Reveal>
         </div>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {features.map((feature, index) => (
             <Reveal key={feature.title} delay={index * 0.1}>
               <div className="text-center">
