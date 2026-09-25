@@ -108,7 +108,7 @@ export function CareJourney() {
             {journeySteps.map((step, index) => (
               <Reveal key={step.number} delay={index * 0.1}>
                 <div 
-                  ref={(el) => (stepsRef.current[index] = el)}
+                  ref={(el) => { stepsRef.current[index] = el; }}
                   data-step={index}
                   className="text-center relative"
                 >
