@@ -7,8 +7,9 @@ Each landing page sends its leads to its own Google Sheet. Every new lead is als
 | `/` (Hernia) | Hernia Leads | `hernia` |
 | `/gallbladder-surgery` | Gallbladder Leads | `gallbladder` |
 | `/maternity` | Maternity Leads | `maternity` |
+| `/spine` | Spine Leads | `spine` |
 
-## 1. Set up each sheet (repeat 3 times)
+## 1. Set up each sheet (repeat for each page)
 
 1. Create a new Google Sheet and give it a clear name, e.g. **Cronus – Hernia Leads**. The name is used in the email subject.
 2. Go to **Extensions → Apps Script**.
@@ -22,13 +23,14 @@ Each landing page sends its leads to its own Google Sheet. Every new lead is als
 
 ## 2. Paste the URLs into the website
 
-Open [app/lib/leads.ts](../app/lib/leads.ts). Fill in the three URLs:
+Open [app/lib/leads.ts](../app/lib/leads.ts). Fill in the URLs:
 
 ```ts
 const SHEET_URLS: Record<LeadSheet, string> = {
   hernia: "https://script.google.com/macros/s/.../exec",
   gallbladder: "https://script.google.com/macros/s/.../exec",
   maternity: "https://script.google.com/macros/s/.../exec",
+  spine: "https://script.google.com/macros/s/.../exec",
 };
 ```
 
@@ -39,6 +41,7 @@ Then redeploy the site.
 - **Hernia:** Submitted At, Name, Phone, Email, Problem
 - **Gallbladder:** Submitted At, Name, Phone, Email, Condition, Preferred Date
 - **Maternity:** Submitted At, Name, Phone, Pregnancy Stage, Preferred Date
+- **Spine:** Submitted At, Name, Phone, Email, Concern (Email is filled from the pop-up and the booking form at the bottom of the page)
 
 ## If you edit Code.gs later
 

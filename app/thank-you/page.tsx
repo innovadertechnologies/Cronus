@@ -23,6 +23,11 @@ const SERVICES = {
       "Our team will get back to you shortly to confirm your maternity consultation. We look forward to caring for you and your baby.",
     backHref: "/maternity",
   },
+  spine: {
+    message:
+      "Our team will get back to you shortly to confirm your spine consultation with Dr. Sandeep Singh.",
+    backHref: "/spine",
+  },
 };
 
 export default async function ThankYouPage({ searchParams }: PageProps<"/thank-you">) {

@@ -1,5 +1,5 @@
 // Paste this into Extensions → Apps Script of each lead sheet
-// (Hernia, Gallbladder, Maternity) and deploy it as a web app.
+// (Hernia, Gallbladder, Maternity, Spine) and deploy it as a web app.
 
 const NOTIFY_EMAIL = "CRONUSSOCIALS@GMAIL.COM";
 
