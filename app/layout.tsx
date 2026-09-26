@@ -5,6 +5,7 @@ import "./globals.css";
 
 const GTM_ID = "GTM-KW3X37ZM";
 const GA_ID = "G-5H90P9KP8F";
+const GOOGLE_ADS_ID = "AW-18468152002";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -52,7 +53,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GA_ID}');`}
+gtag('config', '${GA_ID}');
+gtag('config', '${GOOGLE_ADS_ID}');`}
         </Script>
       </head>
       <body className="min-h-full flex flex-col bg-[#F8FAFC] font-sans text-[#1B2936] antialiased">
