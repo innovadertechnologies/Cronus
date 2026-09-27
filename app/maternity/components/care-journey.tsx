@@ -86,12 +86,12 @@ export function CareJourney() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="text-center mb-16">
           <Reveal>
-            <h2 className="text-4xl font-bold text-[#1e3a5f] mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold text-[#1e3a5f] mb-4">
               Care at Every Stage of Your Pregnancy
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-lg text-[#64748b] max-w-3xl mx-auto">
+            <p className="text-sm md:text-lg text-[#64748b] max-w-3xl mx-auto">
               From your first consultation to welcoming your little one, Cronus is here to support you at every step.
             </p>
           </Reveal>
@@ -118,9 +118,9 @@ export function CareJourney() {
                       <Image
                         src={step.image}
                         alt={step.title}
-                        width={180}
-                        height={135}
-                        className="rounded-xl shadow-lg md:w-48 md:h-36"
+                        width={220}
+                        height={165}
+                        className="rounded-xl shadow-lg w-56 h-42 md:w-48 md:h-36"
                       />
                     </div>
                   ) : (
@@ -134,12 +134,12 @@ export function CareJourney() {
                   )}
 
                   {/* Title */}
-                  <h3 className="text-xl md:text-2xl font-semibold text-[#1e3a5f] mb-4">
+                  <h3 className="text-lg md:text-2xl font-semibold text-[#1e3a5f] mb-4">
                     {step.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm md:text-base text-[#64748b] leading-relaxed max-w-xs mx-auto">
+                  <p className="text-xs md:text-base text-[#64748b] leading-relaxed max-w-xs mx-auto">
                     {step.description}
                   </p>
                 </div>
@@ -151,13 +151,13 @@ export function CareJourney() {
         {/* Bottom section */}
         <Reveal delay={0.6}>
           <div className="text-center">
-            <p className="text-2xl text-[#1e3a5f] mb-8 handwriting">
+            <p className="text-lg md:text-2xl text-[#1e3a5f] mb-8 handwriting">
               One journey. Complete maternity care. ♥
             </p>
             <button
               type="button"
               onClick={openBookingModal}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1e3a5f] px-8 py-4 text-base font-semibold text-white shadow-lg hover:bg-[#2d4a6b] transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1e3a5f] px-6 py-3 text-sm md:text-base font-semibold text-white shadow-lg hover:bg-[#2d4a6b] transition-colors"
             >
               Book Your Consultation →
             </button>

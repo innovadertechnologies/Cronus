@@ -78,14 +78,14 @@ const features: Array<{
     icon: Users,
     title: "Years Experienced Medical Team",
     description: "",
-    isCounter: true,
+    isCounter: false,
     counterValue: 25,
   },
   {
     icon: Shield,
     title: "Complete Maternity Support",
     description: "",
-    isCounter: true,
+    isCounter: false,
     counterValue: 100,
     counterSuffix: "%",
   },
@@ -93,7 +93,7 @@ const features: Array<{
     icon: Baby,
     title: "Mother & Baby Focused Care", 
     description: "",
-    isCounter: true,
+    isCounter: false,
     counterValue: 24,
     counterSuffix: "/7",
   },
@@ -101,7 +101,7 @@ const features: Array<{
     icon: Shield,
     title: "Success Rate",
     description: "",
-    isCounter: true,
+    isCounter: false,
     counterValue: 95,
     counterSuffix: "%",
   },
@@ -109,7 +109,7 @@ const features: Array<{
     icon: Heart,
     title: "Cashless Insurance Available",
     description: "",
-    isCounter: true,
+    isCounter: false,
     counterValue: 100,
     counterSuffix: "%",
   },
@@ -138,10 +138,14 @@ export function WhyChooseCronus() {
                   <feature.icon className="h-8 w-8" strokeWidth={1.5} />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-[#1B2936]">
-                  <AnimatedCounter 
-                    value={feature.counterValue ?? 0} 
-                    suffix={feature.counterSuffix ?? "+"} 
-                  /> {feature.title}
+                  {feature.isCounter ? (
+                    <AnimatedCounter 
+                      value={feature.counterValue ?? 0} 
+                      suffix={feature.counterSuffix ?? "+"} 
+                    />
+                  ) : (
+                    `${(feature.counterValue ?? 0).toLocaleString("en-IN")}${feature.counterSuffix ?? "+"}`
+                  )} {feature.title}
                 </h3>
                 {feature.description && (
                   <p className="mt-2 text-sm text-[#64748B] leading-relaxed">

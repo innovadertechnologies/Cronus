@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { GraduationCap, Award, Calendar, Stethoscope } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
 import { useBookingModal } from "./booking-modal-provider";
@@ -10,6 +11,7 @@ const doctors = [
     title: "Gynecologist & Obstetrician",
     experience: "42+ Years of Experience",
     qualifications: "MBBS, MS – Obstetrics & Gynaecology, DGO",
+    image: "/DR KUMKUM SHARMA.png",
     expertise: [
       "Pregnancy & Maternity Care",
       "Obstetric Care", 
@@ -21,6 +23,7 @@ const doctors = [
     title: "Gynecologist | Obstetrician | Infertility Specialist",
     experience: "27+ Years of Experience",
     qualifications: "MBBS, MD – Obstetrics & Gynaecology",
+    image: "/dr nilo.webp",
     expertise: [
       "High-Risk Pregnancy Care",
       "Infertility",
@@ -55,9 +58,21 @@ export function DoctorProfiles() {
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 {/* Doctor Info Header */}
                 <div className="text-center mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-pink-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Stethoscope className="h-10 w-10 text-[#129EA8]" />
-                  </div>
+                  {doctor.image ? (
+                    <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
+                      <Image
+                        src={doctor.image}
+                        alt={doctor.name}
+                        width={96}
+                        height={96}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-20 h-20 bg-gradient-to-br from-pink-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Stethoscope className="h-10 w-10 text-[#129EA8]" />
+                    </div>
+                  )}
                   <h3 className="text-2xl font-bold text-[#0B3446] mb-2">
                     {doctor.name}
                   </h3>
