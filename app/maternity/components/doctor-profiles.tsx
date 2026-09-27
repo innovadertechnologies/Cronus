@@ -55,22 +55,22 @@ export function DoctorProfiles() {
         <div className="grid gap-8 md:grid-cols-2">
           {doctors.map((doctor, index) => (
             <Reveal key={doctor.name} delay={index * 0.2}>
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                 {/* Doctor Info Header */}
                 <div className="text-center mb-6">
                   {doctor.image ? (
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
+                    <div className="w-32 h-40 mx-auto mb-4 rounded-xl overflow-hidden">
                       <Image
                         src={doctor.image}
                         alt={doctor.name}
-                        width={96}
-                        height={96}
-                        className="w-full h-full object-cover"
+                        width={128}
+                        height={160}
+                        className="w-full h-full object-cover object-center"
                       />
                     </div>
                   ) : (
-                    <div className="w-20 h-20 bg-gradient-to-br from-pink-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Stethoscope className="h-10 w-10 text-[#129EA8]" />
+                    <div className="w-32 h-40 bg-gradient-to-br from-pink-100 to-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <Stethoscope className="h-16 w-16 text-[#129EA8]" />
                     </div>
                   )}
                   <h3 className="text-2xl font-bold text-[#0B3446] mb-2">
@@ -97,7 +97,7 @@ export function DoctorProfiles() {
                 </div>
 
                 {/* Expertise */}
-                <div className="mb-8">
+                <div className="mb-8 flex-1">
                   <div className="flex items-start gap-3">
                     <Award className="h-5 w-5 text-[#129EA8] mt-0.5 flex-shrink-0" />
                     <div className="flex-1">
@@ -115,7 +115,7 @@ export function DoctorProfiles() {
                 </div>
 
                 {/* CTA Button */}
-                <div className="text-center">
+                <div className="text-center mt-auto">
                   <button
                     type="button"
                     onClick={openBookingModal}
