@@ -11,7 +11,7 @@ const checklist = [
   "Personalized Treatment Planning",
 ];
 
-// spinebg.png is 1961×802. On desktop the image box keeps that ratio and is at
+// spinebanner.png - On desktop the image box keeps the ratio and is at
 // least as tall as the hero, so the badges below can be pinned to the doctor
 // in image-relative percentages and stay put at every screen size.
 const DESKTOP_BG_WIDTH = "max(100%, calc(max(600px, 100svh - 5rem) * 2.445))";
@@ -63,7 +63,7 @@ export function Hero() {
         style={{ width: DESKTOP_BG_WIDTH }}
       >
         <Image
-          src="/spinebg.png"
+          src="/spinebanner.png"
           alt="Dr. Sandeep Singh, Orthopaedics & Spine Specialist"
           fill
           priority
@@ -128,7 +128,7 @@ export function Hero() {
         {/* Mobile / tablet banner image */}
         <div className="relative -mx-4 mt-8 h-[320px] overflow-hidden sm:-mx-8 sm:h-[420px] lg:hidden">
           <Image
-            src="/spinebg.png"
+            src="/spinebanner.png"
             alt="Dr. Sandeep Singh, Orthopaedics & Spine Specialist"
             fill
             priority
