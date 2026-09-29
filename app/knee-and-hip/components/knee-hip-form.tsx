@@ -3,7 +3,7 @@
 import { useLeadForm } from "@/app/lib/use-lead-form";
 import { CalendarCheck, Lock } from "lucide-react";
 import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
-import { submitKneeHipLead, type KneeHipLeadFormState } from "@/app/knee&hip/actions";
+import { submitKneeHipLead, type KneeHipLeadFormState } from "@/app/knee-and-hip/actions";
 
 const initialState: KneeHipLeadFormState = { success: false };
 

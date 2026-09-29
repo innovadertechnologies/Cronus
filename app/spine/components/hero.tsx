@@ -73,40 +73,54 @@ export function Hero() {
         <ExperienceBadge className="absolute left-[56%] top-[26%] hidden w-[clamp(140px,10vw,176px)] text-[clamp(14px,1vw,17px)] xl:flex" />
         <DoctorCard className="absolute bottom-[13%] left-[66%] w-[clamp(260px,20vw,320px)]" />
       </div>
+      {/* Mobile / tablet background */}
+      {/* Covers the whole hero; anchored right so the doctor stays in view and
+          only the plain left edge is trimmed. */}
+      <div className="absolute inset-0 lg:hidden">
+        <Image
+          src="/spmobnew.png"
+          alt="Dr. Sandeep Singh, Orthopaedics & Spine Specialist"
+          fill
+          priority
+          sizes="(max-width: 1023px) 150vw, 1px"
+          className="object-cover object-right"
+        />
+        <div className="absolute inset-y-0 left-0 w-[75%] bg-gradient-to-r from-white/85 via-white/60 to-transparent" />
+      </div>
       <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[60%] bg-gradient-to-r from-white/85 via-white/50 to-transparent lg:block" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 pt-7 sm:px-8 sm:pt-10 lg:py-10">
-        <div className="max-w-[560px] lg:max-w-[500px] xl:max-w-[560px]">
-          <p className="inline-flex rounded-md border border-[#129EA8]/20 bg-white/80 px-3 py-1 text-xs font-bold text-[#0B3446] shadow-sm sm:text-sm">
+      <div className="relative mx-auto w-full max-w-7xl px-4 py-6 sm:px-8 sm:py-12 lg:py-10">
+        <div className="max-w-[60%] sm:max-w-[55%] lg:max-w-[500px] xl:max-w-[560px]">
+          <p className="hidden rounded-md border border-[#129EA8]/20 bg-white/80 px-3 py-1 text-xs font-bold text-[#0B3446] shadow-sm sm:text-sm lg:inline-flex">
             Expert Spine Care at Cronus
           </p>
 
-          <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.12] tracking-tight text-[#0B2A4A] sm:text-5xl lg:text-[2.6rem] xl:text-[3.1rem]">
+          <h1 className="text-[18px] font-extrabold leading-[1.2] tracking-tight text-[#0B2A4A] sm:text-3xl lg:mt-4 lg:text-[2.6rem] xl:text-[3.1rem]">
             Persistent Back Pain or Sciatica? Find the Right{" "}
             <span className="text-[#0E7C86]">Spine Treatment.</span>
           </h1>
 
-          <p className="mt-4 text-base leading-relaxed text-[#1B2936]/85 sm:text-lg">
+          <p className="mt-4 hidden text-lg leading-relaxed text-[#1B2936]/85 lg:block">
             Get expert evaluation and personalized treatment guidance from{" "}
             <strong className="font-bold text-[#0B2A4A]">Dr. Sandeep Singh</strong>, with{" "}
             <strong className="font-bold text-[#0B2A4A]">30+ years of experience</strong> in spine care.
           </p>
 
-          <p className="mt-4 flex items-center gap-2 text-sm font-bold text-[#0E7C86] sm:text-base">
-            <MapPin className="h-5 w-5 shrink-0 fill-[#0B3446] text-white" />
+          <p className="mt-3 flex items-center gap-1.5 text-xs font-bold text-[#0E7C86] sm:text-base lg:mt-4 lg:gap-2">
+            <MapPin className="h-4 w-4 shrink-0 lg:h-5 lg:w-5 fill-[#0B3446] text-white" />
             Cronus Multispeciality Hospital, Chhatarpur
           </p>
 
-          <ul className="mt-4 flex flex-col gap-2.5">
+          <ul className="mt-3 flex flex-col gap-2 lg:mt-4 lg:gap-2.5">
             {checklist.map((item) => (
-              <li key={item} className="flex items-center gap-2.5">
-                <CheckCircle2 className="h-5 w-5 shrink-0 fill-[#0E7C86] text-white" />
-                <span className="text-[15px] font-medium text-[#1B2936]">{item}</span>
+              <li key={item} className="flex items-center gap-2 lg:gap-2.5">
+                <CheckCircle2 className="h-4 w-4 shrink-0 lg:h-5 lg:w-5 fill-[#0E7C86] text-white" />
+                <span className="text-[13px] font-medium sm:text-sm lg:text-[15px] text-[#1B2936]">{item}</span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-7 hidden gap-3 lg:flex">
             <button
               type="button"
               onClick={openBookingModal}
@@ -125,19 +139,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Mobile / tablet banner image */}
-        <div className="relative -mx-4 mt-8 h-[320px] overflow-hidden sm:-mx-8 sm:h-[420px] lg:hidden">
-          <Image
-            src="/spinebanner.png"
-            alt="Dr. Sandeep Singh, Orthopaedics & Spine Specialist"
-            fill
-            priority
-            sizes="(max-width: 1023px) 200vw, 1px"
-            className="object-cover object-[78%_20%]"
-          />
-          <ExperienceBadge className="absolute left-4 top-6 w-[112px] text-[11px] sm:left-8 sm:w-[140px] sm:text-sm" />
-          <DoctorCard className="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-8 sm:w-[300px]" />
-        </div>
       </div>
     </section>
   );
