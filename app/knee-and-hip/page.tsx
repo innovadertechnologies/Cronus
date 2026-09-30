@@ -27,6 +27,7 @@ export default function KneeHipPage() {
         <Navbar />
         <main>
           <Hero />
+          <TrustBar />
           <Symptoms />
           <ConditionsSection />
           <MeetSpecialists />
