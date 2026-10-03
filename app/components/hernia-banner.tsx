@@ -12,6 +12,7 @@ export function HerniaBanner() {
     <section className="relative isolate aspect-[2172/724] min-h-[260px] w-full overflow-hidden sm:min-h-[220px]">
       <Image
         src="/hncbanner.png"
+        sizes="100vw"
         alt="A couple walking outdoors, smiling"
         fill
         className="object-cover object-[20%_center] sm:object-center"

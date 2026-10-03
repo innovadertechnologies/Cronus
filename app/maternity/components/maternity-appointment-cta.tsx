@@ -30,10 +30,10 @@ export function MaternityAppointmentCTA() {
         {/* Background Image */}
         <Image
           src="/maternity4.png"
+          sizes="100vw"
           alt=""
           aria-hidden
           fill
-          priority
           className="absolute inset-0 object-cover object-right"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#EAF6F8] via-[#EAF6F8]/85 to-[#EAF6F8]/10 lg:via-[#EAF6F8]/60" />

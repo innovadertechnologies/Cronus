@@ -12,12 +12,12 @@ const highlights: { icon: LucideIcon; title: string; lines: string[] }[] = [
   {
     icon: BookOpen,
     title: "Strong Medical Education",
-    lines: ["MBBS â€“ MAMC, New Delhi", "MS â€“ Orthopaedics, UCMS, New Delhi"],
+    lines: ["MBBS – MAMC, New Delhi", "MS – Orthopaedics, UCMS, New Delhi"],
   },
   {
     icon: Settings,
     title: "Expertise Includes",
-    lines: ["Spine Surgery â€¢ Back & Neck Pain â€¢ Fracture Treatment â€¢ Joint Replacement â€¢ Pain Management"],
+    lines: ["Spine Surgery • Back & Neck Pain • Fracture Treatment • Joint Replacement • Pain Management"],
   },
 ];
 

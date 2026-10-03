@@ -61,6 +61,7 @@ export function ConditionsSection() {
               <div className="relative h-40 w-full overflow-hidden bg-slate-50">
                 <Image
                   src={condition.image}
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   alt={condition.title}
                   fill
                   className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"

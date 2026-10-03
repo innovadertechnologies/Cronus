@@ -15,6 +15,8 @@ export function Navbar() {
           <div className="flex items-center gap-8">
             <Image
               src="/logo.png"
+              sizes="120px"
+              loading="eager"
               alt="Cronus Multispeciality Hospital"
               width={140}
               height={40}

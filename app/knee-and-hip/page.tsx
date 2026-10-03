@@ -1,4 +1,7 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { JsonLd } from "@/app/components/json-ld";
+import { LANDING_PAGES, landingPageSchema, pageMetadata } from "@/app/lib/seo";
+import { KNEE_HIP_FAQS } from "./components/faq-data";
 import { Navbar } from "./components/navbar";
 import { Hero } from "./components/hero";
 import { KneeHipForm } from "./components/knee-hip-form";
@@ -14,15 +17,14 @@ import { Footer } from "./components/footer";
 import { StickyMobileCTA } from "./components/sticky-mobile-cta";
 import { BookingModalProvider } from "./components/booking-modal";
 
-export const metadata: Metadata = {
-  title: "Knee & Hip Replacement Surgery in Chhatarpur, Delhi | Cronus Multispeciality Hospital",
-  description:
-    "Advanced Orthopaedic care for pain free living. Expert knee & hip replacement surgery from experienced doctors with 30+ years of orthopedic experience and 1,000+ successful surgeries.",
-};
+const page = LANDING_PAGES.kneeHip;
+
+export const metadata: Metadata = pageMetadata(page);
 
 export default function KneeHipPage() {
   return (
     <BookingModalProvider>
+      <JsonLd data={landingPageSchema(page, KNEE_HIP_FAQS)} />
       <div className="relative">
         <Navbar />
         <main>

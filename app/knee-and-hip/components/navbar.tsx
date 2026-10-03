@@ -10,10 +10,11 @@ export function Navbar() {
         <a href="#hero" className="flex shrink-0 items-center">
           <Image
             src="/logo.png"
+            sizes="120px"
+            loading="eager"
             alt="Cronus Multispeciality Hospital"
             width={1353}
             height={742}
-            priority
             className="h-10 w-auto lg:h-14"
           />
         </a>

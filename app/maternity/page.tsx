@@ -1,4 +1,7 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { JsonLd } from "@/app/components/json-ld";
+import { LANDING_PAGES, landingPageSchema, pageMetadata } from "@/app/lib/seo";
+import { MATERNITY_FAQS } from "./components/faq-data";
 import { Hero } from "./components/hero";
 import { WhyChooseCronus } from "./components/why-choose-cronus";
 import { CareJourney } from "./components/care-journey";
@@ -13,15 +16,14 @@ import { Navbar } from "./components/navbar";
 import { StickyMobileCTA } from "./components/sticky-mobile-cta";
 import { BookingModalProvider } from "./components/booking-modal-provider";
 
-export const metadata: Metadata = {
-  title: "Complete Maternity Care in Delhi-NCR | Cronus Multispeciality Hospital",
-  description:
-    "Expert pregnancy & maternity care designed around you and your baby. Complete pregnancy care, delivery and postnatal care under one roof at Cronus Hospital.",
-};
+const page = LANDING_PAGES.maternity;
+
+export const metadata: Metadata = pageMetadata(page);
 
 export default function MaternityPage() {
   return (
     <BookingModalProvider>
+      <JsonLd data={landingPageSchema(page, MATERNITY_FAQS)} />
       <div className="relative">
         <Navbar />
         <main>

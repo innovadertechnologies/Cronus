@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import { CalendarDays, CheckCircle2, MapPin, Phone, Star } from "lucide-react";
 import { CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 import { useBookingModal } from "./booking-modal";
@@ -15,6 +16,15 @@ const checklist = [
 // least as tall as the hero, so the badges below can be pinned to the doctor
 // in image-relative percentages and stay put at every screen size.
 const DESKTOP_BG_WIDTH = "max(100%, calc(max(600px, 100svh - 5rem) * 2.445))";
+
+// Desktop and mobile use different hero images. Each one is preloaded only
+// for its own screen size and the other stays lazy (it's display:none), so a
+// phone never downloads the desktop banner and vice versa.
+const HERO_ALT = "Dr. Sandeep Singh, Orthopaedics & Spine Specialist";
+const desktopBg = getImageProps({ src: "/spinebanner.png", alt: HERO_ALT, fill: true, sizes: "160vw", loading: "lazy" }).props;
+const mobileBg = getImageProps({ src: "/spmobnew.png", alt: HERO_ALT, fill: true, sizes: "150vw", loading: "lazy" }).props;
+const DESKTOP_MEDIA = "(min-width: 1024px)";
+const MOBILE_MEDIA = "(max-width: 1023px)";
 
 function ExperienceBadge({ className = "" }: { className?: string }) {
   return (
@@ -51,6 +61,8 @@ function DoctorCard({ className = "" }: { className?: string }) {
 
 export function Hero() {
   const { openBookingModal } = useBookingModal();
+  preload(desktopBg.src, { as: "image", imageSrcSet: desktopBg.srcSet, imageSizes: desktopBg.sizes, media: DESKTOP_MEDIA, fetchPriority: "high" });
+  preload(mobileBg.src, { as: "image", imageSrcSet: mobileBg.srcSet, imageSizes: mobileBg.sizes, media: MOBILE_MEDIA, fetchPriority: "high" });
 
   return (
     <section
@@ -62,14 +74,8 @@ export function Hero() {
         className="absolute right-[-20%] top-1/2 hidden aspect-[1961/802] -translate-y-1/2 lg:block xl:right-[-8%]"
         style={{ width: DESKTOP_BG_WIDTH }}
       >
-        <Image
-          src="/spinebanner.png"
-          alt="Dr. Sandeep Singh, Orthopaedics & Spine Specialist"
-          fill
-          priority
-          sizes="(min-width: 1024px) 160vw, 1px"
-          className="object-cover"
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+        <img {...desktopBg} className="object-cover" />
         <ExperienceBadge className="absolute left-[56%] top-[26%] hidden w-[clamp(140px,10vw,176px)] text-[clamp(14px,1vw,17px)] xl:flex" />
         <DoctorCard className="absolute bottom-[13%] left-[66%] w-[clamp(260px,20vw,320px)]" />
       </div>
@@ -77,14 +83,8 @@ export function Hero() {
       {/* Covers the whole hero; anchored right so the doctor stays in view and
           only the plain left edge is trimmed. */}
       <div className="absolute inset-0 lg:hidden">
-        <Image
-          src="/spmobnew.png"
-          alt="Dr. Sandeep Singh, Orthopaedics & Spine Specialist"
-          fill
-          priority
-          sizes="(max-width: 1023px) 150vw, 1px"
-          className="object-cover object-right"
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+        <img {...mobileBg} className="object-cover object-right" />
         <div className="absolute inset-y-0 left-0 w-[75%] bg-gradient-to-r from-white/85 via-white/60 to-transparent" />
       </div>
       <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[60%] bg-gradient-to-r from-white/85 via-white/50 to-transparent lg:block" />

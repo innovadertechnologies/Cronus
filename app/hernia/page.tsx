@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+import { JsonLd } from "@/app/components/json-ld";
+import { LANDING_PAGES, landingPageSchema, pageMetadata } from "@/app/lib/seo";
+import { HERNIA_FAQS } from "@/app/components/faq-data";
 import { AnnouncementBar } from "@/app/components/announcement-bar";
 import { Navbar } from "@/app/components/navbar";
 import { Hero } from "@/app/components/hero";
@@ -12,9 +16,14 @@ import { Footer } from "@/app/components/footer";
 import { StickyMobileCta } from "@/app/components/sticky-mobile-cta";
 import { LeadFormModalProvider } from "@/app/components/lead-form-modal-provider";
 
+const page = LANDING_PAGES.hernia;
+
+export const metadata: Metadata = pageMetadata(page);
+
 export default function Home() {
   return (
     <LeadFormModalProvider>
+      <JsonLd data={landingPageSchema(page, HERNIA_FAQS)} />
       <div className="flex flex-1 flex-col">
         <AnnouncementBar />
         <Navbar />

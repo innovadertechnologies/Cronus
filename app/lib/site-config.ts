@@ -1,3 +1,9 @@
+// Domain the landing pages are served from (no trailing slash). Used for
+// canonical URLs, robots.txt, sitemap.xml and schema.
+export const SITE_URL = "https://cronusmultispecialityhospital.in";
+// Main hospital website; the bare landing-page domain redirects here.
+export const MAIN_SITE_URL = "https://cronushospitals.com";
+
 export const CLINIC_PHONE_DISPLAY = "+91 98218 66447";
 export const CLINIC_PHONE_TEL = "+919821866447";
 export const CLINIC_NAME = "Cronus Multispeciality Hospital";

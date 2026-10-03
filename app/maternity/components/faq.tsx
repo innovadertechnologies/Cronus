@@ -4,29 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Reveal } from "@/app/components/reveal";
+import { MATERNITY_FAQS } from "./faq-data";
 
-const faqs = [
-  {
-    question: "When should I start pregnancy check-ups?",
-    answer: "It is best to consult your gynaecologist as early as possible after pregnancy is confirmed.",
-  },
-  {
-    question: "How often should I visit the doctor during pregnancy?",
-    answer: "Your doctor will suggest a check-up schedule based on your pregnancy and individual needs.",
-  },
-  {
-    question: "Does Cronus provide both normal and C-section delivery care?",
-    answer: "Yes, delivery care can be planned based on medical requirements and your doctor's recommendation.",
-  },
-  {
-    question: "Do you provide postnatal care?",
-    answer: "Yes, maternity care can continue after delivery with support for both mother and baby.",
-  },
-  {
-    question: "When should I book my maternity consultation?",
-    answer: "You can book a consultation whenever you need pregnancy-related medical guidance.",
-  },
-];
+const faqs = MATERNITY_FAQS;
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -79,6 +59,7 @@ export function FAQ() {
             <div className="relative">
               <Image
                 src="/maternity3.png"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 alt="Maternity care questions and support"
                 width={600}
                 height={500}

@@ -39,7 +39,6 @@ function SymptomCard({
           fill
           className="object-cover w-full h-full"
           sizes="(max-width: 768px) 100vw, 50vw"
-          priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/60 to-white/85" />
       </div>

@@ -1,28 +1,50 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Dancing_Script } from "next/font/google";
-import Script from "next/script";
+import { Analytics } from "@/app/components/analytics";
+import { SITE_URL } from "@/app/lib/seo";
+import { CLINIC_NAME } from "@/app/lib/site-config";
 import "./globals.css";
 
 const GTM_ID = "GTM-KW3X37ZM";
-const GA_ID = "G-5H90P9KP8F";
-const GOOGLE_ADS_ID = "AW-18468152002";
 
+// Variable font: one file covers every weight instead of one file per weight.
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
+// Only used for one line far down the maternity page, so it isn't preloaded.
 const dancingScript = Dancing_Script({
   variable: "--font-dancing",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
+  display: "swap",
+  preload: false,
 });
 
+// Defaults for every page; each landing page sets its own title,
+// description, canonical URL and social preview on top of these.
 export const metadata: Metadata = {
-  title: "Best Hernia Treatment in Delhi-NCR | Cronus Multispeciality Hospital",
+  metadataBase: new URL(SITE_URL),
+  title: CLINIC_NAME,
   description:
-    "Get expert hernia evaluation and advanced laparoscopic treatment at Cronus Multispeciality Hospital in Delhi-NCR. Book a consultation today.",
+    "Cronus Multispeciality Hospital, Chhatarpur, New Delhi – expert surgical, orthopaedic, spine and maternity care in Delhi-NCR.",
+  applicationName: CLINIC_NAME,
+  authors: [{ name: CLINIC_NAME, url: "https://cronushospitals.com" }],
+  publisher: CLINIC_NAME,
+  formatDetection: { email: false, address: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -33,30 +55,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${dancingScript.variable} h-full scroll-smooth`}>
-      <head>
-        {/* Google Tag Manager */}
-        <Script id="gtm" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`}
-        </Script>
-
-        {/* Google tag (gtag.js) */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_ID}');
-gtag('config', '${GOOGLE_ADS_ID}');`}
-        </Script>
-      </head>
+    <html lang="en-IN" className={`${jakarta.variable} ${dancingScript.variable} h-full scroll-smooth`}>
       <body className="min-h-full flex flex-col bg-[#F8FAFC] font-sans text-[#1B2936] antialiased">
         {/* Google Tag Manager (noscript) */}
         <noscript>
@@ -68,6 +67,8 @@ gtag('config', '${GOOGLE_ADS_ID}');`}
           />
         </noscript>
         {children}
+        {/* GTM, GA4 and Google Ads tags – loaded after first paint, see analytics.tsx */}
+        <Analytics />
       </body>
     </html>
   );

@@ -47,6 +47,7 @@ export function HerniaTypes() {
               <div className="relative aspect-square w-full overflow-hidden bg-[#F8FAFC] p-4">
                 <Image
                   src={type.image}
+                  sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
                   alt={type.name}
                   fill
                   className="object-contain"

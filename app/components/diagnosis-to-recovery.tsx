@@ -114,6 +114,7 @@ export function DiagnosisToRecovery() {
             <div className="relative mx-auto aspect-[1061/1137] w-full max-w-lg overflow-hidden rounded-[24px] shadow-[0_30px_60px_-28px_rgba(11,52,70,0.35)]">
               <Image
                 src="/hospitalog.jpeg"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 alt="Cronus Multispeciality Hospital building"
                 fill
                 className="object-cover"

@@ -33,6 +33,7 @@ export function Footer() {
           <span className="inline-block rounded-xl border border-slate-200 bg-white p-2.5">
             <Image
               src="/logo.png"
+              sizes="120px"
               alt={CLINIC_NAME}
               width={1353}
               height={742}

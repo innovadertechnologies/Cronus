@@ -35,6 +35,7 @@ export function SurgerySection() {
             <div className="relative mx-auto max-w-md overflow-hidden rounded-[22px] shadow-[0_20px_44px_-24px_rgba(11,52,70,0.35)] lg:max-w-none">
               <Image
                 src="/docimage.png"
+                sizes="(min-width: 1024px) 40vw, 100vw"
                 alt="Surgeon reviewing diagnostic imaging during a laparoscopic procedure"
                 width={800}
                 height={900}

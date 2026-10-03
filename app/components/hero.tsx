@@ -40,6 +40,7 @@ export function Hero() {
       <div className="relative">
         <Image
           src="/harnibg.png"
+          sizes="100vw"
           alt=""
           aria-hidden
           fill

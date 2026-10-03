@@ -62,6 +62,7 @@ export function DoctorProfiles() {
                     <div className="w-32 h-40 mx-auto mb-4 rounded-xl overflow-hidden">
                       <Image
                         src={doctor.image}
+                        sizes="160px"
                         alt={doctor.name}
                         width={128}
                         height={160}

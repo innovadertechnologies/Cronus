@@ -25,6 +25,7 @@ export function Comparison() {
             <div className="relative h-full w-full overflow-hidden rounded-2xl">
               <Image
                 src="/compimg.jpeg"
+                sizes="(min-width: 1024px) 40vw, 100vw"
                 alt="Surgeon reviewing laparoscopic imaging during a procedure"
                 fill
                 className="object-cover"

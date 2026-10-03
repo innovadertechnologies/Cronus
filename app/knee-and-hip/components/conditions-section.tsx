@@ -28,7 +28,7 @@ const conditions = [
   },
   {
     name: "ACL, PCL & Ligament Tears",
-    image: "/ACL,%20PCL%20&%20Ligament%20Tears.png"
+    image: "/acl-pcl-ligament-tears.png"
   },
   {
     name: "Meniscus Injuries",
@@ -40,7 +40,7 @@ const conditions = [
   },
   {
     name: "Fractures & Trauma Injuries",
-    image: "/Fractures%20&%20Trauma%20Injuries.png"
+    image: "/fractures-trauma-injuries.png"
   },
   {
     name: "Osteoporosis",
@@ -56,15 +56,15 @@ const conditions = [
   },
   {
     name: "Bone & Soft Tissue Tumours",
-    image: "/Bone%20&%20Soft%20Tissue%20Tumours.png"
+    image: "/bone-soft-tissue-tumours.png"
   },
   {
     name: "Foot & Ankle Disorders",
-    image: "/Foot%20&%20Ankle%20Disorders.png"
+    image: "/foot-ankle-disorders.png"
   },
   {
     name: "Hand & Wrist Conditions",
-    image: "/Hand%20&%20Wrist%20Conditions.png"
+    image: "/hand-wrist-conditions.png"
   }
 ];
 

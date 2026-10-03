@@ -19,6 +19,7 @@ export function Hero() {
       <div className="absolute inset-0">
         <Image
           src="/gbbanner.png"
+          sizes="100vw"
           alt="Smiling surgeon in scrubs standing in a modern operating room"
           fill
           priority

@@ -13,6 +13,7 @@ export function FinalCta() {
       <div className="absolute inset-0">
         <Image
           src="/gbhbanner.png"
+          sizes="100vw"
           alt="Cronus Multispeciality Hospital building exterior"
           fill
           className="object-cover"

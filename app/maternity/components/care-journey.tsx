@@ -117,6 +117,7 @@ export function CareJourney() {
                     <div className="relative inline-flex mb-6">
                       <Image
                         src={step.image}
+                        sizes="224px"
                         alt={step.title}
                         width={220}
                         height={165}
@@ -151,7 +152,9 @@ export function CareJourney() {
         {/* Bottom section */}
         <Reveal delay={0.6}>
           <div className="text-center">
-            <p className="text-lg md:text-2xl text-[#1e3a5f] mb-8 handwriting">
+            {/* content-visibility defers rendering this line until it's near the
+                viewport, so the handwriting font isn't fetched during first paint. */}
+            <p className="text-lg md:text-2xl text-[#1e3a5f] mb-8 handwriting [content-visibility:auto] [contain-intrinsic-size:auto_2rem]">
               One journey. Complete maternity care. ♥
             </p>
             <button

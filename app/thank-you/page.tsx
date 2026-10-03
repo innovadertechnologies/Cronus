@@ -5,6 +5,7 @@ import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 
 export const metadata = {
   title: "Thank You | Cronus Multispeciality Hospital",
+  robots: { index: false, follow: false },
 };
 
 // Each landing page redirects here with ?service=<key> after a lead is saved.
@@ -41,6 +42,7 @@ export default async function ThankYouPage({ searchParams }: PageProps<"/thank-y
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#EAF6F8] px-5 py-16 text-center">
       <Image
         src="/logo.png"
+        sizes="120px"
         alt="Cronus Multispeciality Hospital"
         width={1353}
         height={742}

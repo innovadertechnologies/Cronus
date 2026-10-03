@@ -1,4 +1,7 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { JsonLd } from "@/app/components/json-ld";
+import { LANDING_PAGES, landingPageSchema, pageMetadata } from "@/app/lib/seo";
+import { SPINE_FAQS } from "./components/faq-data";
 import { Navbar } from "./components/navbar";
 import { Hero } from "./components/hero";
 import { SpineForm } from "./components/spine-form";
@@ -15,15 +18,14 @@ import { Footer } from "./components/footer";
 import { StickyMobileCTA } from "./components/sticky-mobile-cta";
 import { BookingModalProvider } from "./components/booking-modal";
 
-export const metadata: Metadata = {
-  title: "Back Pain & Sciatica Treatment in Chhatarpur, Delhi | Cronus Multispeciality Hospital",
-  description:
-    "Expert spine evaluation and personalized treatment from Dr. Sandeep Singh, with 30+ years of experience in spine care, at Cronus Multispeciality Hospital, Chhatarpur.",
-};
+const page = LANDING_PAGES.spine;
+
+export const metadata: Metadata = pageMetadata(page);
 
 export default function SpinePage() {
   return (
     <BookingModalProvider>
+      <JsonLd data={landingPageSchema(page, SPINE_FAQS)} />
       <Navbar />
       <main>
         <Hero />
