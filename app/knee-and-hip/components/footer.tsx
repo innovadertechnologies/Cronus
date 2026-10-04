@@ -16,7 +16,6 @@ const links = [
   { label: "Symptoms", href: "#symptoms" },
   { label: "Conditions", href: "#conditions" },
   { label: "Meet Our Specialists", href: "#specialists" },
-  { label: "Why Choose Us", href: "#why-choose" },
   { label: "FAQ", href: "#faq" },
   { label: "Book Consultation", href: "#book" },
 ];

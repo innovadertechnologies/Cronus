@@ -37,7 +37,7 @@ export function MeetSpecialists() {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-teal-50">
+    <section id="specialists" className="py-16 bg-gradient-to-br from-blue-50 to-teal-50">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-[#0B3446] sm:text-4xl">
