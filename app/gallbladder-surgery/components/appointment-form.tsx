@@ -1,7 +1,6 @@
 "use client";
 
 import { useLeadForm } from "@/app/lib/use-lead-form";
-import { motion, AnimatePresence } from "framer-motion";
 import { Lock, ShieldCheck } from "lucide-react";
 import { submitGallbladderLead, type LeadFormState } from "@/app/actions";
 
@@ -46,128 +45,117 @@ export function AppointmentForm({
       id={id}
       className={`relative scroll-mt-24 rounded-[28px] border border-[#129EA8]/15 bg-white p-6 shadow-[0_30px_60px_-20px_rgba(11,52,70,0.25)] sm:p-8 ${className}`}
     >
-      {/* initial={false}: show the form immediately in the server HTML instead of
-          fading it in after JavaScript loads (keeps first paint fast). */}
-      <AnimatePresence mode="wait" initial={false}>
-        {state.success ? (
-          <motion.div
-            key="success"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="flex flex-col items-center gap-3 py-6 text-center"
-          >
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#DCEEF7] text-[#129EA8]">
-              <ShieldCheck className="h-7 w-7" strokeWidth={2} />
-            </span>
-            <h3 className="text-xl font-bold text-[#1B2936]">Request Received</h3>
-            <p className="max-w-xs text-sm text-[#64748B]">
-              Our team will contact you to confirm your appointment.
+      {/* The form renders without any enter animation so it shows immediately in
+          the server HTML; only the success message fades in. */}
+      {state.success ? (
+        <div
+          key="success"
+          className="animate-pop-in flex flex-col items-center gap-3 py-6 text-center"
+        >
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#DCEEF7] text-[#129EA8]">
+            <ShieldCheck className="h-7 w-7" strokeWidth={2} />
+          </span>
+          <h3 className="text-xl font-bold text-[#1B2936]">Request Received</h3>
+          <p className="max-w-xs text-sm text-[#64748B]">
+            Our team will contact you to confirm your appointment.
+          </p>
+        </div>
+      ) : (
+        <div key="form">
+          <h3 className="text-xl font-bold text-[#1B2936]">
+            {isCompact ? "Request a Call Back" : "Book an Appointment"}
+          </h3>
+          {!isCompact && (
+            <p className="mt-1.5 text-sm leading-relaxed text-[#64748B]">
+              Fill in your details and our team will get in touch with you shortly.
             </p>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="form"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <h3 className="text-xl font-bold text-[#1B2936]">
-              {isCompact ? "Request a Call Back" : "Book an Appointment"}
-            </h3>
-            {!isCompact && (
-              <p className="mt-1.5 text-sm leading-relaxed text-[#64748B]">
-                Fill in your details and our team will get in touch with you shortly.
-              </p>
-            )}
+          )}
 
-            <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3" noValidate>
+          <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3" noValidate>
+            <div>
+              <label htmlFor={`${idPrefix}-name`} className="sr-only">
+                {isCompact ? "Full Name" : "Name"}
+              </label>
+              <input
+                id={`${idPrefix}-name`}
+                name="name"
+                type="text"
+                required
+                autoComplete="name"
+                placeholder={isCompact ? "Full Name" : "Name"}
+                className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label htmlFor={`${idPrefix}-name`} className="sr-only">
-                  {isCompact ? "Full Name" : "Name"}
+                <label htmlFor={`${idPrefix}-phone`} className="sr-only">
+                  Phone Number
                 </label>
                 <input
-                  id={`${idPrefix}-name`}
-                  name="name"
-                  type="text"
+                  id={`${idPrefix}-phone`}
+                  name="phone"
+                  type="tel"
                   required
-                  autoComplete="name"
-                  placeholder={isCompact ? "Full Name" : "Name"}
+                  inputMode="tel"
+                  autoComplete="tel"
+                  placeholder="Phone Number"
                   className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
                 />
               </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label htmlFor={`${idPrefix}-phone`} className="sr-only">
-                    Phone Number
-                  </label>
-                  <input
-                    id={`${idPrefix}-phone`}
-                    name="phone"
-                    type="tel"
-                    required
-                    inputMode="tel"
-                    autoComplete="tel"
-                    placeholder="Phone Number"
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
-                  />
-                </div>
-                <div>
-                  <label htmlFor={`${idPrefix}-email`} className="sr-only">
-                    Email Address
-                  </label>
-                  <input
-                    id={`${idPrefix}-email`}
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="Email Address"
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
-                  />
-                </div>
-              </div>
-
               <div>
-                <label htmlFor={`${idPrefix}-condition`} className="sr-only">
-                  {isCompact ? "Select Condition" : "Select Concern"}
+                <label htmlFor={`${idPrefix}-email`} className="sr-only">
+                  Email Address
                 </label>
-                <select
-                  id={`${idPrefix}-condition`}
-                  name="condition"
-                  defaultValue=""
-                  className="w-full appearance-none rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
-                >
-                  <option value="" disabled>
-                    {isCompact ? "Select Condition" : "Select Concern"}
-                  </option>
-                  {conditions.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
+                <input
+                  id={`${idPrefix}-email`}
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="Email Address"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] placeholder:text-slate-400 transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+                />
               </div>
+            </div>
 
-              {state.error && (
-                <p role="alert" className="text-sm font-medium text-[#C94B4B]">
-                  {state.error}
-                </p>
-              )}
+            <div>
+              <label htmlFor={`${idPrefix}-condition`} className="sr-only">
+                {isCompact ? "Select Condition" : "Select Concern"}
+              </label>
+              <select
+                id={`${idPrefix}-condition`}
+                name="condition"
+                defaultValue=""
+                className="w-full appearance-none rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#1B2936] transition-colors focus:border-[#129EA8] focus:outline-none focus:ring-4 focus:ring-[#129EA8]/15"
+              >
+                <option value="" disabled>
+                  {isCompact ? "Select Condition" : "Select Concern"}
+                </option>
+                {conditions.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-              <SubmitButton label={isCompact ? "Submit" : "Submit Request"} pending={pending} />
+            {state.error && (
+              <p role="alert" className="text-sm font-medium text-[#C94B4B]">
+                {state.error}
+              </p>
+            )}
 
-              {!isCompact && (
-                <p className="flex items-center justify-center gap-1.5 text-center text-xs text-[#64748B]">
-                  <Lock className="h-3.5 w-3.5" />
-                  Your information is kept confidential.
-                </p>
-              )}
-            </form>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <SubmitButton label={isCompact ? "Submit" : "Submit Request"} pending={pending} />
+
+            {!isCompact && (
+              <p className="flex items-center justify-center gap-1.5 text-center text-xs text-[#64748B]">
+                <Lock className="h-3.5 w-3.5" />
+                Your information is kept confidential.
+              </p>
+            )}
+          </form>
+        </div>
+      )}
     </div>
   );
 }

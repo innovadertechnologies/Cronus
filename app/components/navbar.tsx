@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 
@@ -91,39 +90,31 @@ export function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="overflow-hidden border-t border-slate-200 bg-white lg:hidden"
-          >
-            <nav className="flex flex-col gap-1 px-5 py-4" aria-label="Mobile">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#1B2936] hover:bg-slate-50"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="mt-2 flex flex-col gap-2 border-t border-slate-100 pt-3">
-                <a
-                  href={`tel:${CLINIC_PHONE_TEL}`}
-                  className="flex items-center justify-center gap-2 rounded-full border border-slate-200 px-4 py-3 text-sm font-semibold text-[#005F70]"
-                >
-                  <Phone className="h-4 w-4" />
-                  {CLINIC_PHONE_DISPLAY}
-                </a>
-              </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {menuOpen && (
+        <div className="animate-slide-down overflow-hidden border-t border-slate-200 bg-white lg:hidden">
+          <nav className="flex flex-col gap-1 px-5 py-4" aria-label="Mobile">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#1B2936] hover:bg-slate-50"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="mt-2 flex flex-col gap-2 border-t border-slate-100 pt-3">
+              <a
+                href={`tel:${CLINIC_PHONE_TEL}`}
+                className="flex items-center justify-center gap-2 rounded-full border border-slate-200 px-4 py-3 text-sm font-semibold text-[#005F70]"
+              >
+                <Phone className="h-4 w-4" />
+                {CLINIC_PHONE_DISPLAY}
+              </a>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

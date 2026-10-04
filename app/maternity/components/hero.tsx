@@ -1,12 +1,21 @@
 "use client";
 
-import Image from "next/image";
+import { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import { CheckCircle2, Phone, Heart, Baby, ShieldCheck } from "lucide-react";
 import { MaternityForm } from "./maternity-form";
 import { Reveal } from "@/app/components/reveal";
 import { StatCounter } from "@/app/components/stat-counter";
 import { CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 import { useBookingModal } from "./booking-modal-provider";
+
+// Desktop and mobile show the hero photo in different boxes. Each copy is
+// preloaded only for its own screen size and the other stays lazy (it's
+// display:none), so a phone never downloads the desktop-sized image.
+const desktopBg = getImageProps({ src: "/maternity1.png", alt: "", fill: true, sizes: "100vw", loading: "lazy" }).props;
+const mobileBg = getImageProps({ src: "/maternity1.png", alt: "", fill: true, sizes: "150vw", loading: "lazy" }).props;
+const DESKTOP_MEDIA = "(min-width: 1024px)";
+const MOBILE_MEDIA = "(max-width: 1023px)";
 
 const checklist = [
   "Complete Pregnancy Care",
@@ -34,21 +43,16 @@ const trustStrip = [
 
 export function Hero() {
   const { openBookingModal } = useBookingModal();
+  preload(desktopBg.src, { as: "image", imageSrcSet: desktopBg.srcSet, imageSizes: desktopBg.sizes, media: DESKTOP_MEDIA, fetchPriority: "high" });
+  preload(mobileBg.src, { as: "image", imageSrcSet: mobileBg.srcSet, imageSizes: mobileBg.sizes, media: MOBILE_MEDIA, fetchPriority: "high" });
 
   return (
     <section id="hero" className="relative overflow-hidden bg-[#EAF6F8]">
       <div className="relative">
         {/* Desktop: the photo fills the hero behind both the text and the form. */}
         <div className="absolute inset-0 hidden lg:block">
-          <Image
-            src="/maternity1.png"
-            alt=""
-            aria-hidden
-            fill
-            priority
-            sizes="100vw"
-            className="absolute inset-0 object-cover object-right"
-          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img {...desktopBg} aria-hidden className="object-cover object-right" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#EAF6F8] via-[#EAF6F8]/85 to-[#EAF6F8]/10 lg:via-[#EAF6F8]/60" />
         </div>
 
@@ -58,15 +62,8 @@ export function Hero() {
                 the mother on the right and a light wash on the left so the text
                 on top of it stays readable. */}
             <div className="absolute inset-0 lg:hidden">
-              <Image
-                src="/maternity1.png"
-                alt=""
-                aria-hidden
-                fill
-                priority
-                sizes="(min-width: 1024px) 1px, 250vw"
-                className="object-cover object-[30%_top] sm:object-[45%_top]"
-              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img {...mobileBg} aria-hidden className="object-cover object-[30%_top] sm:object-[45%_top]" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#EAF6F8]/95 via-[#EAF6F8]/75 via-55% to-[#EAF6F8]/25" />
               <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#EAF6F8]/80 to-transparent" />
             </div>

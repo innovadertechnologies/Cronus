@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowRight, Stethoscope } from "lucide-react";
 import { BookTrigger } from "@/app/gallbladder-surgery/components/booking-modal";
 import { Reveal, RevealGroup } from "@/app/components/reveal";
@@ -53,10 +52,9 @@ export function ConditionsSection() {
 
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {conditions.map((condition) => (
-            <motion.div
+            <div
               key={condition.title}
-              whileHover={{ y: -6 }}
-              className="group overflow-hidden rounded-[22px] border border-slate-200/80 bg-white shadow-[0_10px_28px_-20px_rgba(11,31,51,0.35)] transition-shadow hover:shadow-[0_24px_44px_-20px_rgba(11,31,51,0.35)]"
+              className="group overflow-hidden rounded-[22px] border border-slate-200/80 bg-white shadow-[0_10px_28px_-20px_rgba(11,31,51,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_44px_-20px_rgba(11,31,51,0.35)]"
             >
               <div className="relative h-40 w-full overflow-hidden bg-slate-50">
                 <Image
@@ -77,7 +75,7 @@ export function ConditionsSection() {
                   {condition.number}
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </RevealGroup>
 
