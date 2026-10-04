@@ -32,13 +32,13 @@ const types = [
 export function HerniaTypes() {
   return (
     <section id="hernia-types" className="bg-white">
-      <div className="mx-auto max-w-7xl px-5 pt-8 pb-16 sm:px-8 sm:pt-10 sm:pb-20">
+      <div className="mx-auto max-w-7xl px-4 pt-8 pb-16 sm:px-8 sm:pt-10 sm:pb-20">
         <h2 className="text-3xl font-extrabold tracking-tight text-[#0B3446] sm:text-4xl">
           Types of Hernia We Treat
         </h2>
         <span className="mt-3 block h-1 w-14 rounded-full bg-[#129EA8]" />
 
-        <RevealGroup className="mt-8 grid gap-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+        <RevealGroup className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:gap-8 sm:grid-cols-3 lg:grid-cols-5">
           {types.map((type) => (
             <div
               key={type.name}
