@@ -14,7 +14,6 @@ export async function submitKneeHipLead(
   formData: FormData
 ): Promise<KneeHipLeadFormState> {
   const name = String(formData.get("name") ?? "").trim();
-  const email = String(formData.get("email") ?? "").trim();
   const phone = normalizeIndianPhone(String(formData.get("phone") ?? ""));
   const concern = String(formData.get("concern") ?? "").trim();
 
@@ -22,18 +21,17 @@ export async function submitKneeHipLead(
     return { success: false, error: "Please enter your name." };
   }
 
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { success: false, error: "Please check your email address, e.g. name@example.com." };
-  }
-
   if (!phone) {
     return { success: false, error: INVALID_PHONE_MESSAGE };
+  }
+
+  if (!concern) {
+    return { success: false, error: "Please select either Knee Replacement or Hip Replacement." };
   }
 
   recordLead("knee-hip", {
     Name: name,
     Phone: phone,
-    Email: email,
     Concern: concern,
   });
 

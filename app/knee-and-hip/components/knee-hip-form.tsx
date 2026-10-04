@@ -4,6 +4,7 @@ import { useLeadForm } from "@/app/lib/use-lead-form";
 import { CalendarCheck, Lock } from "lucide-react";
 import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 import { submitKneeHipLead, type KneeHipLeadFormState } from "@/app/knee-and-hip/actions";
+import { useEffect } from "react";
 
 const initialState: KneeHipLeadFormState = { success: false };
 
@@ -32,6 +33,16 @@ export function KneeHipForm({
   const { state, onSubmit, pending } = useLeadForm(submitKneeHipLead, initialState);
   const inputClass = `${inputBase} ${compact ? "py-2.5" : "py-3"}`;
 
+  // Reset form after successful submission
+  useEffect(() => {
+    if (state.success) {
+      const form = document.getElementById(`${idPrefix}-form`);
+      if (form) {
+        (form as HTMLFormElement).reset();
+      }
+    }
+  }, [state.success, idPrefix]);
+
   return (
     <div
       id={id}
@@ -44,7 +55,12 @@ export function KneeHipForm({
         </p>
       )}
 
-      <form onSubmit={onSubmit} className={`${compact ? "mt-3 gap-2.5" : "mt-5 gap-3"} flex flex-col`} noValidate>
+      <form 
+        id={`${idPrefix}-form`}
+        onSubmit={pending ? undefined : onSubmit} 
+        className={`${compact ? "mt-3 gap-2.5" : "mt-5 gap-3"} flex flex-col`} 
+        noValidate
+      >
         <div>
           <label htmlFor={`${idPrefix}-name`} className="sr-only">
             Full Name

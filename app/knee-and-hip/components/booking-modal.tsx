@@ -41,7 +41,7 @@ export function BookingModalProvider({ children }: { children: ReactNode }) {
             >
               <X className="h-4 w-4" />
             </button>
-            <KneeHipForm idPrefix="modal" withEmail />
+            <KneeHipForm idPrefix="modal" />
           </div>
         </div>
       )}

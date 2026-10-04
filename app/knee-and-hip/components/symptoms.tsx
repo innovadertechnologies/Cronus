@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { CheckCircle } from "lucide-react";
 import { useBookingModal } from "./booking-modal";
 
 const kneeSymptoms = [
@@ -21,53 +20,48 @@ const hipSymptoms = [
 function SymptomCard({ 
   title, 
   symptoms, 
-  imageSrc,
-  icon
+  imageSrc
 }: { 
   title: string; 
   symptoms: string[];
   imageSrc: string;
-  icon: React.ReactNode;
 }) {
   return (
-    <div className="relative rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow min-h-[400px]">
-      {/* Background Image - Full Coverage */}
-      <div className="absolute inset-0">
+    <div className="relative rounded-2xl bg-white overflow-hidden shadow-lg hover:shadow-xl transition-shadow min-h-[300px] flex flex-col md:flex-row">
+      {/* Left Side - Background Image */}
+      <div className="relative w-full md:w-2/5 h-64 md:h-auto">
         <Image
           src={imageSrc}
           alt={`${title} illustration`}
           fill
-          className="object-cover w-full h-full"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 40vw"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/60 to-white/85" />
+        {/* Subtle overlay for visual enhancement */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/5"></div>
       </div>
       
-      {/* Content Overlay */}
-      <div className="relative z-10 p-8 h-full flex flex-col justify-between">
-        <div>
-          <div className="mb-6 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 shadow-sm">
-              {icon}
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900">
-              {title}
-            </h3>
-          </div>
-          
-          <ul className="space-y-4">
-            {symptoms.map((symptom, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <div className="flex-shrink-0 mt-0.5">
-                  <CheckCircle className="h-5 w-5 text-teal-600" />
-                </div>
-                <span className="text-gray-800 leading-relaxed font-medium">
-                  {symptom}
-                </span>
-              </li>
-            ))}
-          </ul>
+      {/* Right Side - Content */}
+      <div className="flex-1 p-6 flex flex-col justify-center">
+        <div className="mb-4">
+          <h3 className="text-xl font-bold text-gray-900">
+            {title}
+          </h3>
         </div>
+        
+        <ul className="space-y-3">
+          {symptoms.map((symptom, index) => (
+            <li key={index} className="flex items-start gap-3">
+              <div className="flex-shrink-0 mt-0.5">
+                <div className="h-2 w-2 rounded-full bg-teal-600"></div>
+              </div>
+              <span className="text-gray-700 leading-relaxed text-sm">
+                {symptom}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
@@ -111,14 +105,12 @@ export function Symptoms() {
             title="Knee Replacement"
             symptoms={kneeSymptoms}
             imageSrc="/knee.png"
-            icon={<span className="text-2xl">🦵</span>}
           />
           
           <SymptomCard
             title="Hip Replacement"
             symptoms={hipSymptoms}
             imageSrc="/hip.png"
-            icon={<span className="text-2xl">🦴</span>}
           />
         </div>
       </div>

@@ -77,10 +77,10 @@ export function Footer() {
               <Phone className="h-4 w-4 text-[#129EA8]" />
               {CLINIC_PHONE_DISPLAY}
             </a>
-            <a href={`mailto:${CLINIC_EMAIL}`} className="inline-flex items-center gap-2 hover:text-[#0B3446]">
+            <div className="inline-flex items-center gap-2 text-[#3F5A66]">
               <Mail className="h-4 w-4 text-[#129EA8]" />
               {CLINIC_EMAIL}
-            </a>
+            </div>
           </div>
 
           <div className="mt-5 flex items-center gap-3">

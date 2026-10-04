@@ -7,8 +7,8 @@ const conditions = [
     image: "/Osteoarthritis.png"
   },
   {
-    name: "Rheumatoid Arthritis", 
-    image: "/Rheumatoid%20Arthritis.png"
+    name: "Rheumatoid Arthritis",
+    image: "/Rheumatoid Arthritis.png"
   },
   {
     name: "Knee Pain & Knee Disorders",
@@ -28,19 +28,19 @@ const conditions = [
   },
   {
     name: "ACL, PCL & Ligament Tears",
-    image: "/acl-pcl-ligament-tears.png"
+    image: "/ACL, PCL & Ligament Tears.png"
   },
   {
     name: "Meniscus Injuries",
-    image: "/Meniscus%20Injuries.png"
+    image: "/Meniscus Injuries.png"
   },
   {
     name: "Rotator Cuff Tears",
-    image: "/Rotator%20Cuff%20Tears.png"
+    image: "/Rotator Cuff Tears.png"
   },
   {
     name: "Fractures & Trauma Injuries",
-    image: "/fractures-trauma-injuries.png"
+    image: "/Fractures & Trauma Injuries.png"
   },
   {
     name: "Osteoporosis",
@@ -48,23 +48,23 @@ const conditions = [
   },
   {
     name: "Joint Deformities",
-    image: "/Joint%20Deformities.png"
+    image: "/Joint Deformities.png"
   },
   {
     name: "Paediatric Orthopaedic Conditions",
-    image: "/Paediatric%20Orthopaedic%20Conditions.png"
+    image: "/Paediatric Orthopaedic Conditions.png"
   },
   {
     name: "Bone & Soft Tissue Tumours",
-    image: "/bone-soft-tissue-tumours.png"
+    image: "/Bone & Soft Tissue Tumours.png"
   },
   {
     name: "Foot & Ankle Disorders",
-    image: "/foot-ankle-disorders.png"
+    image: "/Foot & Ankle Disorders.png"
   },
   {
     name: "Hand & Wrist Conditions",
-    image: "/hand-wrist-conditions.png"
+    image: "/Hand & Wrist Conditions.png"
   }
 ];
 

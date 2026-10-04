@@ -2,7 +2,7 @@
 
 import { getImageProps } from "next/image";
 import { preload } from "react-dom";
-import { CalendarDays, CheckCircle2, MapPin, Phone, Star } from "lucide-react";
+import { CalendarDays, CheckCircle2, MapPin, Phone } from "lucide-react";
 import { CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 import { useBookingModal } from "./booking-modal";
 
@@ -26,39 +26,6 @@ const mobileBg = getImageProps({ src: "/spmobnew.png", alt: HERO_ALT, fill: true
 const DESKTOP_MEDIA = "(min-width: 1024px)";
 const MOBILE_MEDIA = "(max-width: 1023px)";
 
-function ExperienceBadge({ className = "" }: { className?: string }) {
-  return (
-    <div
-      className={`flex aspect-square flex-col items-center justify-center rounded-full border-4 border-white/80 bg-[#0B3446] text-center text-white shadow-[0_20px_40px_-12px_rgba(11,52,70,0.6)] ${className}`}
-    >
-      <span className="text-[1.9em] font-extrabold leading-none">27+</span>
-      <span className="mt-[0.2em] text-[0.95em] font-bold leading-tight">Years</span>
-      <span className="text-[0.62em] font-medium leading-tight text-white/85">
-        of Experience
-        <br />
-        in Joint Care
-      </span>
-      <span className="mt-[0.35em] flex gap-[0.1em] text-amber-400" aria-hidden>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} className="h-[0.7em] w-[0.7em] fill-current" />
-        ))}
-      </span>
-    </div>
-  );
-}
-
-function DoctorCard({ className = "" }: { className?: string }) {
-  return (
-    <div
-      className={`rounded-xl border border-white/70 bg-white/90 px-4 py-3 shadow-[0_16px_32px_-14px_rgba(11,52,70,0.45)] backdrop-blur-md ${className}`}
-    >
-      <p className="text-base font-extrabold text-[#0B3446] lg:text-lg">Dr. Dheeraj Nath</p>
-      <p className="text-xs font-semibold text-[#1B2936]/80 lg:text-sm">Orthopedic & Joint Replacement Surgeon</p>
-      <p className="text-[11px] text-[#64748B] lg:text-xs">Cronus Multispeciality Hospital, Chhatarpur</p>
-    </div>
-  );
-}
-
 export function Hero() {
   const { openBookingModal } = useBookingModal();
   preload(desktopBg.src, { as: "image", imageSrcSet: desktopBg.srcSet, imageSizes: desktopBg.sizes, media: DESKTOP_MEDIA, fetchPriority: "high" });
@@ -76,8 +43,6 @@ export function Hero() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
         <img {...desktopBg} className="object-cover" />
-        <ExperienceBadge className="absolute left-[56%] top-[26%] hidden w-[clamp(140px,10vw,176px)] text-[clamp(14px,1vw,17px)] xl:flex" />
-        <DoctorCard className="absolute bottom-[13%] left-[66%] w-[clamp(260px,20vw,320px)]" />
       </div>
       {/* Mobile / tablet background */}
       {/* Covers the whole hero; anchored right so the doctor stays in view and

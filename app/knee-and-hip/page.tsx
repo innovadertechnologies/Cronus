@@ -9,7 +9,6 @@ import { TrustBar } from "./components/trust-bar";
 import { Symptoms } from "./components/symptoms";
 import { ConditionsSection } from "./components/conditions-section";
 import { MeetSpecialists } from "./components/meet-specialists";
-import { WhyChooseCronus } from "./components/why-choose-cronus";
 import { Testimonials } from "./components/testimonials";
 import { FAQ } from "./components/faq";
 import { FinalCTA } from "./components/final-cta";
@@ -33,7 +32,6 @@ export default function KneeHipPage() {
           <Symptoms />
           <ConditionsSection />
           <MeetSpecialists />
-          <WhyChooseCronus />
           <Testimonials />
           <FAQ />
           <FinalCTA />
