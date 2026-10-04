@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Activity } from "lucide-react";
 
 const conditions = [
   {
@@ -28,7 +27,7 @@ const conditions = [
   },
   {
     name: "ACL, PCL & Ligament Tears",
-    image: "/ACL, PCL & Ligament Tears.png"
+    image: "/acl-pcl-ligament-tears.png"
   },
   {
     name: "Meniscus Injuries",
@@ -40,7 +39,7 @@ const conditions = [
   },
   {
     name: "Fractures & Trauma Injuries",
-    image: "/Fractures & Trauma Injuries.png"
+    image: "/fractures-trauma-injuries.png"
   },
   {
     name: "Osteoporosis",
@@ -56,15 +55,15 @@ const conditions = [
   },
   {
     name: "Bone & Soft Tissue Tumours",
-    image: "/Bone & Soft Tissue Tumours.png"
+    image: "/bone-soft-tissue-tumours.png"
   },
   {
     name: "Foot & Ankle Disorders",
-    image: "/Foot & Ankle Disorders.png"
+    image: "/foot-ankle-disorders.png"
   },
   {
     name: "Hand & Wrist Conditions",
-    image: "/Hand & Wrist Conditions.png"
+    image: "/hand-wrist-conditions.png"
   }
 ];
 
