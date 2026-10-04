@@ -46,7 +46,9 @@ export function AppointmentForm({
       id={id}
       className={`relative scroll-mt-24 rounded-[28px] border border-[#129EA8]/15 bg-white p-6 shadow-[0_30px_60px_-20px_rgba(11,52,70,0.25)] sm:p-8 ${className}`}
     >
-      <AnimatePresence mode="wait">
+      {/* initial={false}: show the form immediately in the server HTML instead of
+          fading it in after JavaScript loads (keeps first paint fast). */}
+      <AnimatePresence mode="wait" initial={false}>
         {state.success ? (
           <motion.div
             key="success"
