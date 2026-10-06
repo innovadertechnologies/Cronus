@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Dancing_Script } from "next/font/google";
 import { Analytics } from "@/app/components/analytics";
 import { SITE_URL } from "@/app/lib/seo";
 import { CLINIC_NAME } from "@/app/lib/site-config";
+import Script from "next/script";
 import "./globals.css";
 
 const GTM_ID = "GTM-KW3X37ZM";
@@ -66,7 +67,41 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+
+        {/* Meta Pixel (noscript) */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1742053317926004&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
+
         {children}
+
+        {/* Meta Pixel */}
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+
+              fbq('init', '1742053317926004');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
+
         {/* GTM, GA4 and Google Ads tags – loaded after first paint, see analytics.tsx */}
         <Analytics />
       </body>
