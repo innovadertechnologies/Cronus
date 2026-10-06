@@ -56,7 +56,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" className={`${jakarta.variable} ${dancingScript.variable} h-full scroll-smooth`}>
+    <html
+      lang="en-IN"
+      className={`${jakarta.variable} ${dancingScript.variable} h-full scroll-smooth`}
+    >
       <body className="min-h-full flex flex-col bg-[#F8FAFC] font-sans text-[#1B2936] antialiased">
         {/* Google Tag Manager (noscript) */}
         <noscript>
@@ -74,7 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             height="1"
             width="1"
             style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1742053317926004&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=1360053332870076&ev=PageView&noscript=1"
             alt=""
           />
         </noscript>
@@ -96,7 +99,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
 
-              fbq('init', '1742053317926004');
+              fbq('init', '1360053332870076');
               fbq('track', 'PageView');
             `,
           }}
