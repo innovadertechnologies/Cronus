@@ -71,36 +71,17 @@ export function Symptoms() {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <section id="symptoms" className="bg-gray-50 py-20">
+    <section id="symptoms" className="bg-gray-50 py-6 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         {/* Header Section */}
-        <div className="mb-16">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            <div className="flex-1">
-              <p className="mb-3 text-sm font-semibold tracking-wider text-teal-600 uppercase">
-                COMMON SYMPTOMS
-              </p>
-              <h2 className="mb-4 text-4xl font-bold text-gray-900 lg:text-5xl">
-                Experiencing these symptoms?
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
-                It could be a sign of knee or hip problem. Get evaluated by our orthopedic specialists.
-              </p>
-            </div>
-            
-            <div className="flex-shrink-0">
-              <button 
-                onClick={openBookingModal}
-                className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-teal-700 hover:shadow-xl transition-all duration-200"
-              >
-                Consult an Orthopedic Specialist →
-              </button>
-            </div>
-          </div>
+        <div className="mb-6 lg:mb-16">
+          <h2 className="text-3xl font-bold text-[#0B3446] sm:text-4xl mb-3">
+            Common Symptoms
+          </h2>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-6 lg:gap-8 lg:grid-cols-2 mb-6 lg:mb-12">
           <SymptomCard
             title="Knee Replacement"
             symptoms={kneeSymptoms}
@@ -112,6 +93,19 @@ export function Symptoms() {
             symptoms={hipSymptoms}
             imageSrc="/hip.png"
           />
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center">
+          <p className="text-lg text-gray-700 mb-4 lg:mb-6">
+            Experiencing these symptoms?
+          </p>
+          <button 
+            onClick={openBookingModal}
+            className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-teal-700 hover:shadow-xl transition-all duration-200"
+          >
+            Book Your Consultation
+          </button>
         </div>
       </div>
     </section>

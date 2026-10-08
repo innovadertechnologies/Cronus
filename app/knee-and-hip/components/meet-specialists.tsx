@@ -10,7 +10,7 @@ const doctors = [
     title: "Orthopedic Surgeon & Joint Replacement Surgeon",
     experience: "27+ Years of Experience",
     qualifications: "MBBS, MS – Orthopaedics",
-    image: "/docimage.png",
+    image: "/dheeraj.png",
     expertise: [
       "Knee Replacement Surgery",
       "Hip Replacement Surgery",
@@ -37,13 +37,13 @@ export function MeetSpecialists() {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <section id="specialists" className="py-16 bg-gradient-to-br from-blue-50 to-teal-50">
+    <section id="specialists" className="py-6 lg:py-16 bg-gradient-to-br from-blue-50 to-teal-50">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6 lg:mb-12">
           <h2 className="text-3xl font-bold text-[#0B3446] sm:text-4xl">
             Meet Our Orthopedic Experts
           </h2>
-          <p className="mt-4 text-lg text-[#64748B] max-w-3xl mx-auto">
+          <p className="mt-3 lg:mt-4 text-lg text-[#64748B] max-w-3xl mx-auto">
             Our experienced specialists are dedicated to providing exceptional orthopedic care for your joint and spine needs.
           </p>
         </div>
@@ -116,7 +116,7 @@ export function MeetSpecialists() {
                   onClick={openBookingModal}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#129EA8] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(18,158,168,0.4)] transition-all hover:brightness-110 hover:shadow-[0_20px_40px_-10px_rgba(18,158,168,0.5)]"
                 >
-                  Book Your Orthopedic Consultation →
+                  Book Your Consultation
                 </button>
               </div>
             </div>

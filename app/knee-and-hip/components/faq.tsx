@@ -38,16 +38,16 @@ export function FAQ() {
   const { openBookingModal } = useBookingModal();
   
   return (
-    <section id="faq" className="scroll-mt-16 lg:scroll-mt-20 bg-gradient-to-b from-white to-[#F3F9FD] py-10 sm:py-14">
+    <section id="faq" className="scroll-mt-16 lg:scroll-mt-20 bg-gradient-to-b from-white to-[#F3F9FD] py-6 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className="text-center">
           <h2 className="text-2xl font-extrabold tracking-tight text-[#0B2A4A] sm:text-4xl">
             Frequently Asked Questions
           </h2>
-          <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-[#0E7C86]" aria-hidden />
+          <span className="mx-auto mt-3 lg:mt-4 block h-1 w-16 rounded-full bg-[#0E7C86]" aria-hidden />
         </div>
 
-        <div className="mt-8 flex flex-col gap-3">
+        <div className="mt-6 lg:mt-8 flex flex-col gap-3">
           {faqs.map(({ question, answer }, i) => (
             <details
               key={question}
@@ -71,18 +71,18 @@ export function FAQ() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="mb-4 text-xl font-semibold text-[#0B2A4A]">
+        <div className="mt-8 lg:mt-12 text-center">
+          <p className="mb-3 lg:mb-4 text-xl font-semibold text-[#0B2A4A]">
             Have more questions?
           </p>
-          <p className="mb-6 text-lg text-[#64748B]">
+          <p className="mb-4 lg:mb-6 text-lg text-[#64748B]">
             Speak to Our Orthopedic Team
           </p>
           <button 
             onClick={openBookingModal}
             className="inline-flex items-center gap-2 rounded-xl bg-[#0E7C86] px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-[#0B6B73] transition-colors"
           >
-            Book Your Consultation →
+            Book Your Consultation
           </button>
         </div>
       </div>

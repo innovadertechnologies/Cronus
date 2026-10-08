@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Phone, Mail } from "lucide-react";
 import {
@@ -15,7 +17,9 @@ const links = [
   { label: "Home", href: "#hero" },
   { label: "Symptoms", href: "#symptoms" },
   { label: "Conditions", href: "#conditions" },
+  { label: "Why Choose Cronus", href: "#why-choose" },
   { label: "Meet Our Specialists", href: "#specialists" },
+  { label: "Reviews", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
   { label: "Book Consultation", href: "#book" },
 ];
@@ -27,6 +31,15 @@ const socials = [
 ];
 
 export function Footer() {
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const id = href.replace('#', '');
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <footer id="contact" className="border-t border-slate-200 bg-white pb-28 pt-12 lg:pb-12">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -53,7 +66,8 @@ export function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-[#3F5A66] transition-colors hover:text-[#0B3446]"
+                onClick={(e) => handleScrollTo(e, link.href)}
+                className="text-sm font-medium text-[#3F5A66] transition-colors hover:text-[#0B3446] cursor-pointer"
               >
                 {link.label}
               </a>

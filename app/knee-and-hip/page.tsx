@@ -14,6 +14,7 @@ import { FAQ } from "./components/faq";
 import { FinalCTA } from "./components/final-cta";
 import { Footer } from "./components/footer";
 import { StickyMobileCTA } from "./components/sticky-mobile-cta";
+import { WhyChooseCronus } from "./components/why-choose-cronus";
 import { BookingModalProvider } from "./components/booking-modal";
 
 const page = LANDING_PAGES.kneeHip;
@@ -28,9 +29,23 @@ export default function KneeHipPage() {
         <Navbar />
         <main>
           <Hero />
+          {/* Mobile Form Section - Between Hero and Trust Bar */}
+          <section className="bg-white py-6 lg:hidden">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+              <div className="mx-auto max-w-lg">
+                <KneeHipForm 
+                  id="mobile-form-section" 
+                  idPrefix="mobile-knee-hip"
+                  compact={true}
+                  className="bg-white border border-teal-100 shadow-lg"
+                />
+              </div>
+            </div>
+          </section>
           <TrustBar />
           <Symptoms />
           <ConditionsSection />
+          <WhyChooseCronus />
           <MeetSpecialists />
           <Testimonials />
           <FAQ />

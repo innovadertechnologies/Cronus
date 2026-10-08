@@ -12,7 +12,7 @@ const checklist = [
   "Advanced Surgical Techniques",
 ];
 
-// spinebanner.png - On desktop the image box keeps the ratio and is at
+// hipbanner.png - On desktop the image box keeps the ratio and is at
 // least as tall as the hero, so the badges below can be pinned to the doctor
 // in image-relative percentages and stay put at every screen size.
 const DESKTOP_BG_WIDTH = "max(100%, calc(max(600px, 100svh - 5rem) * 2.445))";
@@ -21,8 +21,8 @@ const DESKTOP_BG_WIDTH = "max(100%, calc(max(600px, 100svh - 5rem) * 2.445))";
 // for its own screen size and the other stays lazy (it's display:none), so a
 // phone never downloads the desktop banner and vice versa.
 const HERO_ALT = "Dr. Dheeraj Nath, Orthopedic & Joint Replacement Surgeon";
-const desktopBg = getImageProps({ src: "/spinebanner.png", alt: HERO_ALT, fill: true, sizes: "160vw", loading: "lazy" }).props;
-const mobileBg = getImageProps({ src: "/spmobnew.png", alt: HERO_ALT, fill: true, sizes: "150vw", loading: "lazy" }).props;
+const desktopBg = getImageProps({ src: "/hipbanner.png", alt: HERO_ALT, fill: true, sizes: "160vw", loading: "lazy" }).props;
+const mobileBg = getImageProps({ src: "/hipbanner.png", alt: HERO_ALT, fill: true, sizes: "150vw", loading: "lazy" }).props;
 const DESKTOP_MEDIA = "(min-width: 1024px)";
 const MOBILE_MEDIA = "(max-width: 1023px)";
 
@@ -49,7 +49,7 @@ export function Hero() {
           only the plain left edge is trimmed. */}
       <div className="absolute inset-0 lg:hidden">
         {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-        <img {...mobileBg} className="object-cover object-right" />
+        <img {...mobileBg} className="object-cover object-[75%_center]" />
         <div className="absolute inset-y-0 left-0 w-[75%] bg-gradient-to-r from-white/85 via-white/60 to-transparent" />
       </div>
       <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[60%] bg-gradient-to-r from-white/85 via-white/50 to-transparent lg:block" />
@@ -101,7 +101,6 @@ export function Hero() {
             </a>
           </div>
         </div>
-
       </div>
     </section>
   );

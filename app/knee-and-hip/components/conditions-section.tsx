@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useBookingModal } from "./booking-modal";
 
 const conditions = [
   {
@@ -68,19 +71,18 @@ const conditions = [
 ];
 
 export function ConditionsSection() {
+  const { openBookingModal } = useBookingModal();
+
   return (
-    <section id="conditions" className="bg-white py-16">
+    <section id="conditions" className="bg-white py-6 lg:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#0B3446] sm:text-4xl mb-4">
-            Comprehensive Care for All Orthopedic Conditions
+        <div className="text-center mb-6 lg:mb-12">
+          <h2 className="text-3xl font-bold text-[#0B3446] sm:text-4xl mb-3 lg:mb-4">
+            Conditions We Treat
           </h2>
-          <p className="text-lg text-[#64748B] max-w-3xl mx-auto">
-            From diagnosis to recovery, we provide complete orthopedic care with advanced surgical techniques and personalized treatment plans
-          </p>
         </div>
 
-        <div className="grid gap-6 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-4 lg:gap-6 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-6 lg:mb-12">
           {conditions.map((condition, index) => (
             <div
               key={index}
@@ -105,6 +107,16 @@ export function ConditionsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center">
+          <button 
+            onClick={openBookingModal}
+            className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-teal-700 hover:shadow-xl transition-all duration-200"
+          >
+            Book Your Consultation
+          </button>
         </div>
       </div>
     </section>

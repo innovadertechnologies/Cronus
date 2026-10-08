@@ -25,36 +25,19 @@ const stats = [
 
 export function TrustBar() {
   return (
-    <section className="bg-white py-8">
+    <section className="bg-white py-4 lg:py-6">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
-        {/* Mobile: 2x2 Grid */}
-        <div className="grid grid-cols-2 gap-4 md:hidden">
+        {/* Single Row Layout for All Screen Sizes */}
+        <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8 md:divide-x md:divide-gray-200">
           {stats.map((stat, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-4 text-center h-24 flex flex-col justify-center">
-              <div className="mb-1 flex justify-center">
-                <stat.icon className="h-5 w-5 text-teal-600" />
+            <div key={index} className="text-center md:first:pl-0 md:[&:not(:first-child)]:pl-4 lg:[&:not(:first-child)]:pl-8">
+              <div className="mb-1 sm:mb-2 md:mb-3 flex justify-center">
+                <stat.icon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8 text-teal-600" />
               </div>
-              <div className="text-xl font-bold text-[#0B3446] leading-tight">
+              <div className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold text-[#0B3446] mb-0.5 sm:mb-1">
                 {stat.value}
               </div>
-              <div className="text-xs text-[#64748B] leading-tight mt-1">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Desktop: Single Row with Dividers */}
-        <div className="hidden md:grid md:grid-cols-4 md:gap-8 md:divide-x md:divide-gray-200">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center md:first:pl-0 md:[&:not(:first-child)]:pl-8">
-              <div className="mb-3 flex justify-center">
-                <stat.icon className="h-8 w-8 text-teal-600" />
-              </div>
-              <div className="text-3xl font-bold text-[#0B3446] mb-1">
-                {stat.value}
-              </div>
-              <div className="text-base text-[#64748B]">
+              <div className="text-[10px] sm:text-xs md:text-sm lg:text-base text-[#64748B] leading-tight">
                 {stat.label}
               </div>
             </div>
