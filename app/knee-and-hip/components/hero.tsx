@@ -21,8 +21,8 @@ const DESKTOP_BG_WIDTH = "max(100%, calc(max(600px, 100svh - 5rem) * 2.445))";
 // for its own screen size and the other stays lazy (it's display:none), so a
 // phone never downloads the desktop banner and vice versa.
 const HERO_ALT = "Dr. Dheeraj Nath, Orthopedic & Joint Replacement Surgeon";
-const desktopBg = getImageProps({ src: "/hipbanner.png", alt: HERO_ALT, fill: true, sizes: "160vw", loading: "lazy" }).props;
-const mobileBg = getImageProps({ src: "/hipbanner.png", alt: HERO_ALT, fill: true, sizes: "150vw", loading: "lazy" }).props;
+const desktopBg = getImageProps({ src: "/hipbanner.png", alt: HERO_ALT, fill: true, sizes: "160vw", loading: "eager", priority: true }).props;
+const mobileBg = getImageProps({ src: "/hipbanner.png", alt: HERO_ALT, fill: true, sizes: "150vw", loading: "eager", priority: true }).props;
 const DESKTOP_MEDIA = "(min-width: 1024px)";
 const MOBILE_MEDIA = "(max-width: 1023px)";
 
