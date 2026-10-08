@@ -12,8 +12,8 @@ import { useBookingModal } from "./booking-modal-provider";
 // Desktop and mobile show the hero photo in different boxes. Each copy is
 // preloaded only for its own screen size and the other stays lazy (it's
 // display:none), so a phone never downloads the desktop-sized image.
-const desktopBg = getImageProps({ src: "/maternity1.png", alt: "", fill: true, sizes: "100vw", loading: "lazy" }).props;
-const mobileBg = getImageProps({ src: "/maternity1.png", alt: "", fill: true, sizes: "150vw", loading: "lazy" }).props;
+const desktopBg = getImageProps({ src: "/maternity1.png", alt: "", fill: true, sizes: "100vw", loading: "eager", priority: true }).props;
+const mobileBg = getImageProps({ src: "/maternity1.png", alt: "", fill: true, sizes: "150vw", loading: "eager", priority: true }).props;
 const DESKTOP_MEDIA = "(min-width: 1024px)";
 const MOBILE_MEDIA = "(max-width: 1023px)";
 
