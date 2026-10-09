@@ -115,7 +115,7 @@ export function Testimonials() {
   const [isHovered, setIsHovered] = useState(false);
   const [translateX, setTranslateX] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   // Double the reviews for infinite scroll
   const duplicatedReviews = [...patientReviews, ...patientReviews];
