@@ -179,13 +179,13 @@ export function Testimonials() {
                 <span className="font-medium text-gray-900 text-2xl">Google Reviews</span>
               </div>
               <div className="flex items-center gap-2 ml-7">
-                <span className="text-m font-bold text-gray-900">5.0</span>
+                <span className="text-m font-bold text-gray-900">4.2</span>
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <span className="text-gray-500 text-sm">(312)</span>
+                <span className="text-gray-500 text-sm">(1,012)</span>
               </div>
             </div>
           </div>
