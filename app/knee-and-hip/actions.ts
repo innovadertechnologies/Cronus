@@ -29,6 +29,12 @@ export async function submitKneeHipLead(
     return { success: false, error: "Please select either Knee Replacement or Hip Replacement." };
   }
 
+  // Record lead to Google Sheets via recordLead function
+  // This automatically handles:
+  // - Adding "Submitted At" timestamp in IST
+  // - Sending to configured Google Sheets URL
+  // - Retry logic (2 attempts)
+  // - Non-blocking execution (runs after redirect)
   recordLead("knee-hip", {
     Name: name,
     Phone: phone,

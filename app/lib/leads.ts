@@ -9,7 +9,7 @@ const SHEET_URLS: Record<LeadSheet, string> = {
   gallbladder: "https://script.google.com/macros/s/AKfycbwj1D_A9fqHC-1W_veS2h14dlyQOHygjfhddP0pgT5mwqDaNW0DCoqor9NrkdOvhGfA/exec",
   maternity: "https://script.google.com/macros/s/AKfycbwdXzH7Jf0DDO2uo4LYgQsKjfz56gvB2hymKdr9vVQgZW5ahpbd25YPgWqs0g4XoP3z/exec",
   spine: "https://script.google.com/macros/s/AKfycbxMXuZiOHDabH4GxzYOKTx1t-rJmSMykibe03w97cL4xBXCnr8M2C6FoQZiM3o4JtZq/exec",
-  "knee-hip": "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE",
+  "knee-hip": "https://script.google.com/macros/s/AKfycbyUkgKD4ko0ETaP6BjjGPYkiMIPAPlTaklIvRG5T8kIfS4w0BsFwZ_qD9hJpj9ZAVzA/exec",
 };
 
 // Keys become column headers in the sheet, in this order.

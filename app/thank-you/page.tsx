@@ -29,6 +29,11 @@ const SERVICES = {
       "Our team will get back to you shortly to confirm your spine consultation with Dr. Sandeep Singh.",
     backHref: "/spine",
   },
+  "knee-hip": {
+    message:
+      "Our team will get back to you shortly to confirm your knee or hip consultation. We look forward to helping you with your joint care.",
+    backHref: "/knee-and-hip",
+  },
 };
 
 export default async function ThankYouPage({ searchParams }: PageProps<"/thank-you">) {
