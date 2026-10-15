@@ -100,7 +100,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               'https://connect.facebook.net/en_US/fbevents.js');
 
               fbq('init', '1360053332870076');
-              fbq('track', 'PageView');
+              fbq('trackSingle', '1360053332870076', 'PageView');
             `,
           }}
         />

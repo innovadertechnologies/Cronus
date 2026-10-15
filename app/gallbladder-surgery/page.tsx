@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { JsonLd } from "@/app/components/json-ld";
 import { LANDING_PAGES, landingPageSchema, pageMetadata } from "@/app/lib/seo";
 import { BookingModalProvider } from "@/app/gallbladder-surgery/components/booking-modal";
@@ -43,6 +44,39 @@ export default function GallbladderSurgeryPage() {
         <Footer />
         <StickyMobileCta />
       </div>
+
+      {/* Gallbladder Meta Pixel (noscript) */}
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src="https://www.facebook.com/tr?id=1581024777127762&ev=PageView&noscript=1"
+          alt=""
+        />
+      </noscript>
+
+      {/* Gallbladder Meta Pixel – the global pixel in layout.tsx shares fbq, so
+          trackSingle keeps PageView from double-firing on either pixel */}
+      <Script
+        id="meta-pixel-gallbladder"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+            fbq('init', '1581024777127762');
+            fbq('trackSingle', '1581024777127762', 'PageView');
+          `,
+        }}
+      />
     </BookingModalProvider>
   );
 }
