@@ -2,9 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  // Landing pages live at /hernia, /gallbladder-surgery, /knee-and-hip,
-  // /maternity and /spine;
-  // the bare domain goes to the main hospital website.
+  // The home page lives at /; landing pages live at /hernia,
+  // /gallbladder-surgery, /knee-and-hip, /maternity and /spine.
   async redirects() {
     return [
       // One URL per page for Google: www.* permanently redirects to the bare domain.
@@ -14,7 +13,6 @@ const nextConfig: NextConfig = {
         destination: "https://cronusmultispecialityhospital.in/:path*",
         permanent: true,
       },
-      { source: "/", destination: "https://cronushospitals.com", permanent: false },
     ];
   },
   async headers() {

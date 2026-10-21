@@ -1,6 +1,6 @@
 import { after } from "next/server";
 
-export type LeadSheet = "hernia" | "gallbladder" | "maternity" | "spine" | "knee-hip";
+export type LeadSheet = "hernia" | "gallbladder" | "maternity" | "spine" | "knee-hip" | "home";
 
 // Paste each Google Sheet's Apps Script Web app URL here
 // (see google-sheets/README.md). Leave "" to just log the lead.
@@ -10,6 +10,8 @@ const SHEET_URLS: Record<LeadSheet, string> = {
   maternity: "https://script.google.com/macros/s/AKfycbwdXzH7Jf0DDO2uo4LYgQsKjfz56gvB2hymKdr9vVQgZW5ahpbd25YPgWqs0g4XoP3z/exec",
   spine: "https://script.google.com/macros/s/AKfycbxMXuZiOHDabH4GxzYOKTx1t-rJmSMykibe03w97cL4xBXCnr8M2C6FoQZiM3o4JtZq/exec",
   "knee-hip": "https://script.google.com/macros/s/AKfycbyUkgKD4ko0ETaP6BjjGPYkiMIPAPlTaklIvRG5T8kIfS4w0BsFwZ_qD9hJpj9ZAVzA/exec",
+  // TODO: home page appointment form – paste its sheet URL here.
+  home: "",
 };
 
 // Keys become column headers in the sheet, in this order.

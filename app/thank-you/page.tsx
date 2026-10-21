@@ -34,6 +34,10 @@ const SERVICES = {
       "Our team will get back to you shortly to confirm your knee or hip consultation. We look forward to helping you with your joint care.",
     backHref: "/knee-and-hip",
   },
+  home: {
+    message: "Our team will get back to you shortly to confirm your appointment. We look forward to caring for you.",
+    backHref: "/",
+  },
 };
 
 export default async function ThankYouPage({ searchParams }: PageProps<"/thank-you">) {
