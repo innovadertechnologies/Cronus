@@ -58,6 +58,13 @@ const DR_SANDEEP_SINGH: Doctor = {
   image: "/spdoc.jpeg",
 };
 
+const DR_SAURABH_KUMAR_SINHA: Doctor = {
+  name: "Dr. Saurabh Kumar Sinha",
+  jobTitle: "Urologist & Genito-Urinary Surgeon",
+  specialty: "Urologic",
+  qualifications: "MBBS, MS – General Surgery, MCh – Urology/Genito-Urinary Surgery",
+};
+
 export const LANDING_PAGES = {
   hernia: {
     path: "/hernia",
@@ -207,6 +214,37 @@ export const LANDING_PAGES = {
       { type: "MedicalProcedure", name: "Discectomy" },
     ],
     doctors: [DR_SANDEEP_SINGH],
+  },
+  urology: {
+    path: "/urology",
+    title: "Kidney Stone & Urology Treatment in Chhatarpur, Delhi | Cronus Multispeciality Hospital",
+    description:
+      "Expert urological care and kidney stone treatment with advanced laparoscopic surgery from Dr. Saurabh Kumar Sinha (22+ years experience) at Cronus Multispeciality Hospital, Chhatarpur, Delhi.",
+    keywords: [
+      "kidney stone treatment Delhi",
+      "urologist Chhatarpur",
+      "PCNL surgery Delhi",
+      "laser kidney stone treatment",
+      "urology hospital Delhi NCR",
+      "prostate treatment Delhi",
+    ],
+    ogImage: "/og/urology.jpg",
+    ogImageAlt: "Urology care with Dr. Saurabh Kumar Sinha at Cronus Multispeciality Hospital",
+    breadcrumb: "Urology Treatment",
+    specialty: "Urologic",
+    topics: [
+      { type: "MedicalCondition", name: "Kidney Stones", alternateName: "Nephrolithiasis" },
+      { type: "MedicalCondition", name: "Urinary Tract Problems" },
+      { type: "MedicalCondition", name: "Prostate Problems" },
+      {
+        type: "MedicalProcedure",
+        name: "PCNL Surgery",
+        description: "Percutaneous Nephrolithotomy for kidney stone removal.",
+      },
+      { type: "MedicalProcedure", name: "Ureteroscopy", alternateName: "URS" },
+      { type: "MedicalProcedure", name: "Laser Kidney Stone Treatment", alternateName: "RIRS" },
+    ],
+    doctors: [DR_SAURABH_KUMAR_SINHA],
   },
 } satisfies Record<string, LandingPage>;
 
