@@ -28,7 +28,7 @@ export function Navbar() {
             <Phone className="h-4 w-4" />
             Call Now
           </a>
-          <BookButton className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0E7C86] bg-[#0E7C86] px-5 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:brightness-110">
+          <BookButton id="knee-hip-navbar-book-consultation-btn" className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0E7C86] bg-[#0E7C86] px-5 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:brightness-110">
             <CalendarCheck className="h-4 w-4" />
             Book Now
           </BookButton>

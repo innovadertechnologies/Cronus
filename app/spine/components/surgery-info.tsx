@@ -72,7 +72,7 @@ export function SurgeryInfo() {
               with the right diagnosis.
             </p>
             <div className="mt-5">
-              <BookButton className={buttonClass}>Book Spine Consultation</BookButton>
+              <BookButton id="spine-surgery-book-consultation-btn" className={buttonClass}>Book Spine Consultation</BookButton>
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export function SurgeryInfo() {
                 <Checklist items={discectomyFor} small />
               </div>
               <div className="mt-5">
-                <BookButton className={`${buttonClass} lg:w-full`}>Book Your Spine Consultation</BookButton>
+                <BookButton id="spine-discectomy-book-consultation-btn" className={`${buttonClass} lg:w-full`}>Book Your Spine Consultation</BookButton>
               </div>
             </div>
           </div>

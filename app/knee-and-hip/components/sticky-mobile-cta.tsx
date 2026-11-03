@@ -13,7 +13,7 @@ export function StickyMobileCTA() {
           <Phone className="h-4 w-4" />
           Call Now
         </a>
-        <BookButton className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-[#0E7C86] bg-[#0E7C86] px-4 py-3 text-sm font-semibold text-white">
+        <BookButton id="knee-hip-sticky-cta-book-consultation-btn" className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-[#0E7C86] bg-[#0E7C86] px-4 py-3 text-sm font-semibold text-white">
           <CalendarCheck className="h-4 w-4" />
           Book Now
         </BookButton>

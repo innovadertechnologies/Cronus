@@ -70,7 +70,7 @@ export function Navbar() {
             <Phone className="h-4 w-4" />
             Call Now
           </a>
-          <BookTrigger className="flex items-center gap-2 rounded-xl bg-[#0B3446] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:brightness-105">
+          <BookTrigger id="gallbladder-navbar-book-appointment-btn" className="flex items-center gap-2 rounded-xl bg-[#0B3446] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:brightness-105">
             <CalendarCheck className="h-4 w-4" />
             Book Appointment
           </BookTrigger>
@@ -85,6 +85,7 @@ export function Navbar() {
             <Phone className="h-5 w-5" />
           </a>
           <button
+            id="gallbladder-navbar-menu-toggle-btn"
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -118,6 +119,7 @@ export function Navbar() {
                 Call Now
               </a>
               <BookTrigger
+                id="gallbladder-mobile-menu-book-appointment-btn"
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-4 py-3 text-sm font-semibold text-white"
               >

@@ -13,7 +13,7 @@ export function Doctors() {
         <h2 className="mt-4 text-3xl font-semibold tracking-[-0.01em] text-[#0B3446] sm:text-[2.6rem]">Our doctors</h2>
 
         <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4 lg:gap-x-8">
-          {DOCTORS.map((doctor) => (
+          {DOCTORS.map((doctor, index) => (
             <li key={doctor.name} className="group">
               <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-[#EDE8DF]">
                 {doctor.image ? (
@@ -33,6 +33,7 @@ export function Doctors() {
               <h3 className="mt-4 text-lg font-semibold text-[#0B3446]">{doctor.name}</h3>
               <p className="text-[15px] text-[#5B6B73]">{doctor.speciality}</p>
               <button
+                id={`home-doctors-book-appointment-${index + 1}-btn`}
                 type="button"
                 onClick={() => requestBooking({ department: doctor.department, doctor: doctor.name })}
                 className="mt-3 text-[15px] font-semibold text-[#0E7C86] underline decoration-[#0E7C86]/30 underline-offset-4 hover:decoration-[#0E7C86]"

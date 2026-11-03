@@ -14,9 +14,10 @@ const conditions = [
   "Not Sure / Other",
 ];
 
-function SubmitButton({ label, pending }: { label: string; pending: boolean }) {
+function SubmitButton({ id, label, pending }: { id: string; label: string; pending: boolean }) {
   return (
     <button
+      id={id}
       type="submit"
       disabled={pending}
       className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-6 py-3.5 text-base font-semibold text-white shadow-[0_10px_24px_-8px_rgba(11,52,70,0.5)] transition-all hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
@@ -145,7 +146,7 @@ export function AppointmentForm({
               </p>
             )}
 
-            <SubmitButton label={isCompact ? "Submit" : "Submit Request"} pending={pending} />
+            <SubmitButton id={`gallbladder-${idPrefix}-form-submit-btn`} label={isCompact ? "Submit" : "Submit Request"} pending={pending} />
 
             {!isCompact && (
               <p className="flex items-center justify-center gap-1.5 text-center text-xs text-[#64748B]">

@@ -158,6 +158,7 @@ export function CareJourney() {
               One journey. Complete maternity care. ♥
             </p>
             <button
+              id="maternity-care-journey-book-consultation-btn"
               type="button"
               onClick={openBookingModal}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1e3a5f] px-6 py-3 text-sm md:text-base font-semibold text-white shadow-lg hover:bg-[#2d4a6b] transition-colors"

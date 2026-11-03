@@ -68,7 +68,7 @@ export function MeetSpecialist() {
               With extensive experience in Orthopaedics and Spine care, Dr. Sandeep Singh specializes in spine
               surgery, spinal deformity correction, orthopaedic surgery and pain management.
             </p>
-            <BookButton className="mt-7 inline-flex items-center justify-center rounded-xl bg-[#0E7C86] px-8 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(14,124,134,0.7)] transition-all hover:brightness-110">
+            <BookButton id="spine-specialist-consult-doctor-btn" className="mt-7 inline-flex items-center justify-center rounded-xl bg-[#0E7C86] px-8 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(14,124,134,0.7)] transition-all hover:brightness-110">
               Consult Dr. Sandeep Singh
             </BookButton>
           </div>

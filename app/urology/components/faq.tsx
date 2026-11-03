@@ -49,6 +49,7 @@ export function FAQ() {
             Aaj Hi Urologist Se Consult Karein!
           </p>
           <button
+            id="urology-faq-book-consultation-btn"
             onClick={openBookingModal}
             className="inline-flex items-center gap-2 rounded-xl bg-[#0E7C86] px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-[#0B6B73] transition-colors"
           >

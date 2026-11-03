@@ -73,7 +73,7 @@ export function TreatmentOptions() {
           <p className="text-sm font-medium text-[#1B2936]/80 sm:text-base">
             Get the right treatment after proper spine evaluation.
           </p>
-          <BookButton className="rounded-xl border-2 border-[#0E7C86] bg-white px-7 py-3 text-base font-bold text-[#0B2A4A] shadow-sm transition-colors hover:bg-[#0E7C86] hover:text-white">
+          <BookButton id="spine-treatments-know-options-btn" className="rounded-xl border-2 border-[#0E7C86] bg-white px-7 py-3 text-base font-bold text-[#0B2A4A] shadow-sm transition-colors hover:bg-[#0E7C86] hover:text-white">
             Know Your Treatment Options
           </BookButton>
         </div>

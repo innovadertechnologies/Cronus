@@ -97,6 +97,7 @@ export function Hero() {
               <Reveal delay={0.24}>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <button
+                    id="maternity-hero-book-consultation-btn"
                     type="button"
                     onClick={openBookingModal}
                     className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(11,52,70,0.55)] transition-all hover:brightness-110"

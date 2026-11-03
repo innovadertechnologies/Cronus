@@ -40,6 +40,7 @@ export function WhyChooseCronus() {
             </p>
             
             <button
+              id="knee-hip-why-choose-book-consultation-btn"
               type="button"
               onClick={openBookingModal}
               className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#0E7C86] px-8 py-4 text-lg font-semibold text-white shadow-[0_14px_28px_-10px_rgba(14,124,134,0.7)] transition-all hover:brightness-110"

@@ -13,6 +13,7 @@ export function CtaBand() {
         </div>
         <div className="flex flex-wrap gap-3">
           <button
+            id="home-cta-band-book-in-person-btn"
             type="button"
             onClick={() => requestBooking({ mode: "In-person" })}
             className="rounded-md bg-white px-5 py-3 font-semibold text-[#0B3446] transition-colors hover:bg-[#E3F1F2]"
@@ -20,6 +21,7 @@ export function CtaBand() {
             Book an appointment
           </button>
           <button
+            id="home-cta-band-video-consultation-btn"
             type="button"
             onClick={() => requestBooking({ mode: "Video" })}
             className="rounded-md border border-white/40 px-5 py-3 font-semibold transition-colors hover:bg-white/10"

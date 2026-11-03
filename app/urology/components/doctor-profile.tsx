@@ -49,6 +49,7 @@ export function DoctorProfile() {
 
                 <div className="mt-6">
                   <button
+                    id="urology-doctor-consult-urologist-btn"
                     onClick={openBookingModal}
                     className="inline-flex items-center gap-2 rounded-xl bg-[#0E7C86] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#0B6B73]"
                   >

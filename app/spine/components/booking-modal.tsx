@@ -34,6 +34,7 @@ export function BookingModalProvider({ children }: { children: ReactNode }) {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
           <div className="relative mx-4 w-full max-w-md">
             <button
+              id="spine-modal-close-btn"
               type="button"
               onClick={() => setIsOpen(false)}
               aria-label="Close"

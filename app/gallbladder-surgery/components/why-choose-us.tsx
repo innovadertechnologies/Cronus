@@ -128,7 +128,7 @@ export function WhyChooseUs() {
         </RevealGroup>
 
         <Reveal className="mt-14 flex justify-center">
-          <BookTrigger className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(11,52,70,0.5)] transition-all hover:brightness-105">
+          <BookTrigger id="gallbladder-why-choose-book-btn" className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(11,52,70,0.5)] transition-all hover:brightness-105">
             Book Your Consultation
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </BookTrigger>

@@ -132,6 +132,7 @@ export function UrologyForm({
         )}
 
         <button
+          id={`urology-${idPrefix}-form-submit-btn`}
           type="submit"
           disabled={pending}
           className={`mt-1 flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-6 ${compact ? "py-3" : "py-3.5"} text-base font-semibold text-white shadow-[0_12px_24px_-10px_rgba(20,184,166,0.7)] transition-all hover:bg-teal-700 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60`}

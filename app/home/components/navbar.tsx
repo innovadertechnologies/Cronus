@@ -92,6 +92,7 @@ export function Navbar() {
               <Phone className="h-4 w-4" />
             </a>
             <button
+              id="home-navbar-book-appointment-btn"
               type="button"
               onClick={() => requestBooking()}
               className="rounded-md bg-[#0E7C86] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0B6870] sm:px-5 sm:text-[15px]"

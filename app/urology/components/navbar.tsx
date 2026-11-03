@@ -31,6 +31,7 @@ export function Navbar() {
             {CLINIC_PHONE_DISPLAY}
           </a>
           <button
+            id="urology-navbar-book-consultation-btn"
             onClick={openBookingModal}
             className="inline-flex items-center gap-2 rounded-xl bg-[#0E7C86] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:brightness-110 sm:px-6"
           >

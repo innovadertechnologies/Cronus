@@ -61,6 +61,7 @@ export function DoctorProfile() {
 
             <div className="mt-8">
               <button
+                id="hernia-doctor-book-consultation-btn"
                 type="button"
                 onClick={openLeadForm}
                 className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(11,52,70,0.5)] transition-all hover:brightness-105"

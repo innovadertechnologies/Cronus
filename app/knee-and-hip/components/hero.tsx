@@ -85,6 +85,7 @@ export function Hero() {
 
           <div className="mt-7 hidden gap-3 lg:flex">
             <button
+              id="knee-hip-hero-book-consultation-btn"
               type="button"
               onClick={openBookingModal}
               className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#0E7C86] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(14,124,134,0.7)] transition-all hover:brightness-110"

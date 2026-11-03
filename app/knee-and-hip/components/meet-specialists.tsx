@@ -112,6 +112,7 @@ export function MeetSpecialists() {
               {/* CTA Button */}
               <div className="text-center mt-auto">
                 <button
+                  id={`knee-hip-specialists-book-consultation-${index + 1}-btn`}
                   type="button"
                   onClick={openBookingModal}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#129EA8] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(18,158,168,0.4)] transition-all hover:brightness-110 hover:shadow-[0_20px_40px_-10px_rgba(18,158,168,0.5)]"

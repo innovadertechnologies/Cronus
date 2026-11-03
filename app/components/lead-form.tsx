@@ -6,9 +6,10 @@ import { submitHerniaLead, type LeadFormState } from "@/app/actions";
 
 const initialState: LeadFormState = { success: false };
 
-function SubmitButton({ pending }: { pending: boolean }) {
+function SubmitButton({ id, pending }: { id: string; pending: boolean }) {
   return (
     <button
+      id={id}
       type="submit"
       disabled={pending}
       className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#129EA8] px-6 py-3.5 text-base font-semibold text-white shadow-[0_10px_24px_-8px_rgba(22,163,106,0.55)] transition-all hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
@@ -103,7 +104,7 @@ export function LeadForm({
           </p>
         )}
 
-        <SubmitButton pending={pending} />
+        <SubmitButton id={`hernia-${idPrefix}-form-submit-btn`} pending={pending} />
 
         <p className="flex items-center justify-center gap-1.5 text-center text-xs text-[#64748B]">
           <Lock className="h-3.5 w-3.5" />

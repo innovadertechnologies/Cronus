@@ -93,6 +93,7 @@ function BookingModal() {
           onClick={(event) => event.stopPropagation()}
         >
           <button
+            id="gallbladder-modal-close-btn"
             type="button"
             onClick={close}
             aria-label="Close booking form"

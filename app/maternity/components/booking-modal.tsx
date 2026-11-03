@@ -30,6 +30,7 @@ export function BookingModal() {
       />
       <div className="relative w-full max-w-md mx-4">
         <button
+          id="maternity-modal-close-btn"
           type="button"
           onClick={closeBookingModal}
           className="absolute -top-2 -right-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 shadow-lg hover:text-gray-900"

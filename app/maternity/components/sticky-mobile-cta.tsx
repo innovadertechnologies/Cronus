@@ -27,6 +27,7 @@ export function StickyMobileCTA() {
           WhatsApp
         </a>
         <button
+          id="maternity-sticky-cta-book-btn"
           type="button"
           onClick={openBookingModal}
           className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-pink-500 px-4 py-3 text-sm font-semibold text-white"

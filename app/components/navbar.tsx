@@ -79,6 +79,7 @@ export function Navbar() {
             <Phone className="h-4 w-4" />
           </a>
           <button
+            id="hernia-navbar-menu-toggle-btn"
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}

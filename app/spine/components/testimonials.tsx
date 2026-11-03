@@ -189,7 +189,7 @@ export function Testimonials() {
               </div>
             </div>
           </div>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors shadow-sm">
+          <button id="spine-testimonials-review-google-btn" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors shadow-sm">
             Review us on Google
           </button>
         </div>
@@ -215,6 +215,7 @@ export function Testimonials() {
 
           {/* Navigation Arrows */}
           <button
+            id="spine-testimonials-prev-btn"
             onClick={() => handleManualScroll('left')}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white border border-gray-300 rounded-full p-2 shadow-md hover:shadow-lg transition-all opacity-80 hover:opacity-100"
             aria-label="Previous reviews"
@@ -223,6 +224,7 @@ export function Testimonials() {
           </button>
           
           <button
+            id="spine-testimonials-next-btn"
             onClick={() => handleManualScroll('right')}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white border border-gray-300 rounded-full p-2 shadow-md hover:shadow-lg transition-all opacity-80 hover:opacity-100"
             aria-label="Next reviews"

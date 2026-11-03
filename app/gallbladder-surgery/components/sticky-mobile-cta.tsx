@@ -12,7 +12,7 @@ export function StickyMobileCta() {
         <Phone className="h-4 w-4" />
         Call Now
       </a>
-      <BookTrigger className="flex flex-1 items-center justify-center gap-2 bg-[#0B3446] py-3.5 text-sm font-semibold text-white">
+      <BookTrigger id="gallbladder-sticky-cta-book-btn" className="flex flex-1 items-center justify-center gap-2 bg-[#0B3446] py-3.5 text-sm font-semibold text-white">
         <CalendarCheck className="h-4 w-4" />
         Book Appointment
       </BookTrigger>

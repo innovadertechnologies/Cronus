@@ -49,7 +49,7 @@ export function FinalCta() {
               <Phone className="h-4 w-4" />
               Call Now
             </a>
-            <BookTrigger className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/70 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white hover:text-[#0B3446]">
+            <BookTrigger id="gallbladder-final-cta-book-btn" className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/70 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white hover:text-[#0B3446]">
               <CalendarCheck className="h-4 w-4" />
               Book Appointment
             </BookTrigger>

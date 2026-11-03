@@ -33,6 +33,7 @@ export function FAQ() {
               <Reveal key={index} delay={index * 0.1}>
                 <div className="border border-slate-200 rounded-xl overflow-hidden">
                   <button
+                    id={`maternity-faq-question-${index + 1}-btn`}
                     type="button"
                     onClick={() => toggleFAQ(index)}
                     className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"

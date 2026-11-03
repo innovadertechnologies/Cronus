@@ -111,7 +111,8 @@ export function ConditionsSection() {
 
         {/* CTA Section */}
         <div className="text-center">
-          <button 
+          <button
+            id="knee-hip-conditions-book-consultation-btn"
             onClick={openBookingModal}
             className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-teal-700 hover:shadow-xl transition-all duration-200"
           >

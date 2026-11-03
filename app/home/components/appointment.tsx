@@ -191,6 +191,7 @@ export function Appointment() {
 
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3 sm:col-span-2">
               <button
+                id="home-appointment-form-submit-btn"
                 type="submit"
                 disabled={pending}
                 className="rounded-md bg-[#0E7C86] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#0B6870] disabled:cursor-not-allowed disabled:opacity-60"

@@ -18,6 +18,7 @@ export function StickyMobileCTA() {
           Call Now
         </a>
         <button
+          id="urology-sticky-cta-book-consultation-btn"
           onClick={openBookingModal}
           className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#0E7C86] px-4 py-3 text-sm font-semibold text-white shadow-md transition-all active:scale-95"
         >

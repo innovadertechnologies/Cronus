@@ -160,6 +160,7 @@ export function WhyChooseCronus() {
         <Reveal delay={0.4}>
           <div className="mt-12 text-center">
             <button
+              id="maternity-why-choose-book-consultation-btn"
               type="button"
               onClick={openBookingModal}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0B3446] px-8 py-4 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(11,52,70,0.55)] transition-all hover:brightness-110"

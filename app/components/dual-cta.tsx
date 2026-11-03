@@ -47,6 +47,7 @@ export function DualCta() {
               Call Now
             </a>
             <button
+              id="hernia-contact-book-appointment-btn"
               type="button"
               onClick={openLeadForm}
               className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/70 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white hover:text-[#0B3446]"

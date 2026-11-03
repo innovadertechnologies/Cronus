@@ -17,6 +17,7 @@ export function StickyMobileCta() {
         Call Now
       </a>
       <button
+        id="hernia-sticky-cta-book-appointment-btn"
         type="button"
         onClick={openLeadForm}
         className="flex flex-1 items-center justify-center gap-2 bg-[#129EA8] py-3.5 text-sm font-semibold text-white"

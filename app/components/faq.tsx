@@ -30,6 +30,7 @@ export function Faq() {
                     className="overflow-hidden rounded-xl border border-slate-200/80 bg-white"
                   >
                     <button
+                      id={`hernia-faq-question-${index + 1}-btn`}
                       type="button"
                       onClick={() => setOpenIndex(isOpen ? null : index)}
                       aria-expanded={isOpen}

@@ -39,6 +39,7 @@ export function Navbar() {
               Call Now
             </a>
             <button
+              id="maternity-navbar-book-consultation-btn"
               type="button"
               onClick={openBookingModal}
               className="rounded-lg bg-[#005F70] px-4 py-2 text-sm font-semibold text-white hover:bg-[#129EA8] transition-colors"

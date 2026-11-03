@@ -50,6 +50,7 @@ export function Services() {
             <div role="tablist" aria-label="Why choose Cronus" className="mt-10 flex flex-wrap gap-x-7 border-b border-white/15">
               {tabs.map(({ label }, i) => (
                 <button
+                  id={`home-services-tab-${i + 1}-btn`}
                   key={label}
                   type="button"
                   role="tab"
@@ -69,6 +70,7 @@ export function Services() {
             </p>
 
             <button
+              id="home-services-book-appointment-btn"
               type="button"
               onClick={() => requestBooking()}
               className="mt-8 rounded-md bg-white px-6 py-3.5 font-semibold text-[#0B3446] transition-colors hover:bg-[#E3F1F2]"

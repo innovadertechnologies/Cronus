@@ -45,7 +45,7 @@ export function Symptoms() {
         </ul>
 
         <div className="mt-8 flex justify-center">
-          <BookButton className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#0E7C86] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(14,124,134,0.7)] transition-all hover:brightness-110">
+          <BookButton id="spine-symptoms-book-consultation-btn" className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#0E7C86] px-7 py-3.5 text-base font-semibold text-white shadow-[0_14px_28px_-10px_rgba(14,124,134,0.7)] transition-all hover:brightness-110">
             <CalendarDays className="h-5 w-5" />
             Book a Spine Consultation
           </BookButton>

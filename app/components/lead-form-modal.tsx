@@ -21,6 +21,7 @@ export function LeadFormModal({
           className="animate-pop-in relative w-full max-w-lg"
         >
           <button
+            id="hernia-modal-close-btn"
             type="button"
             onClick={onClose}
             aria-label="Close"
@@ -28,7 +29,7 @@ export function LeadFormModal({
           >
             <X className="h-4 w-4" />
           </button>
-          <LeadForm id="modal-lead-form" />
+          <LeadForm id="modal-lead-form" idPrefix="modal" />
         </div>
       </div>
     )

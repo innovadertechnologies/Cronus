@@ -72,6 +72,7 @@ export function Specialities() {
               return (
                 <li key={s.name} className="border-b border-[#0B3446]/15">
                   <button
+                    id={`home-specialities-item-${i + 1}-btn`}
                     type="button"
                     aria-expanded={selected}
                     onClick={() => setActive(i)}
@@ -112,6 +113,7 @@ export function Specialities() {
                       </div>
                       <p className="mt-4 text-[15px] leading-relaxed text-[#46575F]">{s.text}</p>
                       <button
+                        id={`home-specialities-mobile-book-consultation-${i + 1}-btn`}
                         type="button"
                         onClick={() => requestBooking({ department: s.department })}
                         className="mt-3 text-[15px] font-semibold text-[#0E7C86] underline underline-offset-4"
@@ -141,6 +143,7 @@ export function Specialities() {
             <div key={current.name} className="animate-fade-in mt-6 max-w-lg">
               <p className="text-[17px] leading-relaxed text-[#46575F]">{current.text}</p>
               <button
+                id="home-specialities-book-consultation-btn"
                 type="button"
                 onClick={() => requestBooking({ department: current.department })}
                 className="group mt-4 inline-flex items-center gap-2 text-base font-semibold text-[#0B3446] underline decoration-[#0B3446]/25 underline-offset-[6px] hover:decoration-[#0B3446]"

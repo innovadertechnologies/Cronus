@@ -78,7 +78,8 @@ export function FAQ() {
           <p className="mb-4 lg:mb-6 text-lg text-[#64748B]">
             Speak to Our Orthopedic Team
           </p>
-          <button 
+          <button
+            id="knee-hip-faq-book-consultation-btn"
             onClick={openBookingModal}
             className="inline-flex items-center gap-2 rounded-xl bg-[#0E7C86] px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-[#0B6B73] transition-colors"
           >

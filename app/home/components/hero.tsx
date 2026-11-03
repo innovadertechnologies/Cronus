@@ -42,6 +42,7 @@ export function Hero() {
 
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
               <button
+                id="home-hero-book-appointment-btn"
                 type="button"
                 onClick={() => requestBooking()}
                 className="rounded-md bg-[#0E7C86] px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#0B6870]"
@@ -175,9 +176,10 @@ function DoctorSearch() {
             {results.length === 0 && (
               <li className="px-4 py-3 text-sm text-[#5B6B73]">Nothing found. Try a speciality like Cardiology.</li>
             )}
-            {results.map((r) => (
+            {results.map((r, index) => (
               <li key={`${r.label}-${r.sub}`}>
                 <button
+                  id={`home-hero-search-result-${index + 1}-btn`}
                   type="button"
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={() => choose(r)}
@@ -197,6 +199,7 @@ function DoctorSearch() {
         {popular.map((department, i) => (
           <span key={department}>
             <button
+              id={`home-hero-popular-department-${i + 1}-btn`}
               type="button"
               onClick={() => requestBooking({ department })}
               className="font-medium text-[#0B3446] underline decoration-[#0B3446]/25 underline-offset-4 hover:decoration-[#0B3446]"

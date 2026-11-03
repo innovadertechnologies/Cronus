@@ -112,6 +112,7 @@ export function SpineForm({
         )}
 
         <button
+          id={`spine-${idPrefix}-form-submit-btn`}
           type="submit"
           disabled={pending}
           className={`mt-1 flex w-full items-center justify-center gap-2 rounded-xl bg-[#0E7C86] px-6 ${compact ? "py-3" : "py-3.5"} text-base font-semibold text-white shadow-[0_12px_24px_-10px_rgba(14,124,134,0.7)] transition-all hover:brightness-110 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60`}
