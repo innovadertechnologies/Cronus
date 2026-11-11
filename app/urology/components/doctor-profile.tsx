@@ -1,6 +1,7 @@
 "use client";
 
-import { GraduationCap, Award, Stethoscope } from "lucide-react";
+import Image from "next/image";
+import { GraduationCap, Award } from "lucide-react";
 import { useBookingModal } from "./booking-modal";
 
 const qualifications = [
@@ -26,10 +27,17 @@ export function DoctorProfile() {
 
         <div className="mt-12 mx-auto max-w-4xl">
           <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-[#F3F9FD] p-8 shadow-[0_8px_24px_-20px_rgba(11,52,70,0.45)]">
-            <div className="flex flex-col items-center text-center lg:flex-row lg:text-left lg:gap-8">
-              {/* Doctor Image Placeholder */}
-              <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0E7C86] to-[#0B6B73] lg:h-40 lg:w-40">
-                <Stethoscope className="h-16 w-16 text-white lg:h-20 lg:w-20" />
+            <div className="flex flex-col items-center text-center lg:flex-row lg:items-start lg:text-left lg:gap-8">
+              {/* Doctor Image */}
+              <div className="relative h-48 w-48 shrink-0 flex-shrink-0 rounded-full overflow-hidden bg-slate-100">
+                <Image
+                  src="/urology_dr_photo.png"
+                  alt="Dr. Saurabh Kumar Sinha - Urologist at Cronus Multispeciality Hospital"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-contain"
+                  priority
+                />
               </div>
 
               {/* Doctor Info */}
@@ -38,9 +46,9 @@ export function DoctorProfile() {
                   Dr. Saurabh Kumar Sinha
                 </h3>
                 
-                <div className="mt-4 space-y-2">
+                <div className="mt-4 space-y-2 text-left">
                   {qualifications.map((qual) => (
-                    <p key={qual} className="flex items-start justify-center gap-2 text-sm text-[#64748B] lg:justify-start lg:text-base">
+                    <p key={qual} className="flex items-start gap-2 text-sm text-[#64748B] lg:text-base">
                       <Award className="mt-0.5 h-4 w-4 shrink-0 text-[#0E7C86]" />
                       {qual}
                     </p>

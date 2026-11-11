@@ -13,6 +13,8 @@ import { WhyChooseUs } from "@/app/gallbladder-surgery/components/why-choose-us"
 import { DoctorProfile } from "@/app/gallbladder-surgery/components/doctor-profile";
 import { CareJourney } from "@/app/gallbladder-surgery/components/care-journey";
 import { SymptomsSection } from "@/app/gallbladder-surgery/components/symptoms-section";
+import { FAQ } from "@/app/gallbladder-surgery/components/faq";
+import { GALLBLADDER_FAQS } from "@/app/gallbladder-surgery/components/faq-data";
 import { FinalCta } from "@/app/gallbladder-surgery/components/final-cta";
 import { Footer } from "@/app/gallbladder-surgery/components/footer";
 import { StickyMobileCta } from "@/app/gallbladder-surgery/components/sticky-mobile-cta";
@@ -24,7 +26,7 @@ export const metadata: Metadata = pageMetadata(page);
 export default function GallbladderSurgeryPage() {
   return (
     <BookingModalProvider>
-      <JsonLd data={landingPageSchema(page)} />
+      <JsonLd data={landingPageSchema(page, GALLBLADDER_FAQS)} />
       <div className="flex flex-1 flex-col">
         <Navbar />
 
@@ -38,6 +40,7 @@ export default function GallbladderSurgeryPage() {
           <DoctorProfile />
           <CareJourney />
           <SymptomsSection />
+          <FAQ />
           <FinalCta />
         </main>
 
