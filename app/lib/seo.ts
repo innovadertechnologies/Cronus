@@ -355,3 +355,78 @@ export function landingPageSchema(page: LandingPage, faqs: Faq[] = []) {
 
   return { "@context": "https://schema.org", "@graph": graph };
 }
+
+// ---------------------------------------------------------------------------
+// /homepage – the multispeciality hospital home page (not a single-treatment
+// landing page, so it has its own metadata and schema builders).
+// ---------------------------------------------------------------------------
+
+export const HOMEPAGE = {
+  path: "/homepage",
+  title: `${CLINIC_NAME} | Multispeciality Hospital in Chhatarpur, South Delhi`,
+  description:
+    "Cronus Multispeciality Hospital, Chhatarpur, South Delhi – 40+ specialities, 24x7 emergency, ICU, in-house diagnostics and pharmacy. Book an appointment, call or WhatsApp us today.",
+  keywords: [
+    "multispeciality hospital in Chhatarpur",
+    "hospital in South Delhi",
+    "24x7 emergency hospital Delhi",
+    "best hospital near Chhatarpur",
+    "Cronus Hospital",
+  ],
+  ogImage: "/hptl.png",
+  ogImageAlt: `${CLINIC_NAME} building, Chhatarpur`,
+};
+
+export function homepageMetadata(): Metadata {
+  const { path, title, description, keywords, ogImage, ogImageAlt } = HOMEPAGE;
+  return {
+    title,
+    description,
+    keywords,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      url: path,
+      siteName: CLINIC_NAME,
+      locale: "en_IN",
+      title,
+      description,
+      images: [{ url: ogImage, width: 1254, height: 1254, alt: ogImageAlt }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
+  };
+}
+
+// Hospital + the page itself + (when present) its FAQs, as one JSON-LD @graph.
+export function homepageSchema(faqs: Faq[] = []) {
+  const url = absolute(HOMEPAGE.path);
+
+  const graph: Record<string, unknown>[] = [
+    hospitalSchema(),
+    {
+      "@type": "MedicalWebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: HOMEPAGE.title,
+      description: HOMEPAGE.description,
+      inLanguage: "en-IN",
+      primaryImageOfPage: absolute(HOMEPAGE.ogImage),
+      about: { "@id": HOSPITAL_ID },
+      publisher: { "@id": HOSPITAL_ID },
+    },
+  ];
+
+  if (faqs.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    });
+  }
+
+  return { "@context": "https://schema.org", "@graph": graph };
+}
