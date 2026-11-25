@@ -31,14 +31,25 @@ export function Hero({ rating, count, googleUrl }: Props) {
   const [focused, setFocused] = useState(false);
 
   // Only the first slide is in the server HTML (preloaded, high priority) so
-  // it is the LCP image with nothing competing. The rest mount once the page
-  // has loaded, well before their turn comes.
+  // it is the LCP image with nothing competing. The rest mount a moment after
+  // the page has loaded (or on the first interaction), still well before the
+  // first slide change at 4s. Fetching them right at load put them inside the
+  // LCP window, which Lighthouse counts against the hero image.
   const [loadRest, setLoadRest] = useState(false);
   useEffect(() => {
+    let timer: number | undefined;
     const load = () => setLoadRest(true);
-    if (document.readyState === "complete") return load();
-    window.addEventListener("load", load, { once: true });
-    return () => window.removeEventListener("load", load);
+    const afterLoad = () => {
+      timer = window.setTimeout(load, 1500);
+    };
+    if (document.readyState === "complete") afterLoad();
+    else window.addEventListener("load", afterLoad, { once: true });
+    window.addEventListener("pointerdown", load, { once: true, passive: true });
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("load", afterLoad);
+      window.removeEventListener("pointerdown", load);
+    };
   }, []);
 
   const current = index % COUNT;
@@ -118,8 +129,9 @@ export function Hero({ rating, count, googleUrl }: Props) {
                   alt={i === COUNT ? "" : slide.alt}
                   fill
                   // Eager: off-screen slides sit sideways in the track, where
-                  // lazy loading would wait until they slide in.
-                  loading="eager"
+                  // lazy loading would wait until they slide in. The loop copy
+                  // of slide 1 is lazy: its file is already cached.
+                  loading={i === COUNT ? "lazy" : "eager"}
                   sizes="100vw"
                   className={`object-cover ${slide.position}`}
                 />
@@ -135,15 +147,19 @@ export function Hero({ rating, count, googleUrl }: Props) {
         href={googleUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Rated ${rating} out of 5 on Google from ${count} reviews`}
         className="absolute left-4 top-4 z-10 flex items-center gap-3 rounded-xl bg-white/95 px-3 py-2 shadow-[0_8px_24px_rgba(11,52,70,0.16)] ring-1 ring-[#0B3446]/10 transition-colors hover:bg-white sm:left-8 sm:top-6 sm:px-4 sm:py-3"
       >
         <GoogleIcon className="h-7 w-7 sm:h-8 sm:w-8" />
         <span className="leading-tight">
           <span className="flex items-center gap-2">
-            <span className="text-lg font-semibold tabular-nums text-[#0B3446] sm:text-xl">{rating}</span>
-            <Stars rating={Number(rating)} className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <span className="text-lg font-semibold tabular-nums text-[#0B3446] sm:text-xl">
+              {rating}
+              <span className="sr-only"> out of 5,</span>
+            </span>
+            <Stars rating={Number(rating)} className="h-3.5 sm:h-4" />
           </span>
+          {/* Visible text doubles as the link's accessible name, so voice
+              control ("click 1,012 Google reviews") works. */}
           <span className="block text-xs text-[#5B6B73]">{count} Google reviews</span>
         </span>
       </a>

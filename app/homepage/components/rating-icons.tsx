@@ -1,5 +1,3 @@
-import { Star } from "lucide-react";
-
 // Google "G" mark, used wherever a Google rating or review is shown.
 export function GoogleIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -12,25 +10,35 @@ export function GoogleIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
+// One star (lucide's shape) on a 26-unit tile: 24 for the star, 2 of gap.
+const STAR_TILE = `url("data:image/svg+xml,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>',
+)}")`;
+
 // Five stars filled to the rating (rounded to the nearest half star).
-export function Stars({ rating, className = "h-4 w-4" }: { rating: number; className?: string }) {
+// Drawn as ONE element: a gold-to-faded gradient masked by a repeating star.
+// The old version was 10 SVGs per rating; with every review card on the page
+// that came to ~200 SVGs and ~260 KB of HTML + RSC payload.
+// `className` sets the star height (e.g. "h-4"); the width follows.
+export function Stars({ rating, className = "h-4" }: { rating: number; className?: string }) {
   const rounded = Math.round(rating * 2) / 2;
+  const whole = Math.floor(rounded);
+  // 5 tiles of 26 units, last gap cut off: 128 units wide in total.
+  const pct = ((whole * 26 + (rounded > whole ? 12 : 0)) / 128) * 100;
   return (
-    <span className="flex gap-0.5" aria-hidden="true">
-      {Array.from({ length: 5 }).map((_, i) => {
-        const fill = rounded >= i + 1 ? 1 : rounded >= i + 0.5 ? 0.5 : 0;
-        return (
-          <span key={i} className="relative inline-flex">
-            <Star className={`${className} text-[#FBBC05]/35`} />
-            {fill > 0 && (
-              <span className="absolute inset-0 overflow-hidden" style={{ width: `${fill * 100}%` }}>
-                <Star className={`${className} fill-[#FBBC05] text-[#FBBC05]`} />
-              </span>
-            )}
-          </span>
-        );
-      })}
-    </span>
+    <span
+      aria-hidden="true"
+      className={`inline-block aspect-[128/24] shrink-0 ${className}`}
+      style={{
+        background: `linear-gradient(90deg, #FBBC05 ${pct}%, rgb(251 188 5 / 0.35) ${pct}%)`,
+        maskImage: STAR_TILE,
+        maskSize: "auto 100%",
+        maskRepeat: "repeat-x",
+        WebkitMaskImage: STAR_TILE,
+        WebkitMaskSize: "auto 100%",
+        WebkitMaskRepeat: "repeat-x",
+      }}
+    />
   );
 }
 

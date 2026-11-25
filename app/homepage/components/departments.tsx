@@ -15,6 +15,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { DEPARTMENT_CARDS, type Department } from "../data";
+import { MarqueeClone } from "./marquee-clone";
 import { SectionHeading } from "./section-heading";
 
 const ICONS: Record<Department["icon"], LucideIcon> = {
@@ -31,25 +32,19 @@ const ICONS: Record<Department["icon"], LucideIcon> = {
   smile: Smile,
 };
 
-function DepartmentCard({ department, hidden = false }: { department: Department; hidden?: boolean }) {
+function DepartmentCard({ department }: { department: Department }) {
   const Icon = ICONS[department.icon];
   const hasPage = department.href.startsWith("/");
   return (
     <li className="w-64 shrink-0 py-2 sm:w-72">
       <Link
         href={department.href}
-        tabIndex={hidden ? -1 : undefined}
         className="group flex h-full flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10 transition-[box-shadow] duration-150 hover:ring-[#0E7C86]/50"
       >
         <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#E3F6F7] text-[#0B6A73]">
           <Icon className="h-5 w-5" strokeWidth={1.5} />
         </span>
-        {/* The looping duplicate uses a <p> so search engines don't see every heading twice */}
-        {hidden ? (
-          <p className="mt-5 text-lg font-semibold text-[#0B3446]">{department.name}</p>
-        ) : (
-          <h3 className="mt-5 text-lg font-semibold text-[#0B3446]">{department.name}</h3>
-        )}
+        <h3 className="mt-5 text-lg font-semibold text-[#0B3446]">{department.name}</h3>
         <p className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5B6B73]">{department.text}</p>
         <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B6A73]">
           {hasPage ? "Learn more" : "Book a consultation"}
@@ -102,11 +97,7 @@ export function Departments() {
                 <DepartmentCard key={d.name} department={d} />
               ))}
             </ul>
-            <ul className="flex gap-5 pr-5 motion-reduce:hidden" aria-hidden="true">
-              {DEPARTMENT_CARDS.map((d) => (
-                <DepartmentCard key={d.name} department={d} hidden />
-              ))}
-            </ul>
+            <MarqueeClone className="flex gap-5 pr-5 motion-reduce:hidden" />
           </div>
         </div>
       </div>

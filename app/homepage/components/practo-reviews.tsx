@@ -1,11 +1,12 @@
 import { ExternalLink, ThumbsUp } from "lucide-react";
 import { PRACTO_RATING, PRACTO_REVIEWS_URL, PRACTO_STORIES, type PractoStory } from "../data";
 import { PractoMark, Stars } from "./rating-icons";
+import { MarqueeClone } from "./marquee-clone";
 import { SectionHeading } from "./section-heading";
 
 // Same card as the Google reviews. Practo stories carry no star rating, so
 // the top line shows the patient's recommendation instead of stars.
-function StoryCard({ story, hidden = false }: { story: PractoStory; hidden?: boolean }) {
+function StoryCard({ story }: { story: PractoStory }) {
   return (
     <li className="w-[300px] shrink-0 sm:w-[360px]">
       <figure className="flex h-72 flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10">
@@ -28,7 +29,6 @@ function StoryCard({ story, hidden = false }: { story: PractoStory; hidden?: boo
             href={PRACTO_REVIEWS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            tabIndex={hidden ? -1 : undefined}
             className="shrink-0 text-sm font-semibold text-[#0B6A73] underline underline-offset-4"
             aria-label={`Read ${story.author}'s full story on Practo`}
           >
@@ -99,11 +99,7 @@ export function PractoReviews() {
               <StoryCard key={story.author} story={story} />
             ))}
           </ul>
-          <ul className="flex gap-5 pr-5 motion-reduce:hidden" aria-hidden="true">
-            {PRACTO_STORIES.map((story) => (
-              <StoryCard key={story.author} story={story} hidden />
-            ))}
-          </ul>
+          <MarqueeClone className="flex gap-5 pr-5 motion-reduce:hidden" />
         </div>
       </div>
     </section>
