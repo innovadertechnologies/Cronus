@@ -1,6 +1,6 @@
 import { Ambulance, HeartPulse, MapPin, Microscope, ShieldCheck, Star, Stethoscope } from "lucide-react";
 import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
-import { GOOGLE_RATING, TEL_HREF } from "../data";
+import { TEL_HREF } from "../data";
 import { SectionHeading } from "./section-heading";
 
 // What the hospital means for a patient. Every point is backed by content
@@ -38,7 +38,7 @@ const reasons = [
   },
 ];
 
-export function WhyChoose() {
+export function WhyChoose({ rating, count }: { rating: string; count: string }) {
   return (
     <section
       id="why-choose"
@@ -56,14 +56,14 @@ export function WhyChoose() {
           />
 
           <div className="mt-8 flex items-center gap-4">
-            <span className="text-4xl font-semibold tabular-nums">{GOOGLE_RATING.score}</span>
+            <span className="text-4xl font-semibold tabular-nums">{rating}</span>
             <span>
               <span className="flex gap-0.5" aria-hidden="true">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="h-4 w-4 fill-[#FBBC05] text-[#FBBC05]" />
                 ))}
               </span>
-              <span className="mt-1 block text-sm text-white/70">From {GOOGLE_RATING.count} reviews on Google</span>
+              <span className="mt-1 block text-sm text-white/70">From {count} reviews on Google</span>
             </span>
           </div>
 

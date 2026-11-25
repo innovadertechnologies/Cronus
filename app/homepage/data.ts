@@ -166,32 +166,192 @@ export const OTHER_DOCTORS: HomepageDoctor[] = [
 // Reviews (real Google reviews already published on the landing pages)
 // ---------------------------------------------------------------------------
 
+// Overall Google rating as already published on the landing pages. Used
+// until the Google Places API is configured (see ./google-reviews.ts).
 export const GOOGLE_RATING = { score: "4.2", count: "1,012" };
 
-export const GOOGLE_REVIEWS = [
+export type Review = {
+  source: "google" | "practo";
+  author: string;
+  rating: number;
+  text: string;
+  // Relative ("8 months ago") as shown by the platform.
+  date: string;
+  link?: string;
+};
+
+// Genuine Google reviews already published on the knee & hip, maternity and
+// spine pages, copied verbatim with their Google share links. Shown only
+// when live reviews from the Google Places API are not available. The
+// relative dates are as they were when the reviews were captured.
+export const GOOGLE_REVIEWS: Review[] = [
   {
-    name: "Ravi Dass",
-    timeAgo: "9 months ago",
-    text: "Thank you dr dheeraj for my surgery, dr dheeraj is the best dr or ortho, staff also good and awesome, nursing staff are very intelligent and helpful, all blood test results are proper, thank you to all for nice service.",
+    source: "google",
+    author: "Ravi Dass",
+    rating: 5,
+    date: "9 months ago",
+    text: "Thank you dr dheeraj for my surgery, dr dheeraj is the best dr or ortho, staff also good and awesome, nursing staff are very intelligent and helpful, all blood test results are proper, thank you to all for nice service. Clean...",
     link: "https://share.google/t9rNAwZMvT0B40t7f",
   },
   {
-    name: "Sunil Patlan",
-    timeAgo: "8 months ago",
-    text: "My experience is very nice. Thank you for this hospital. Dr nilotpala is one the best most humble and down to earth person... She is very calm and composed which gives confidence in the patient. All services are good. Ultrasound staff is very helpful for ultrasound patient.",
+    source: "google",
+    author: "Sunil Patlan",
+    rating: 5,
+    date: "8 months ago",
+    text: "My experience is very nice . Thank you for this hospital .Dr nilotpala is one the best most humble and down to earth person... She is very calm and posted which gives confidence in the patient...she is available on phone and any given point of time which we believe is the most friendlist gesture.....If you are looking the best gynaecologist dr . Please meet dr nilotpala Mohanty in cronus hospital becouse she is very nice and great doctor.all sevices are good . Ultrasound staff is very helpful for ultrasound patient",
     link: "https://share.google/Upxwdi4Ynihkt3zJ1",
   },
   {
-    name: "Naveen Dahiya",
-    timeAgo: "8 months ago",
-    text: "I had a very good experience with the surgeon doctor. The doctor was polite, professional and explained the procedure clearly. The treatment was successful and I am fully satisfied. Proper guidance was given at every step. Staff behaviour was good and supportive.",
+    source: "google",
+    author: "Ram Chauhan",
+    rating: 5,
+    date: "9 months ago",
+    text: "Dr Sandeep Singh I had a very good experience with this orthopedic doctor.He is knowledge polite and diagnoses the problem accurately.The treatment plan was explained in a simple way and I truly appreciate his caring attitude toward patients....",
+    link: "https://share.google/XadmP5yjkF8xYbRMa",
+  },
+  {
+    source: "google",
+    author: "Naveen Dahiya",
+    rating: 5,
+    date: "8 months ago",
+    text: "I had a very good experience with the surgeon doctor.The doctor was polite, professional and explained the procedure clearly. The treatment was successful and I am fully satisfied. Proper guidance was given at evey step. staff behaviour was good and supportive.",
     link: "https://share.google/tk4ojg2wgheXckcR6",
+  },
+  {
+    source: "google",
+    author: "Charlotte Bonaventure (BabyGirlFoLife)",
+    rating: 5,
+    date: "6 months ago",
+    text: "One of best gynaecologist i have met she understands patients concerns very well and gives the right advice Dr nilotpala Mohanty her behaviour is friendly and respectful which makes patients feel  relaxed I would definitely recommend her to others thanks",
+    link: "https://share.google/4T9xJU2954guBzpgb",
+  },
+  {
+    source: "google",
+    author: "Sachin Gupta",
+    rating: 5,
+    date: "a year ago",
+    text: "I love this hospital, I loved to thanks dr.dheeraj nath (orthopedic). All staff are very cooperative and humble. Pantry is soo good 👍 I recommend this hospital to patients.",
+    link: "https://share.google/LbPlSrcu1rGKgQFHK",
+  },
+  {
+    source: "google",
+    author: "Abhishek Kumar",
+    rating: 5,
+    date: "5 months ago",
+    text: "I had a very positive experience with the gynaecologist at this hospitalThe Doctor is extremely knowledge patient and understand. She listens carefully to concerns and explain every details in a very clear and simple way which makes patients feel comfortable and confident……",
+    link: "https://share.google/uwbKoiuNxSKzN8HHB",
+  },
+  {
+    source: "google",
+    author: "Parveen Kumar",
+    rating: 5,
+    date: "8 months ago",
+    text: "I had a very good experience with the orthopedic doctor. The doctor listened patiently explained the problem clearly and suggested the right treatment. The staff was cooperative and the clinic was clean. Highly recommended for bone and joint problems.",
+    link: "https://share.google/vpsIqyNGFaP61T7ii",
+  },
+  {
+    source: "google",
+    author: "Dharmbir Dahiya",
+    rating: 5,
+    date: "8 months ago",
+    text: "I consulted the orthopedic doctor for knee pain and I am fully satisfied with the treatment. The doctor is very knowledgeable polite and supportive. proper diagnosis was done and medicines were effective. Staff behavior was good and waiting time was minimal overall a very positive experience.",
+    link: "https://share.google/gCkiwqFyDF8EZhAKb",
   },
 ];
 
-// TODO: paste the hospital's Practo profile URL here. While it is empty the
-// Practo panel shows no link (no reviews are shown for Practo either way).
-export const PRACTO_PROFILE_URL = "";
+// ---------------------------------------------------------------------------
+// Hero carousel (existing banner images from the landing pages)
+// ---------------------------------------------------------------------------
+
+export const HERO_SLIDES = [
+  {
+    src: "/gbhbanner.png",
+    alt: "Cronus Multispeciality Hospital building with the 24x7 Emergency entrance, Chhatarpur",
+    position: "object-[82%_center] lg:object-center",
+  },
+  {
+    src: "/hipbanner.png",
+    alt: "Dr. Dheeraj Nath and Dr. Sandeep Singh, orthopaedic specialists at Cronus Hospital",
+    position: "object-[72%_center] lg:object-center",
+  },
+  {
+    src: "/spinebanner.png",
+    alt: "Dr. Sandeep Singh, orthopaedics and spine specialist at Cronus Hospital",
+    position: "object-[74%_center] lg:object-center",
+  },
+  {
+    src: "/urology_banner_with_dr.png",
+    alt: "Dr. Saurabh Kumar Sinha, urologist at Cronus Hospital",
+    position: "object-[75%_center] lg:object-center",
+  },
+  {
+    src: "/docimage.png",
+    alt: "Cronus surgeon reviewing a chest scan in a modern operating theatre",
+    position: "object-[40%_center] lg:object-[center_35%]",
+  },
+];
+
+// Existing pages on the main hospital website.
+export const ABOUT_US_URL = "https://cronushospitals.com/about-us/";
+export const OUR_DOCTORS_URL = "https://cronushospitals.com/our-doctors/";
+
+// Practo has no embed, widget or public API for reviews, so the page shows the
+// hospital's Practo rating and links to its patient stories there. Figures as
+// shown on the Practo profile on 2026-11-25 – update them here when they change.
+export const PRACTO_PROFILE_URL = "https://www.practo.com/delhi/hospital/cronus-multispeciality-hospital-chattarpur-1";
+export const PRACTO_REVIEWS_URL = `${PRACTO_PROFILE_URL}/reviews`;
+// score = patient rating; excellence = Practo's separate "Hospital Excellence Rating".
+export const PRACTO_RATING = { score: "3.5", count: "334", excellence: "4.2" };
+
+export type PractoStory = {
+  author: string;
+  date: string;
+  doctor: string;
+  // A short excerpt quoted exactly as written on Practo (full story is linked).
+  excerpt: string;
+};
+
+// Patient stories from the hospital's Practo profile (all marked "I recommend
+// the doctor" there). Short excerpts only, quoted exactly as published, each
+// linking to the full stories on Practo. Dates are as shown on 2026-11-25.
+export const PRACTO_STORIES: PractoStory[] = [
+  {
+    author: "Ishani Sachdeva",
+    date: "3 years ago",
+    doctor: "Dr. Nilotpala Mohanty",
+    excerpt: "I had one of the most frank and open conversations with the doctor about my problem.",
+  },
+  {
+    author: "Piyush Dwivedi",
+    date: "a year ago",
+    doctor: "Dr. Kumkum Sharma",
+    excerpt: "Highly recommend her for anyone looking for a trusted gynaecologist.",
+  },
+  {
+    author: "Rupali",
+    date: "3 years ago",
+    doctor: "Dr. Nilotpala Mohanty",
+    excerpt: "She does not create unnecessary fear about anything and always clears all the doubts.",
+  },
+  {
+    author: "H S Singh",
+    date: "a year ago",
+    doctor: "Dr. Kumkum Sharma",
+    excerpt: "A patient friendly doctor so difficult to find these days.",
+  },
+  {
+    author: "Aditi",
+    date: "6 years ago",
+    doctor: "Dr. Chetan Kumar Gupta",
+    excerpt: "Doctor is very intelligent",
+  },
+  {
+    author: "Rituraj Saurabh",
+    date: "9 months ago",
+    doctor: "Dr. Kumkum Sharma",
+    excerpt: "Highly recommended.",
+  },
+];
 
 // ---------------------------------------------------------------------------
 // FAQs

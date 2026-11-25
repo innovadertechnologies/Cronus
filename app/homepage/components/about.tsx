@@ -1,6 +1,5 @@
-import Image from "next/image";
-import { Navigation } from "lucide-react";
-import { DIRECTIONS_URL } from "../data";
+import { ArrowUpRight } from "lucide-react";
+import { ABOUT_US_URL } from "../data";
 import { SectionHeading } from "./section-heading";
 
 // What is physically inside the building. The "why choose" section covers
@@ -14,56 +13,37 @@ const facilities = [
   { name: "Pharmacy & blood bank", note: "Open round the clock" },
 ];
 
-const captionClass = "absolute bottom-3 left-3 rounded-md bg-white px-2 py-1 text-xs font-medium text-[#0B3446]";
-
+// Text-only About section; "View more" opens the existing About Us page on
+// the main hospital website (no duplicate page is created here).
 export function About() {
   return (
     <section id="about" aria-labelledby="homepage-about-title" className="scroll-mt-24 bg-white py-16 sm:py-24">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-8 lg:grid-cols-2 lg:items-center lg:gap-16">
-        {/* Photo collage: the building, then two moments of care inside it */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-          <figure className="relative col-span-2 aspect-[16/10] overflow-hidden rounded-2xl bg-[#E7E1D6]">
-            <Image
-              src="/hptl.png"
-              alt="Cronus Multispeciality Hospital building with the 24x7 Emergency entrance on 100 Feet Road, Chhatarpur"
-              fill
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              className="object-cover object-[center_45%]"
-            />
-            <figcaption className={captionClass}>100 Feet Road, Chhatarpur</figcaption>
-          </figure>
-          <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#E7E1D6]">
-            <Image
-              src="/compimg.jpeg"
-              alt="Surgeons performing a laparoscopic procedure in the operating theatre"
-              fill
-              sizes="(min-width: 1024px) 22vw, 50vw"
-              className="object-cover"
-            />
-            <figcaption className={captionClass}>Operating theatre</figcaption>
-          </figure>
-          <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#E7E1D6]">
-            <Image
-              src="/First_Consultation.png"
-              alt="Doctor talking a patient through her consultation"
-              fill
-              sizes="(min-width: 1024px) 22vw, 50vw"
-              className="object-cover object-[35%_center]"
-            />
-            <figcaption className={captionClass}>Consultation</figcaption>
-          </figure>
-        </div>
-
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div>
           <SectionHeading
             id="homepage-about-title"
             eyebrow="About Cronus Hospital"
             title="A neighbourhood hospital with specialist depth"
           />
-          <div className="mt-6 space-y-4 text-[17px] leading-relaxed text-[#46575F]">
+          <p className="mt-6 text-lg leading-relaxed text-[#1B2936]">
+            For more than two decades, Cronus Multispeciality Hospital has cared for families in Chhatarpur and South
+            Delhi, with doctors, specialists and nurses working as one team.
+          </p>
+          <a
+            id="homepage-about-view-more-btn"
+            href={ABOUT_US_URL}
+            className="mt-8 inline-flex h-12 items-center gap-2 rounded-lg bg-[#0E7C86] px-6 font-semibold text-white transition-colors hover:bg-[#0B6870]"
+          >
+            View more
+            <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
+          </a>
+        </div>
+
+        <div>
+          <div className="space-y-4 text-[17px] leading-relaxed text-[#46575F]">
             <p>
-              For more than two decades, Cronus has cared for families in Chhatarpur and South Delhi in a comfortable
-              and convenient environment, with doctors, specialists and nurses working as one team.
+              With more than two decades of tradition, excellence and quality in medical care, we bring peace of mind to
+              the patients we care for every day, in a comfortable and convenient environment.
             </p>
             <p>
               Consultation, diagnostics, surgery, intensive care and follow-up all happen in one building, so you and
@@ -80,24 +60,6 @@ export function About() {
               </div>
             ))}
           </dl>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#appointment"
-              className="inline-flex h-12 items-center rounded-lg bg-[#0E7C86] px-6 font-semibold text-white transition-colors hover:bg-[#0B6870]"
-            >
-              Book an appointment
-            </a>
-            <a
-              href={DIRECTIONS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 items-center gap-2 rounded-lg border border-[#0B3446]/20 px-6 font-semibold text-[#0B3446] transition-colors hover:border-[#0B3446]"
-            >
-              <Navigation className="h-4 w-4" strokeWidth={1.5} />
-              Get directions
-            </a>
-          </div>
         </div>
       </div>
     </section>

@@ -21,7 +21,7 @@ export function BottomAppointment() {
             description="Send us your details and our team will get back to you to confirm a time with the right specialist."
           />
           <ul className="mt-8 space-y-4">
-            <li className="flex items-center gap-4 rounded-2xl bg-white p-4 ring-1 ring-[#0B3446]/5">
+            <li className="flex items-center gap-4 rounded-2xl bg-white p-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#D9443F]/10 text-[#D9443F]">
                 <Siren className="h-5 w-5" />
               </span>
@@ -33,7 +33,7 @@ export function BottomAppointment() {
                 </a>
               </span>
             </li>
-            <li className="flex items-center gap-4 rounded-2xl bg-white p-4 ring-1 ring-[#0B3446]/5">
+            <li className="flex items-center gap-4 rounded-2xl bg-white p-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1FA855]/10 text-[#1FA855]">
                 <WhatsappIcon className="h-5 w-5" />
               </span>
@@ -49,7 +49,7 @@ export function BottomAppointment() {
                 </a>
               </span>
             </li>
-            <li className="flex items-center gap-4 rounded-2xl bg-white p-4 ring-1 ring-[#0B3446]/5">
+            <li className="flex items-center gap-4 rounded-2xl bg-white p-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#E3F6F7] text-[#0E7C86]">
                 <Clock className="h-5 w-5" />
               </span>

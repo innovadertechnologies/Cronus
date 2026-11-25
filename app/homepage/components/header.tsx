@@ -3,10 +3,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Clock, Mail, MapPin, Menu, Phone, X } from "lucide-react";
-import { WhatsappIcon } from "@/app/components/social-icons";
 import { CLINIC_NAME, CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { HOSPITAL_EMAIL } from "@/app/home/data";
-import { DIRECTIONS_URL, NAV_LINKS, TEL_HREF, WHATSAPP_HREF } from "../data";
+import { DIRECTIONS_URL, NAV_LINKS, TEL_HREF } from "../data";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -28,8 +27,56 @@ export function Header() {
 
   return (
     <>
-      {/* Utility strip */}
-      <div className="bg-[#0B3446] text-[13px] text-white/80">
+      {/* Utility strip – mobile & tablet: one line scrolling right to left.
+          Two identical halves, each with its own trailing gap, move by -50%
+          (the global `marquee` keyframes), so the loop has no jump or gap. */}
+      <div className="overflow-hidden bg-[#0B3446] text-[13px] text-white/80 lg:hidden">
+        <div className="flex w-max animate-[marquee_30s_linear_infinite] py-2 hover:[animation-play-state:paused] active:[animation-play-state:paused] motion-reduce:animate-none">
+          {[0, 1].map((copy) => (
+            <ul
+              key={copy}
+              aria-hidden={copy === 1 || undefined}
+              className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8"
+            >
+              <li>
+                <a href={TEL_HREF} tabIndex={copy === 1 ? -1 : undefined} className="inline-flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#FF6B66]" aria-hidden="true" />
+                  <span className="font-medium text-white">24x7 Emergency: {CLINIC_PHONE_DISPLAY}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={DIRECTIONS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabIndex={copy === 1 ? -1 : undefined}
+                  className="inline-flex items-center gap-1.5"
+                >
+                  <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                  100 Feet Rd, Chhatarpur, New Delhi
+                </a>
+              </li>
+              <li className="inline-flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+                Pharmacy open round the clock
+              </li>
+              <li>
+                <a
+                  href={`mailto:${HOSPITAL_EMAIL}`}
+                  tabIndex={copy === 1 ? -1 : undefined}
+                  className="inline-flex items-center gap-1.5"
+                >
+                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                  {HOSPITAL_EMAIL}
+                </a>
+              </li>
+            </ul>
+          ))}
+        </div>
+      </div>
+
+      {/* Utility strip – desktop (unchanged) */}
+      <div className="hidden bg-[#0B3446] text-[13px] text-white/80 lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-8">
           <div className="flex items-center gap-5">
             <span className="inline-flex items-center gap-2">
@@ -101,22 +148,10 @@ export function Header() {
               id="homepage-header-call-btn"
               href={TEL_HREF}
               aria-label={`Call ${CLINIC_PHONE_DISPLAY}`}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#0E7C86] px-3 text-[15px] font-semibold text-white transition-colors hover:bg-[#0B6870] sm:px-5"
+              className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-lg bg-[#0E7C86] px-3 text-sm font-semibold tabular-nums text-white transition-colors hover:bg-[#0B6870] sm:px-5 sm:text-[15px]"
             >
-              <Phone className="h-4 w-4" />
-              <span className="hidden sm:inline">Call</span>
-              <span className="hidden lg:inline">{CLINIC_PHONE_DISPLAY}</span>
-            </a>
-            <a
-              id="homepage-header-whatsapp-btn"
-              href={WHATSAPP_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Chat on WhatsApp"
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#1FA855] px-3 text-[15px] font-semibold text-white transition-colors hover:bg-[#178A45] sm:px-5"
-            >
-              <WhatsappIcon className="h-[18px] w-[18px]" />
-              <span className="hidden sm:inline">WhatsApp</span>
+              <Phone className="h-4 w-4 shrink-0" />
+              {CLINIC_PHONE_DISPLAY}
             </a>
             <button
               id="homepage-header-menu-btn"

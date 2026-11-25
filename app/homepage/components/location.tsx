@@ -19,13 +19,12 @@ export function Location() {
           description="Located on 100 Feet Road in Chhatarpur, easily reachable from across South Delhi and Delhi-NCR."
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-          <div className="overflow-hidden rounded-2xl bg-white p-2 ring-1 ring-[#0B3446]/10">
-            <FooterMap className="h-72 w-full rounded-[1.25rem]! border-0! sm:h-96 lg:h-full lg:min-h-[440px]" />
-          </div>
+        {/* One card: a small square map on the left of the details (stacked on phones) */}
+        <div className="mt-10 grid gap-6 rounded-2xl bg-white p-4 ring-1 ring-[#0B3446]/10 sm:grid-cols-[200px_1fr] sm:items-start sm:p-6 lg:grid-cols-[240px_1fr] lg:gap-10 lg:p-8">
+          <FooterMap className="aspect-[16/9] w-full rounded-xl! sm:aspect-square" />
 
-          <div className="flex flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10 sm:p-8">
-            <address className="grid gap-5 not-italic">
+          <div className="flex min-w-0 flex-col">
+            <address className="grid gap-5 not-italic lg:grid-cols-2 lg:gap-x-8">
               <div className="flex gap-4">
                 <span className={iconClass}>
                   <MapPin className="h-5 w-5" />
@@ -71,7 +70,7 @@ export function Location() {
               </div>
             </address>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-auto lg:grid-cols-1 lg:pt-8 xl:grid-cols-2">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <a
                 id="homepage-location-directions-btn"
                 href={DIRECTIONS_URL}
