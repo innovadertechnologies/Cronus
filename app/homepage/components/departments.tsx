@@ -60,7 +60,7 @@ function DepartmentCard({ department, hidden = false }: { department: Department
   );
 }
 
-// Cards drift left-to-right in a seamless CSS loop (the list is rendered
+// Cards drift right-to-left in a seamless CSS loop (the list is rendered
 // twice and moved by half its width). Hover or keyboard focus pauses it;
 // with reduced motion it becomes a plain, swipeable row.
 export function Departments() {
@@ -96,7 +96,7 @@ export function Departments() {
               .animate-marquee class: that class is unlayered, so it would override the
               hover pause. Each half carries its own trailing gap (pr-5) so the two halves are
               exactly equal and the -50% loop has no jump. */}
-          <div className="flex w-max animate-[marquee_60s_linear_infinite_reverse] hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] active:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:px-4 sm:motion-reduce:px-8">
+          <div className="flex w-max animate-[marquee_60s_linear_infinite] hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] active:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:px-4 sm:motion-reduce:px-8">
             <ul className="flex gap-5 pr-5">
               {DEPARTMENT_CARDS.map((d) => (
                 <DepartmentCard key={d.name} department={d} />

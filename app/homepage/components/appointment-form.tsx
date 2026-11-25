@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Loader2, Lock, Phone } from "lucide-react";
-import { WhatsappIcon } from "@/app/components/social-icons";
+import { ChevronDown, Loader2, Lock, MapPin, Navigation, Phone, Siren } from "lucide-react";
 import { useLeadForm } from "@/app/lib/use-lead-form";
-import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
+import { CLINIC_ADDRESS, CLINIC_NAME, CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { submitHomeLead, type HomeLeadFormState } from "@/app/home/actions";
 import { BOOKING_EVENT, type BookingRequest } from "@/app/home/components/booking";
-import { FORM_DEPARTMENTS, TEL_HREF, WHATSAPP_HREF } from "../data";
+import { DIRECTIONS_URL, EMERGENCY_TEL_HREF, FORM_DEPARTMENTS, TEL_HREF } from "../data";
 
 const initialState: HomeLeadFormState = { success: false };
 
@@ -15,11 +14,8 @@ const inputClass =
   "h-12 w-full rounded-lg border border-[#0B3446]/15 bg-white px-4 text-[15px] text-[#1B2936] placeholder:text-[#8A979D] transition-[border-color,box-shadow] duration-150 hover:border-[#0B3446]/30 focus:border-[#0E7C86] focus:outline-none focus:ring-4 focus:ring-[#0E7C86]/15";
 const labelClass = "mb-2 block text-sm font-medium text-[#0B3446]";
 
-const steps = [
-  "Share your name, number and concern",
-  "Our team calls you back to confirm a time",
-  "Visit us on 100 Feet Road, Chhatarpur",
-];
+const infoIconClass =
+  "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-[#0E7C86] ring-1 ring-[#0B3446]/10";
 
 type Props = {
   // Prefix for input ids so two forms can live on one page.
@@ -194,45 +190,56 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
       <aside className="flex flex-col bg-[#F6F3EE] p-6 sm:p-8 lg:p-10">
         {heading}
 
-        <ol className="mt-8 hidden space-y-5 sm:block">
-          {steps.map((step, i) => (
-            <li key={step} className="flex gap-4">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-sm font-semibold tabular-nums text-[#0E7C86] ring-1 ring-[#0B3446]/10">
-                {i + 1}
-              </span>
-              <span className="pt-1 text-[15px] leading-snug text-[#1B2936]">{step}</span>
-            </li>
-          ))}
-        </ol>
+        <p className="mt-5 text-[15px] leading-relaxed text-[#46575F]">
+          {CLINIC_NAME} has cared for families in Chhatarpur and South Delhi for more than two decades, with 40+
+          specialities, ICU, in-house diagnostics and a round-the-clock pharmacy under one roof.
+        </p>
 
-        <div className="mt-8 border-t border-[#0B3446]/10 pt-6 lg:mt-auto">
-          <p className="text-sm font-medium text-[#5B6B73]">Prefer to talk to us?</p>
-          <div className="mt-3 grid grid-cols-2 gap-3">
-            <a
-              href={TEL_HREF}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white text-[15px] font-semibold text-[#0B3446] ring-1 ring-[#0B3446]/15 transition-colors hover:ring-[#0B3446]/40"
-            >
-              <Phone className="h-4 w-4" strokeWidth={1.5} />
-              Call
-            </a>
-            <a
-              href={WHATSAPP_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white text-[15px] font-semibold text-[#0B3446] ring-1 ring-[#0B3446]/15 transition-colors hover:ring-[#0B3446]/40"
-            >
-              <WhatsappIcon className="h-4 w-4 text-[#1FA855]" />
-              WhatsApp
-            </a>
+        <address className="mt-8 grid gap-5 border-t border-[#0B3446]/10 pt-6 not-italic">
+          <div className="flex gap-4">
+            <span className={`${infoIconClass} text-[#D9443F]`}>
+              <Siren className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-sm text-[#5B6B73]">Emergency, 24x7</p>
+              <a
+                href={EMERGENCY_TEL_HREF}
+                className="text-lg font-semibold tabular-nums text-[#0B3446] hover:text-[#D9443F]"
+              >
+                {CLINIC_PHONE_DISPLAY}
+              </a>
+            </div>
           </div>
-          <p className="mt-4 flex items-center gap-2 text-sm text-[#46575F]">
-            <span className="h-2 w-2 shrink-0 rounded-full bg-[#D9443F]" aria-hidden="true" />
-            Emergency 24x7:{" "}
-            <a href={TEL_HREF} className="font-semibold text-[#0B3446] hover:text-[#0E7C86]">
-              {CLINIC_PHONE_DISPLAY}
-            </a>
-          </p>
-        </div>
+          <div className="flex gap-4">
+            <span className={infoIconClass}>
+              <Phone className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-sm text-[#5B6B73]">Appointments &amp; enquiries</p>
+              <a href={TEL_HREF} className="text-[15px] font-semibold tabular-nums text-[#0B3446] hover:text-[#0E7C86]">
+                {CLINIC_PHONE_DISPLAY}
+              </a>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <span className={infoIconClass}>
+              <MapPin className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-sm text-[#5B6B73]">Location</p>
+              <p className="text-[15px] leading-relaxed text-[#1B2936]">{CLINIC_ADDRESS}</p>
+              <a
+                href={DIRECTIONS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0E7C86] hover:text-[#0B6870]"
+              >
+                <Navigation className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
+                Get directions
+              </a>
+            </div>
+          </div>
+        </address>
       </aside>
 
       {/* Form */}

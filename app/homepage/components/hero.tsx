@@ -1,85 +1,109 @@
+"use client";
+
 import Image from "next/image";
-import { Phone } from "lucide-react";
-import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
-import { GOOGLE_RATING, TEL_HREF } from "../data";
-import { AppointmentForm } from "./appointment-form";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { HERO_SLIDES } from "../data";
+import { GoogleIcon, Stars } from "./rating-icons";
 
-// One hero section: horizontal banner with the content on it → centred form.
-export function Hero() {
+const INTERVAL = 5000;
+
+type Props = {
+  rating: string;
+  count: string;
+  googleUrl: string;
+};
+
+// Image-only hero: existing banners cross-fade automatically. Pauses while
+// hovered or focused, and stays on the first slide for reduced motion.
+// The Google rating sits in the top-left corner.
+export function Hero({ rating, count, googleUrl }: Props) {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduced = useRef(false);
+
+  useEffect(() => {
+    reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+
+  const next = useCallback(() => setActive((i) => (i + 1) % HERO_SLIDES.length), []);
+
+  useEffect(() => {
+    if (paused || reduced.current) return;
+    const timer = setTimeout(next, INTERVAL);
+    return () => clearTimeout(timer);
+  }, [active, paused, next]);
+
   return (
-    <section id="hero" aria-labelledby="homepage-title" className="relative bg-[#F6F3EE]">
-      {/* Banner: image + content. The content sets the height, so nothing shifts while the image loads. */}
-      <div className="relative isolate overflow-hidden bg-[#0B3446]">
-        <Image
-          src="/docimage.png"
-          alt="Cronus surgeon reviewing a chest scan on a monitor in a modern operating theatre"
-          fill
-          priority
-          sizes="100vw"
-          className="-z-20 object-cover object-[70%_center] lg:object-[center_35%]"
-        />
-        {/* Readability scrim in the navy of the page: dense behind the text, clear over the scan monitor */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0B3446]/95 via-[#0B3446]/80 to-[#0B3446]/40 lg:via-[#0B3446]/70 lg:to-[#0B3446]/0" />
-
-        <div className="mx-auto max-w-7xl px-4 pb-28 pt-12 sm:px-8 sm:pb-36 sm:pt-16 lg:pb-40 lg:pt-24">
-          <div className="max-w-2xl text-white">
-            {/* Signature: a steady red dot wherever 24x7 emergency is mentioned */}
-            <p className="flex items-center gap-2 text-sm font-medium text-white/80">
-              <span className="h-2 w-2 rounded-full bg-[#FF6B66]" aria-hidden="true" />
-              24x7 Emergency · Chhatarpur, South Delhi
-            </p>
-
-            <h1
-              id="homepage-title"
-              className="mt-4 text-[2.25rem] font-semibold leading-[1.08] sm:text-5xl sm:tracking-[-0.02em] lg:text-[3.5rem] lg:tracking-[-0.03em]"
-            >
-              Multispeciality care for South Delhi families, close to home
-            </h1>
-
-            <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-white/80 sm:text-lg">
-              Specialists in 40+ departments, a 24x7 emergency department, ICU, in-house diagnostics and a
-              round-the-clock pharmacy on 100 Feet Road, Chhatarpur.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#appointment"
-                className="inline-flex h-12 items-center rounded-lg bg-[#0E7C86] px-6 font-semibold text-white transition-colors hover:bg-[#0B6870]"
-              >
-                Book appointment
-              </a>
-              <a
-                id="homepage-hero-call-btn"
-                href={TEL_HREF}
-                className="inline-flex h-12 items-center gap-2 rounded-lg border border-white/30 px-6 font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                <Phone className="h-4 w-4" strokeWidth={1.5} />
-                Call {CLINIC_PHONE_DISPLAY}
-              </a>
-            </div>
-
-            <p className="mt-8 text-sm text-white/65">
-              Rated {GOOGLE_RATING.score} on Google from {GOOGLE_RATING.count} reviews · Cashless insurance available*
-            </p>
-          </div>
+    <section
+      id="hero"
+      aria-roledescription="carousel"
+      aria-label="Cronus Multispeciality Hospital"
+      className="relative h-[37.5svh] min-h-[200px] overflow-hidden bg-[#E9F1F5] lg:h-[clamp(440px,40vw,620px)]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      {HERO_SLIDES.map((slide, i) => (
+        <div
+          key={slide.src}
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${i + 1} of ${HERO_SLIDES.length}`}
+          aria-hidden={i !== active}
+          className={`absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            i === active ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={slide.src}
+            alt={slide.alt}
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className={`object-cover ${slide.position}`}
+          />
         </div>
-      </div>
+      ))}
 
-      {/* Centred appointment form, lifted over the bottom of the banner */}
-      <div
-        id="appointment"
-        className="relative mx-auto -mt-16 max-w-6xl scroll-mt-28 px-4 pb-16 sm:-mt-24 sm:px-8 sm:pb-24"
+      {/* Google rating, top-left */}
+      <a
+        id="homepage-hero-google-rating"
+        href={googleUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Rated ${rating} out of 5 on Google from ${count} reviews`}
+        className="absolute left-4 top-4 z-10 flex items-center gap-3 rounded-xl bg-white/95 px-3 py-2 shadow-[0_8px_24px_rgba(11,52,70,0.16)] ring-1 ring-[#0B3446]/10 transition-colors hover:bg-white sm:left-8 sm:top-6 sm:px-4 sm:py-3"
       >
-        <AppointmentForm
-          idPrefix="homepage-hero-form"
-          title="Book an appointment"
-          subtitle="Tell us what you need and our team will call you back to confirm a time with the right specialist."
-          variant="split"
-          listenForBooking
-        />
-        <p className="mt-4 text-center text-xs text-[#5B6B73]">
-          *Cashless facility subject to insurance policy, hospital network and approval.
-        </p>
+        <GoogleIcon className="h-7 w-7 sm:h-8 sm:w-8" />
+        <span className="leading-tight">
+          <span className="flex items-center gap-2">
+            <span className="text-lg font-semibold tabular-nums text-[#0B3446] sm:text-xl">{rating}</span>
+            <Stars rating={Number(rating)} className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          </span>
+          <span className="block text-xs text-[#5B6B73]">{count} Google reviews</span>
+        </span>
+      </a>
+
+      {/* Slide dots */}
+      <div className="absolute inset-x-0 bottom-4 z-10 flex justify-center gap-2">
+        {HERO_SLIDES.map((slide, i) => (
+          <button
+            key={slide.src}
+            id={`homepage-hero-slide-${i + 1}-btn`}
+            type="button"
+            aria-label={`Show slide ${i + 1}`}
+            aria-current={i === active}
+            onClick={() => setActive(i)}
+            className="flex h-6 items-center"
+          >
+            <span
+              className={`block h-1.5 rounded-full transition-[width,background-color] duration-300 ${
+                i === active ? "w-6 bg-[#0E7C86]" : "w-1.5 bg-[#0B3446]/30"
+              }`}
+            />
+          </button>
+        ))}
       </div>
     </section>
   );

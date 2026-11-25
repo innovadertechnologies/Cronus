@@ -1,16 +1,54 @@
+import type { ReactNode } from "react";
 import { Award, Clock, ShieldCheck, Star, Stethoscope, Users } from "lucide-react";
-import { GOOGLE_RATING } from "../data";
+import { CountUp } from "./count-up";
 
-const items = [
-  { icon: Award, value: "20+ years", label: "Of trusted care" },
-  { icon: Stethoscope, value: "40+", label: "Medical specialities" },
-  { icon: Users, value: "9,999+", label: "Happy patients" },
-  { icon: Clock, value: "24x7", label: "Emergency & pharmacy" },
-  { icon: Star, value: `${GOOGLE_RATING.score} / 5`, label: `${GOOGLE_RATING.count} Google reviews` },
-  { icon: ShieldCheck, value: "Cashless", label: "Insurance available*" },
-];
+type Props = { rating: string; count: string };
 
-export function TrustStrip() {
+// Same design as before; the numeric figures now count up from zero the
+// first time the strip scrolls into view. Figures come from the site's
+// existing content (and the live Google rating when configured).
+export function TrustStrip({ rating, count }: Props) {
+  const items: { icon: typeof Award; value: ReactNode; label: string }[] = [
+    {
+      icon: Award,
+      value: (
+        <>
+          <CountUp value={20} />+ years
+        </>
+      ),
+      label: "Of trusted care",
+    },
+    {
+      icon: Stethoscope,
+      value: (
+        <>
+          <CountUp value={40} />+
+        </>
+      ),
+      label: "Medical specialities",
+    },
+    {
+      icon: Users,
+      value: (
+        <>
+          <CountUp value={9999} />+
+        </>
+      ),
+      label: "Happy patients",
+    },
+    { icon: Clock, value: "24x7", label: "Emergency & pharmacy" },
+    {
+      icon: Star,
+      value: (
+        <>
+          <CountUp value={Number(rating)} decimals={1} /> / 5
+        </>
+      ),
+      label: `${count} Google reviews`,
+    },
+    { icon: ShieldCheck, value: "Cashless", label: "Insurance available*" },
+  ];
+
   return (
     <section aria-label="Why patients trust Cronus" className="bg-[#0B3446] text-white">
       <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-white/10 sm:grid-cols-3 lg:grid-cols-6">
