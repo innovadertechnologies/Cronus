@@ -2,11 +2,12 @@ import { ExternalLink } from "lucide-react";
 import type { Review } from "../data";
 import type { GoogleReviewsData } from "../google-reviews";
 import { GoogleIcon, PractoMark, Stars } from "./rating-icons";
+import { MarqueeClone } from "./marquee-clone";
 import { SectionHeading } from "./section-heading";
 
 const sourceLabel: Record<Review["source"], string> = { google: "Google", practo: "Practo" };
 
-function ReviewCard({ review, hidden = false }: { review: Review; hidden?: boolean }) {
+function ReviewCard({ review }: { review: Review }) {
   const isGoogle = review.source === "google";
   return (
     <li className="w-[300px] shrink-0 sm:w-[360px]">
@@ -36,7 +37,6 @@ function ReviewCard({ review, hidden = false }: { review: Review; hidden?: boole
               href={review.link}
               target="_blank"
               rel="noopener noreferrer"
-              tabIndex={hidden ? -1 : undefined}
               className="shrink-0 text-sm font-semibold text-[#0B6A73] underline underline-offset-4"
               aria-label={`Read ${review.author}'s full review on ${sourceLabel[review.source]}`}
             >
@@ -111,11 +111,7 @@ export function Reviews({ google }: Props) {
               <ReviewCard key={`${review.author}-${review.date}`} review={review} />
             ))}
           </ul>
-          <ul className="flex gap-5 pr-5 motion-reduce:hidden" aria-hidden="true">
-            {reviews.map((review) => (
-              <ReviewCard key={`${review.author}-${review.date}`} review={review} hidden />
-            ))}
-          </ul>
+          <MarqueeClone className="flex gap-5 pr-5 motion-reduce:hidden" />
         </div>
       </div>
     </section>

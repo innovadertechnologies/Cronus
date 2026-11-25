@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Clock, Mail, MapPin, Menu, Phone, X } from "lucide-react";
 import { CLINIC_NAME, CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { HOSPITAL_EMAIL } from "@/app/home/data";
@@ -11,11 +11,16 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Shadow once the page has scrolled. An observer on an 8px marker at the
+  // top of the page, instead of reading window.scrollY on every scroll event:
+  // no layout reads on the main thread, so no forced reflows.
+  const topMarker = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const el = topMarker.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting));
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -27,6 +32,8 @@ export function Header() {
 
   return (
     <>
+      {/* Top-of-page marker for the scroll shadow (positioned against the page). */}
+      <div ref={topMarker} aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-2 w-px" />
       {/* Utility strip – mobile & tablet: one line scrolling right to left.
           Two identical halves, each with its own trailing gap, move by -50%
           (the global `marquee` keyframes), so the loop has no jump or gap. */}
