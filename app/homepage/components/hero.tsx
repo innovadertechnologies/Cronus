@@ -1,11 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { Pause, Play } from "lucide-react";
 import { HERO_SLIDES } from "../data";
 import { GoogleIcon, Stars } from "./rating-icons";
 
-const INTERVAL = 5000;
+const INTERVAL = 4000;
+const COUNT = HERO_SLIDES.length;
+// The first slide is repeated at the end so the last → first step keeps
+// sliding the same way; once it lands, the track jumps back to the real first
+// slide without animation.
+const TRACK = [...HERO_SLIDES, HERO_SLIDES[0]];
 
 type Props = {
   rating: string;
@@ -13,58 +19,83 @@ type Props = {
   googleUrl: string;
 };
 
-// Image-only hero: existing banners cross-fade automatically. Pauses while
-// hovered or focused, and stays on the first slide for reduced motion.
-// The Google rating sits in the top-left corner.
+// Image-only hero: existing banners slide right-to-left automatically. It
+// keeps running on hover; it pauses only with the pause button or while a
+// control inside it has keyboard focus. With reduced motion the slides still
+// change, just without the sliding animation (see globals.css).
 export function Hero({ rating, count, googleUrl }: Props) {
-  const [active, setActive] = useState(0);
+  const [index, setIndex] = useState(0); // 0..COUNT (COUNT = the repeated first slide)
+  const [animate, setAnimate] = useState(true);
   const [paused, setPaused] = useState(false);
-  const reduced = useRef(false);
+  const [focused, setFocused] = useState(false);
+
+  const current = index % COUNT;
 
   useEffect(() => {
-    reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }, []);
-
-  const next = useCallback(() => setActive((i) => (i + 1) % HERO_SLIDES.length), []);
-
-  useEffect(() => {
-    if (paused || reduced.current) return;
-    const timer = setTimeout(next, INTERVAL);
+    if (paused || focused) return;
+    const timer = setTimeout(() => {
+      setAnimate(true);
+      setIndex((i) => i + 1);
+    }, INTERVAL);
     return () => clearTimeout(timer);
-  }, [active, paused, next]);
+  }, [index, paused, focused]);
+
+  // After landing on the repeated first slide, snap back to the real one.
+  function onTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
+    if (e.target !== e.currentTarget) return;
+    if (index === COUNT) {
+      setAnimate(false);
+      setIndex(0);
+    }
+  }
+
+  // Re-enable the animation on the frame after the snap.
+  useEffect(() => {
+    if (animate) return;
+    const frame = requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
+    return () => cancelAnimationFrame(frame);
+  }, [animate]);
+
+  function goTo(i: number) {
+    setAnimate(true);
+    setIndex(i);
+  }
 
   return (
     <section
       id="hero"
       aria-roledescription="carousel"
       aria-label="Cronus Multispeciality Hospital"
-      className="relative h-[37.5svh] min-h-[200px] overflow-hidden bg-[#E9F1F5] lg:h-[clamp(440px,40vw,620px)]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      className="relative h-[37.5svh] min-h-[200px] overflow-hidden bg-[#E9F1F5] lg:h-[clamp(360px,min(40vw,calc(100svh_-_182px)),620px)]"
+      // Pause only for keyboard focus; a mouse click on a dot must not stop it.
+      onFocus={(e) => setFocused(e.target.matches(":focus-visible"))}
+      onBlur={() => setFocused(false)}
     >
-      {HERO_SLIDES.map((slide, i) => (
-        <div
-          key={slide.src}
-          role="group"
-          aria-roledescription="slide"
-          aria-label={`${i + 1} of ${HERO_SLIDES.length}`}
-          aria-hidden={i !== active}
-          className={`absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            i === active ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            className={`object-cover ${slide.position}`}
-          />
-        </div>
-      ))}
+      <div
+        className={`flex h-full ${animate ? "transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" : ""}`}
+        style={{ transform: `translateX(-${index * 100}%)` }}
+        onTransitionEnd={onTransitionEnd}
+      >
+        {TRACK.map((slide, i) => (
+          <div
+            key={`${slide.src}-${i}`}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${(i % COUNT) + 1} of ${COUNT}`}
+            aria-hidden={i !== index}
+            className="relative h-full w-full shrink-0"
+          >
+            <Image
+              src={slide.src}
+              alt={i === COUNT ? "" : slide.alt}
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className={`object-cover ${slide.position}`}
+            />
+          </div>
+        ))}
+      </div>
 
       {/* Google rating, top-left */}
       <a
@@ -85,25 +116,34 @@ export function Hero({ rating, count, googleUrl }: Props) {
         </span>
       </a>
 
-      {/* Slide dots */}
-      <div className="absolute inset-x-0 bottom-4 z-10 flex justify-center gap-2">
+      {/* Slide dots + pause/play */}
+      <div className="absolute inset-x-0 bottom-3 z-10 flex items-center justify-center gap-1">
         {HERO_SLIDES.map((slide, i) => (
           <button
             key={slide.src}
             id={`homepage-hero-slide-${i + 1}-btn`}
             type="button"
             aria-label={`Show slide ${i + 1}`}
-            aria-current={i === active}
-            onClick={() => setActive(i)}
-            className="flex h-6 items-center"
+            aria-current={i === current}
+            onClick={() => goTo(i)}
+            className="flex h-6 items-center px-0.5"
           >
             <span
               className={`block h-1.5 rounded-full transition-[width,background-color] duration-300 ${
-                i === active ? "w-6 bg-[#0E7C86]" : "w-1.5 bg-[#0B3446]/30"
+                i === current ? "w-6 bg-[#0E7C86]" : "w-1.5 bg-[#0B3446]/30"
               }`}
             />
           </button>
         ))}
+        <button
+          id="homepage-hero-pause-btn"
+          type="button"
+          aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+          onClick={() => setPaused((p) => !p)}
+          className="ml-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-[#0B3446] ring-1 ring-[#0B3446]/10"
+        >
+          {paused ? <Play className="h-3 w-3" aria-hidden="true" /> : <Pause className="h-3 w-3" aria-hidden="true" />}
+        </button>
       </div>
     </section>
   );

@@ -11,7 +11,9 @@ function ReviewCard({ review, hidden = false }: { review: Review; hidden?: boole
   return (
     <li className="w-[300px] shrink-0 sm:w-[360px]">
       <figure
-        className="flex h-72 flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10"
+        // relative: keeps the sr-only rating inside the card (and inside the
+        // scroll container) even when the carousel is not transformed.
+        className="relative flex h-72 flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10"
       >
         <div className="flex items-center gap-2">
           <Stars rating={review.rating} />
