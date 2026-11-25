@@ -9,7 +9,7 @@ function StoryCard({ story, hidden = false }: { story: PractoStory; hidden?: boo
   return (
     <li className="w-[300px] shrink-0 sm:w-[360px]">
       <figure className="flex h-72 flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10">
-        <p className="flex items-center gap-2 text-sm font-medium text-[#0E7C86]">
+        <p className="flex items-center gap-2 text-sm font-medium text-[#0B6A73]">
           <ThumbsUp className="h-4 w-4 shrink-0" strokeWidth={1.75} aria-hidden="true" />
           <span className="truncate">Recommends {story.doctor}</span>
         </p>
@@ -29,7 +29,7 @@ function StoryCard({ story, hidden = false }: { story: PractoStory; hidden?: boo
             target="_blank"
             rel="noopener noreferrer"
             tabIndex={hidden ? -1 : undefined}
-            className="shrink-0 text-sm font-semibold text-[#0E7C86] underline underline-offset-4"
+            className="shrink-0 text-sm font-semibold text-[#0B6A73] underline underline-offset-4"
             aria-label={`Read ${story.author}'s full story on Practo`}
           >
             Read

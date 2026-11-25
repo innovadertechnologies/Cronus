@@ -37,7 +37,7 @@ function ReviewCard({ review, hidden = false }: { review: Review; hidden?: boole
               target="_blank"
               rel="noopener noreferrer"
               tabIndex={hidden ? -1 : undefined}
-              className="shrink-0 text-sm font-semibold text-[#0E7C86] underline underline-offset-4"
+              className="shrink-0 text-sm font-semibold text-[#0B6A73] underline underline-offset-4"
               aria-label={`Read ${review.author}'s full review on ${sourceLabel[review.source]}`}
             >
               Read

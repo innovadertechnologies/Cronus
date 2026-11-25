@@ -50,7 +50,7 @@ export function BottomAppointment() {
               </span>
             </li>
             <li className="flex items-center gap-4 rounded-2xl bg-white p-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#E3F6F7] text-[#0E7C86]">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#E3F6F7] text-[#0B6A73]">
                 <Clock className="h-5 w-5" />
               </span>
               <span className="text-[15px] text-[#46575F]">

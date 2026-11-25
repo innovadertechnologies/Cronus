@@ -24,7 +24,7 @@ function Portrait({ doctor, sizes, initialsClass }: { doctor: HomepageDoctor; si
     <span
       role="img"
       aria-label={`${doctor.name} (photo coming soon)`}
-      className={`absolute inset-0 flex items-center justify-center font-semibold text-[#0B3446]/30 ${initialsClass}`}
+      className={`absolute inset-0 flex items-center justify-center font-semibold text-[#0B3446]/70 ${initialsClass}`}
     >
       {initials(doctor.name)}
     </span>
@@ -98,7 +98,7 @@ export function Doctors() {
               />
             </div>
             <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-6">
-              <p className="text-xs font-medium text-[#0E7C86] sm:text-sm">Featured doctor</p>
+              <p className="text-xs font-medium text-[#0B6A73] sm:text-sm">Featured doctor</p>
               <h3 className="mt-1 text-lg font-semibold leading-snug text-[#0B3446] sm:text-2xl">{featured.name}</h3>
               <p className="mt-1 text-sm text-[#46575F] sm:text-base">
                 {featured.speciality} · {featured.department}

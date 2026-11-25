@@ -6,7 +6,7 @@ import { CLINIC_ADDRESS, CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { DIRECTIONS_URL, TEL_HREF, WHATSAPP_HREF } from "../data";
 import { SectionHeading } from "./section-heading";
 
-const iconClass = "flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#E3F6F7] text-[#0E7C86]";
+const iconClass = "flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#E3F6F7] text-[#0B6A73]";
 
 export function Location() {
   return (
@@ -40,7 +40,7 @@ export function Location() {
                 </span>
                 <div>
                   <h3 className="text-sm font-medium text-[#5B6B73]">Phone (24x7)</h3>
-                  <a href={TEL_HREF} className="mt-1 block text-lg font-semibold text-[#0B3446] hover:text-[#0E7C86]">
+                  <a href={TEL_HREF} className="mt-1 block text-lg font-semibold text-[#0B3446] hover:text-[#0B6A73]">
                     {CLINIC_PHONE_DISPLAY}
                   </a>
                 </div>
@@ -53,7 +53,7 @@ export function Location() {
                   <h3 className="text-sm font-medium text-[#5B6B73]">Email</h3>
                   <a
                     href={`mailto:${HOSPITAL_EMAIL}`}
-                    className="mt-1 block break-all text-[15px] font-semibold text-[#0B3446] hover:text-[#0E7C86]"
+                    className="mt-1 block break-all text-[15px] font-semibold text-[#0B3446] hover:text-[#0B6A73]"
                   >
                     {HOSPITAL_EMAIL}
                   </a>

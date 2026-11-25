@@ -15,7 +15,7 @@ export function SectionHeading({ eyebrow, title, description, id, align = "left"
   const dark = tone === "dark";
   return (
     <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
-      <p className={`text-sm font-medium ${dark ? "text-[#8FD3D8]" : "text-[#0E7C86]"}`}>{eyebrow}</p>
+      <p className={`text-sm font-medium ${dark ? "text-[#8FD3D8]" : "text-[#0B6A73]"}`}>{eyebrow}</p>
       <h2
         id={id}
         className={`mt-3 text-[1.75rem] font-semibold leading-tight sm:text-[2.5rem] sm:tracking-[-0.02em] ${

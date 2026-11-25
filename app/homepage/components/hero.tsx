@@ -7,6 +7,7 @@ import { HERO_SLIDES } from "../data";
 import { GoogleIcon, Stars } from "./rating-icons";
 
 const INTERVAL = 4000;
+const SLIDE_MS = 700; // matches duration-700 on the track
 const COUNT = HERO_SLIDES.length;
 // The first slide is repeated at the end so the last → first step keeps
 // sliding the same way; once it lands, the track jumps back to the real first
@@ -29,25 +30,41 @@ export function Hero({ rating, count, googleUrl }: Props) {
   const [paused, setPaused] = useState(false);
   const [focused, setFocused] = useState(false);
 
+  // Only the first slide is in the server HTML (preloaded, high priority) so
+  // it is the LCP image with nothing competing. The rest mount once the page
+  // has loaded, well before their turn comes.
+  const [loadRest, setLoadRest] = useState(false);
+  useEffect(() => {
+    const load = () => setLoadRest(true);
+    if (document.readyState === "complete") return load();
+    window.addEventListener("load", load, { once: true });
+    return () => window.removeEventListener("load", load);
+  }, []);
+
   const current = index % COUNT;
 
   useEffect(() => {
     if (paused || focused) return;
     const timer = setTimeout(() => {
       setAnimate(true);
-      setIndex((i) => i + 1);
+      // Never step past the repeated first slide: beyond it the track is empty.
+      setIndex((i) => Math.min(i + 1, COUNT));
     }, INTERVAL);
     return () => clearTimeout(timer);
   }, [index, paused, focused]);
 
   // After landing on the repeated first slide, snap back to the real one.
-  function onTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
-    if (e.target !== e.currentTarget) return;
-    if (index === COUNT) {
+  // A timer, not transitionend: that event never fires in a background tab
+  // or when the transition is cut short, which used to leave the track
+  // stuck past the last slide (a blank banner).
+  useEffect(() => {
+    if (index !== COUNT) return;
+    const timer = setTimeout(() => {
       setAnimate(false);
       setIndex(0);
-    }
-  }
+    }, SLIDE_MS + 50);
+    return () => clearTimeout(timer);
+  }, [index]);
 
   // Re-enable the animation on the frame after the snap.
   useEffect(() => {
@@ -74,7 +91,6 @@ export function Hero({ rating, count, googleUrl }: Props) {
       <div
         className={`flex h-full ${animate ? "transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" : ""}`}
         style={{ transform: `translateX(-${index * 100}%)` }}
-        onTransitionEnd={onTransitionEnd}
       >
         {TRACK.map((slide, i) => (
           <div
@@ -85,14 +101,30 @@ export function Hero({ rating, count, googleUrl }: Props) {
             aria-hidden={i !== index}
             className="relative h-full w-full shrink-0"
           >
-            <Image
-              src={slide.src}
-              alt={i === COUNT ? "" : slide.alt}
-              fill
-              priority={i === 0}
-              sizes="100vw"
-              className={`object-cover ${slide.position}`}
-            />
+            {i === 0 ? (
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                priority
+                fetchPriority="high"
+                sizes="100vw"
+                className={`object-cover ${slide.position}`}
+              />
+            ) : (
+              loadRest && (
+                <Image
+                  src={slide.src}
+                  alt={i === COUNT ? "" : slide.alt}
+                  fill
+                  // Eager: off-screen slides sit sideways in the track, where
+                  // lazy loading would wait until they slide in.
+                  loading="eager"
+                  sizes="100vw"
+                  className={`object-cover ${slide.position}`}
+                />
+              )
+            )}
           </div>
         ))}
       </div>
@@ -126,7 +158,7 @@ export function Hero({ rating, count, googleUrl }: Props) {
             aria-label={`Show slide ${i + 1}`}
             aria-current={i === current}
             onClick={() => goTo(i)}
-            className="flex h-6 items-center px-0.5"
+            className="flex h-6 min-w-6 items-center justify-center"
           >
             <span
               className={`block h-1.5 rounded-full transition-[width,background-color] duration-300 ${
