@@ -15,7 +15,7 @@ const inputClass =
 const labelClass = "mb-2 block text-sm font-medium text-[#0B3446]";
 
 const infoIconClass =
-  "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-[#0E7C86] ring-1 ring-[#0B3446]/10";
+  "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-[#0B6A73] ring-1 ring-[#0B3446]/10";
 
 type Props = {
   // Prefix for input ids so two forms can live on one page.
@@ -216,7 +216,7 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
             </span>
             <div>
               <p className="text-sm text-[#5B6B73]">Appointments &amp; enquiries</p>
-              <a href={TEL_HREF} className="text-[15px] font-semibold tabular-nums text-[#0B3446] hover:text-[#0E7C86]">
+              <a href={TEL_HREF} className="text-[15px] font-semibold tabular-nums text-[#0B3446] hover:text-[#0B6A73]">
                 {CLINIC_PHONE_DISPLAY}
               </a>
             </div>
@@ -232,7 +232,7 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
                 href={DIRECTIONS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0E7C86] hover:text-[#0B6870]"
+                className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B6A73] hover:text-[#0B6870]"
               >
                 <Navigation className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
                 Get directions

@@ -19,7 +19,7 @@ const actions: Action[] = [
 ];
 
 const toneClass: Record<Action["tone"], string> = {
-  emergency: "text-[#D9443F] lg:bg-white",
+  emergency: "text-[#C2362F] lg:bg-white",
   default: "text-[#0B3446] lg:bg-white",
   primary: "bg-[#0E7C86] text-white hover:bg-[#0B6870] lg:bg-[#0E7C86]",
 };

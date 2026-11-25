@@ -41,7 +41,7 @@ function DepartmentCard({ department, hidden = false }: { department: Department
         tabIndex={hidden ? -1 : undefined}
         className="group flex h-full flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10 transition-[box-shadow] duration-150 hover:ring-[#0E7C86]/50"
       >
-        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#E3F6F7] text-[#0E7C86]">
+        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#E3F6F7] text-[#0B6A73]">
           <Icon className="h-5 w-5" strokeWidth={1.5} />
         </span>
         {/* The looping duplicate uses a <p> so search engines don't see every heading twice */}
@@ -51,7 +51,7 @@ function DepartmentCard({ department, hidden = false }: { department: Department
           <h3 className="mt-5 text-lg font-semibold text-[#0B3446]">{department.name}</h3>
         )}
         <p className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5B6B73]">{department.text}</p>
-        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0E7C86]">
+        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B6A73]">
           {hasPage ? "Learn more" : "Book a consultation"}
           <ArrowRight className="h-4 w-4" />
         </span>

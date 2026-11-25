@@ -29,7 +29,7 @@ export function Footer() {
             </span>
             <div>
               <p className="text-xl font-semibold sm:text-2xl">Medical emergency? We&apos;re open 24x7.</p>
-              <p className="text-[15px] text-white/80">Call us right away for emergency care or an ambulance.</p>
+              <p className="text-[15px] text-white">Call us right away for emergency care or an ambulance.</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:flex">

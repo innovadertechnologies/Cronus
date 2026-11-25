@@ -36,7 +36,7 @@ export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
                 {faq.question}
                 <span
                   className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-[transform,background-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isOpen ? "rotate-45 bg-[#0E7C86] text-white" : "bg-[#E3F6F7] text-[#0E7C86]"
+                    isOpen ? "rotate-45 bg-[#0E7C86] text-white" : "bg-[#E3F6F7] text-[#0B6A73]"
                   }`}
                 >
                   <Plus className="h-4 w-4" aria-hidden="true" />
