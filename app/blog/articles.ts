@@ -1,9 +1,4 @@
 // Full text of each blog article, keyed by slug (see BLOG_POSTS in data.ts).
-//
-// SAMPLE CONTENT: general health information written to fill the static
-// article pages. Have every article reviewed by the hospital's doctors before
-// publishing, and replace it with their own writing where needed. Keep it
-// general: no statistics, outcomes or promises that cannot be verified.
 
 export type ArticleBlock =
   | { type: "h2"; text: string }

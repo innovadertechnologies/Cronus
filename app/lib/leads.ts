@@ -1,6 +1,6 @@
 import { after } from "next/server";
 
-export type LeadSheet = "hernia" | "gallbladder" | "maternity" | "spine" | "knee-hip" | "home" | "urology";
+export type LeadSheet = "hernia" | "gallbladder" | "maternity" | "spine" | "knee-hip" | "home" | "urology" | "contact";
 
 // Paste each Google Sheet's Apps Script Web app URL here
 // (see google-sheets/README.md). Leave "" to just log the lead.
@@ -13,6 +13,8 @@ const SHEET_URLS: Record<LeadSheet, string> = {
   // TODO: home page appointment form — paste its sheet URL here.
   home: "",
   urology: "", // Add Google Sheets URL here when ready
+  // TODO: /contact page form — paste its sheet URL here.
+  contact: "",
 };
 
 // Keys become column headers in the sheet, in this order.

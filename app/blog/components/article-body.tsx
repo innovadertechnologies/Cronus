@@ -13,7 +13,7 @@ export function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
             <h2
               key={i}
               id={slugify(block.text)}
-              className="mt-12 scroll-mt-28 text-[1.5rem] font-semibold leading-snug text-[#0B3446] first:mt-0 sm:text-[1.75rem] sm:tracking-[-0.01em]"
+              className="mt-10 scroll-mt-28 border-t border-[#0B3446]/10 pt-10 text-[1.5rem] font-semibold leading-snug text-[#0B3446] first:mt-0 first:border-t-0 first:pt-0 sm:text-[1.75rem] sm:tracking-[-0.01em]"
             >
               {block.text}
             </h2>
@@ -21,17 +21,19 @@ export function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
         }
         if (block.type === "ul") {
           return (
-            <ul key={i} className="mt-5 list-disc space-y-2.5 pl-6 marker:text-[#0E7C86]">
+            <ul key={i} className="mt-6 divide-y divide-[#0B3446]/10 rounded-2xl bg-[#F6F3EE] px-5 sm:px-6">
               {block.items.map((item) => (
-                <li key={item} className="pl-1">
-                  {item}
+                <li key={item} className="flex gap-3 py-3.5 text-base leading-relaxed sm:text-[17px]">
+                  <span className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0E7C86]" aria-hidden="true" />
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
           );
         }
         return (
-          <p key={i} className="mt-5 first:mt-0">
+          // The opening paragraph reads as the lead: a step larger, in navy.
+          <p key={i} className="mt-5 first:mt-0 first:text-[19px] first:leading-relaxed first:text-[#0B3446] sm:first:text-[21px]">
             {block.text}
           </p>
         );

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Info } from "lucide-react";
 import { JsonLd } from "@/app/components/json-ld";
 import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { blogArticleMetadata, blogArticleSchema, type BlogArticleSeo } from "@/app/lib/seo";
@@ -71,9 +70,9 @@ export default async function BlogArticlePage({ params }: PageProps<"/blog/[slug
               {/* Health information, not a consultation */}
               <aside
                 aria-label="Medical disclaimer"
-                className="mt-12 flex max-w-[68ch] gap-3 rounded-2xl border border-[#0B3446]/10 p-5 text-[15px] leading-relaxed text-[#46575F]"
+                className="mt-10 flex max-w-[68ch] gap-3 rounded-2xl border border-[#0B3446]/10 bg-white p-5 text-[15px] leading-relaxed text-[#46575F]"
               >
-                <Info className="mt-0.5 h-[18px] w-[18px] shrink-0 text-[#5B6B73]" strokeWidth={1.5} aria-hidden="true" />
+                <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#D9443F]" aria-hidden="true" />
                 <p>
                   This article is general health information and does not replace a consultation with a doctor. In a
                   medical emergency, call us 24x7 on{" "}
