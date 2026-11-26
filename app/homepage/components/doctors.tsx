@@ -66,21 +66,20 @@ export function Doctors() {
     <section id="doctors" aria-labelledby="homepage-doctors-title" className="scroll-mt-24 bg-[#F6F3EE] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         {/* Heading with the "view all" link on its right */}
-        <div className="flex items-end justify-between gap-4">
+        {/* Stacked on phones ("Meet Our Doctors" doesn't fit beside the heading at 360px) */}
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
           <SectionHeading
             id="homepage-doctors-title"
-            eyebrow="Our doctors"
-            title="Meet our specialists"
-            description="Experienced doctors across departments, all under one roof in Chhatarpur."
+            eyebrow="MEET OUR MEDICAL TEAM"
+            title="Experienced Doctors. Thoughtful Healthcare."
+            description="Our doctors combine their medical expertise and experience to provide guidance, diagnosis, and treatment across specialties."
           />
           <a
             id="homepage-doctors-view-all-btn"
             href={OUR_DOCTORS_URL}
-            className="inline-flex h-10 shrink-0 items-center gap-2 rounded-lg border border-[#0B3446]/20 bg-white px-4 text-sm font-semibold text-[#0B3446] transition-colors hover:border-[#0B3446] sm:h-12 sm:px-6 sm:text-base"
+            className="inline-flex h-10 w-fit shrink-0 items-center gap-2 rounded-lg border border-[#0B3446]/20 bg-white px-4 text-sm font-semibold text-[#0B3446] transition-colors hover:border-[#0B3446] sm:h-12 sm:px-6 sm:text-base"
           >
-            <span>
-              View all<span className="hidden sm:inline"> doctors</span>
-            </span>
+            <span>Meet Our Doctors</span>
             <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
           </a>
         </div>
@@ -98,10 +97,13 @@ export function Doctors() {
               />
             </div>
             <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-6">
-              <p className="text-xs font-medium text-[#0B6A73] sm:text-sm">Featured doctor</p>
+              <p className="text-xs font-medium text-[#0B6A73] sm:text-sm">Featured Doctor</p>
               <h3 className="mt-1 text-lg font-semibold leading-snug text-[#0B3446] sm:text-2xl">{featured.name}</h3>
               <p className="mt-1 text-sm text-[#46575F] sm:text-base">
-                {featured.speciality} · {featured.department}
+                {featured.speciality} | {featured.department}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[#5B6B73] sm:text-[15px]">
+                Providing consultation and medical care for chest and respiratory conditions.
               </p>
               <div className="mt-4 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
                 <button
@@ -123,11 +125,14 @@ export function Doctors() {
             </div>
           </article>
 
-          <ul className="grid grid-cols-3 gap-3 sm:gap-6 lg:content-start">
-            {ROW_DOCTORS.map((d) => (
-              <DoctorCard key={d.name} doctor={d} />
-            ))}
-          </ul>
+          <div className="lg:self-start">
+            <p className="text-sm font-medium text-[#0B6A73]">Other Featured Specialists</p>
+            <ul className="mt-3 grid grid-cols-3 gap-3 sm:mt-4 sm:gap-6">
+              {ROW_DOCTORS.map((d) => (
+                <DoctorCard key={d.name} doctor={d} />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

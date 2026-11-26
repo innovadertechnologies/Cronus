@@ -2,19 +2,18 @@ import { ArrowUpRight } from "lucide-react";
 import { ABOUT_US_URL } from "../data";
 import { SectionHeading } from "./section-heading";
 
-// What is physically inside the building. The "why choose" section covers
-// what that means for patients, so the two sections don't repeat each other.
+// Facilities at a Glance (what is physically inside the building).
 const facilities = [
-  { name: "General & special rooms", note: "Spacious, well-ventilated wards" },
-  { name: "ICU & NICU", note: "Monitoring and life support" },
-  { name: "Maternity section", note: "Pregnancy to postnatal care" },
-  { name: "Pathology & X-ray", note: "Tests in the same building" },
-  { name: "Sonography & stress tests", note: "In-house diagnostics" },
-  { name: "Pharmacy & blood bank", note: "Open round the clock" },
+  { name: "General & Special Rooms", note: "Comfortable patient accommodation" },
+  { name: "ICU & NICU", note: "Critical care and monitoring" },
+  { name: "Maternity Section", note: "Pregnancy and postnatal care" },
+  { name: "Pathology & X-ray", note: "In-house diagnostic services" },
+  { name: "Sonography", note: "Imaging and diagnostic support" },
+  { name: "Pharmacy & Blood Bank", note: "Essential services available round the clock" },
 ];
 
-// Text-only About section; "View more" opens the existing About Us page on
-// the main hospital website (no duplicate page is created here).
+// Text-only About section; "Know More About Us" opens the existing About Us
+// page on the main hospital website (no duplicate page is created here).
 export function About() {
   return (
     <section id="about" aria-labelledby="homepage-about-title" className="scroll-mt-24 bg-white py-16 sm:py-24">
@@ -22,19 +21,19 @@ export function About() {
         <div>
           <SectionHeading
             id="homepage-about-title"
-            eyebrow="About Cronus Hospital"
-            title="A neighbourhood hospital with specialist depth"
+            eyebrow="ABOUT CRONUS MULTISPECIALITY HOSPITAL"
+            title="Dedicated to Better Health, Every Step of the Way"
           />
           <p className="mt-6 text-lg leading-relaxed text-[#1B2936]">
-            For more than two decades, Cronus Multispeciality Hospital has cared for families in Chhatarpur and South
-            Delhi, with doctors, specialists and nurses working as one team.
+            For more than two decades, Cronus Multispeciality Hospital has been providing healthcare services to families
+            in Chhatarpur and South Delhi.
           </p>
           <a
             id="homepage-about-view-more-btn"
             href={ABOUT_US_URL}
             className="mt-8 inline-flex h-12 items-center gap-2 rounded-lg bg-[#0E7C86] px-6 font-semibold text-white transition-colors hover:bg-[#0B6870]"
           >
-            View more
+            Know More About Us
             <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
           </a>
         </div>
@@ -42,16 +41,16 @@ export function About() {
         <div>
           <div className="space-y-4 text-[17px] leading-relaxed text-[#46575F]">
             <p>
-              With more than two decades of tradition, excellence and quality in medical care, we bring peace of mind to
-              the patients we care for every day, in a comfortable and convenient environment.
+              With experienced doctors across 40+ medical specialties, we bring consultations, diagnostics, surgical care,
+              and critical care facilities together under one roof.
             </p>
             <p>
-              Consultation, diagnostics, surgery, intensive care and follow-up all happen in one building, so you and
-              your family are not sent from place to place between appointments.
+              Our focus is on making quality healthcare accessible through experienced medical professionals, supportive
+              staff, and a patient-centred approach.
             </p>
           </div>
 
-          <h3 className="mt-10 text-base font-semibold text-[#0B3446]">Under one roof</h3>
+          <h3 className="mt-10 text-base font-semibold text-[#0B3446]">Facilities at a Glance</h3>
           <dl className="mt-4 grid border-t border-[#0B3446]/10 sm:grid-cols-2 sm:gap-x-8">
             {facilities.map((f) => (
               <div key={f.name} className="border-b border-[#0B3446]/10 py-3">

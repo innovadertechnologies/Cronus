@@ -1,40 +1,39 @@
-import { Ambulance, HeartPulse, MapPin, Microscope, ShieldCheck, Star, Stethoscope } from "lucide-react";
+import { BedDouble, HeartHandshake, MapPin, Microscope, Scissors, Star, Stethoscope } from "lucide-react";
 import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { TEL_HREF } from "../data";
 import { SectionHeading } from "./section-heading";
 
-// What the hospital means for a patient. Every point is backed by content
-// already on the site (doctor profiles, facilities, insurance notes).
+// Why Choose Cronus Multispeciality Hospital? (six feature blocks)
 const reasons = [
   {
-    icon: Ambulance,
-    title: "Emergency care, day and night",
-    text: "Our emergency department is open 24 hours a day, 7 days a week, for trauma and every urgent need.",
+    icon: HeartHandshake,
+    title: "01. Patient-Centred Approach",
+    text: "Care and attention focused on individual patient needs at every stage of treatment.",
   },
   {
     icon: Stethoscope,
-    title: "Experienced specialists",
-    text: "Doctors with 22 to 42 years of experience, across more than 40 medical specialities.",
+    title: "02. Comprehensive Medical Departments",
+    text: "Multiple specialities working together to address diverse healthcare requirements.",
   },
   {
     icon: Microscope,
-    title: "Tests without extra trips",
-    text: "Pathology, X-ray, sonography and stress tests are done in the same building as your consultation.",
+    title: "03. Advanced Treatment Facilities",
+    text: "Modern medical equipment and facilities supporting diagnosis and treatment.",
   },
   {
-    icon: HeartPulse,
-    title: "Critical care on site",
-    text: "ICU, NICU and a blood bank are ready for surgeries, deliveries and emergencies.",
+    icon: Scissors,
+    title: "04. Specialised Surgical Care",
+    text: "Experienced surgical teams providing care across various surgical disciplines.",
   },
   {
-    icon: ShieldCheck,
-    title: "Cashless insurance",
-    text: "Cashless treatment with major insurance providers, subject to your policy and the insurer's approval.",
+    icon: BedDouble,
+    title: "05. Complete Inpatient Care",
+    text: "Dedicated patient rooms, nursing support, and medical supervision throughout hospital stays.",
   },
   {
     icon: MapPin,
-    title: "Close to home",
-    text: "On 100 Feet Road in Chhatarpur, caring for South Delhi families for more than two decades.",
+    title: "06. Accessible Healthcare Services",
+    text: "Conveniently located in Chhatarpur, making specialised medical care accessible to South Delhi residents.",
   },
 ];
 
@@ -50,9 +49,9 @@ export function WhyChoose({ rating, count }: { rating: string; count: string }) 
           <SectionHeading
             id="homepage-why-title"
             tone="dark"
-            eyebrow="Why choose us"
-            title="Why families choose Cronus Hospital"
-            description="Specialist care, emergency cover and diagnostics in one place, close to home in South Delhi."
+            eyebrow="THE CRONUS APPROACH TO HEALTHCARE"
+            title="Healthcare That Brings Everything Together"
+            description="Finding the right medical care should not mean visiting multiple locations. At Cronus, essential healthcare services and specialists are available under one roof."
           />
 
           <div className="mt-8 flex items-center gap-4">
@@ -72,7 +71,7 @@ export function WhyChoose({ rating, count }: { rating: string; count: string }) 
               href="#appointment"
               className="inline-flex h-12 items-center rounded-lg bg-white px-6 font-semibold text-[#0B3446] transition-colors hover:bg-[#E3F6F7]"
             >
-              Book an appointment
+              Schedule Your Consultation
             </a>
             <a
               href={TEL_HREF}
@@ -85,22 +84,25 @@ export function WhyChoose({ rating, count }: { rating: string; count: string }) 
 
         {/* Dividers only between rows: the first row (first item on mobile,
             first two on sm+) has no top line, and nothing has a bottom line. */}
-        <ul className="grid gap-y-7 sm:grid-cols-2 sm:gap-x-10 lg:self-center">
-          {reasons.map(({ icon: Icon, title, text }) => (
-            <li
-              key={title}
-              className="flex gap-4 border-t border-white/10 pt-7 first:border-t-0 first:pt-0 sm:[&:nth-child(2)]:border-t-0 sm:[&:nth-child(2)]:pt-0"
-            >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-[#8FD3D8] ring-1 ring-white/10">
-                <Icon className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
-              </span>
-              <div>
-                <h3 className="text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-white/70">{text}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className="lg:self-center">
+          <h3 className="mb-8 text-xl font-semibold sm:text-2xl">Why Choose Cronus Multispeciality Hospital?</h3>
+          <ul className="grid gap-y-7 sm:grid-cols-2 sm:gap-x-10">
+            {reasons.map(({ icon: Icon, title, text }) => (
+              <li
+                key={title}
+                className="flex gap-4 border-t border-white/10 pt-7 first:border-t-0 first:pt-0 sm:[&:nth-child(2)]:border-t-0 sm:[&:nth-child(2)]:pt-0"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-[#8FD3D8] ring-1 ring-white/10">
+                  <Icon className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
+                </span>
+                <div>
+                  <h4 className="text-lg font-semibold">{title}</h4>
+                  <p className="mt-2 text-[15px] leading-relaxed text-white/70">{text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

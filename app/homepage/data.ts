@@ -65,18 +65,18 @@ export type Department = {
 };
 
 export const DEPARTMENT_CARDS: Department[] = [
-  { name: "Orthopaedics", text: "Knee & hip replacement, fractures and joint care", icon: "bone", href: "/knee-and-hip" },
+  { name: "Orthopaedics", text: "Bone, joint and fracture care", icon: "bone", href: "/knee-and-hip" },
   { name: "Spine Care", text: "Back pain, sciatica and slipped disc treatment", icon: "spine", href: "/spine" },
-  { name: "Obstetrics & Gynaecology", text: "Pregnancy, delivery and women's health", icon: "baby", href: "/maternity" },
-  { name: "Hernia Surgery", text: "Laparoscopic hernia repair", icon: "scissors", href: "/hernia" },
-  { name: "Gallbladder Surgery", text: "Laparoscopic gallbladder removal", icon: "scissors", href: "/gallbladder-surgery" },
-  { name: "Urology", text: "Kidney stones, prostate and urinary care", icon: "droplet", href: "/urology" },
-  { name: "Internal Medicine", text: "TB, chest and general medicine", icon: "stethoscope", href: "#appointment" },
-  { name: "Cardiology", text: "Diagnosis and management of heart disease", icon: "heart", href: "#appointment" },
-  { name: "Neuro Surgery", text: "Brain and nerve surgery", icon: "brain", href: "#appointment" },
-  { name: "ENT", text: "Ear, nose and throat care", icon: "ear", href: "#appointment" },
-  { name: "Ophthalmology", text: "Eye care and vision", icon: "eye", href: "#appointment" },
-  { name: "Dental Surgery", text: "Dental care for all ages", icon: "smile", href: "#appointment" },
+  { name: "Obstetrics & Gynaecology", text: "Pregnancy, delivery and women's healthcare", icon: "baby", href: "/maternity" },
+  { name: "Hernia Surgery", text: "Surgical management of hernia", icon: "scissors", href: "/hernia" },
+  { name: "Gallbladder Surgery", text: "Laparoscopic gallbladder procedures", icon: "scissors", href: "/gallbladder-surgery" },
+  { name: "Urology", text: "Kidney stones, prostate and urinary conditions", icon: "droplet", href: "/urology" },
+  { name: "Internal Medicine", text: "General medicine, chest conditions and TB", icon: "stethoscope", href: "#appointment" },
+  { name: "Cardiology", text: "Heart health evaluation and treatment", icon: "heart", href: "#appointment" },
+  { name: "Neuro Surgery", text: "Brain and nerve-related surgical care", icon: "brain", href: "#appointment" },
+  { name: "ENT", text: "Ear, nose, and throat treatments", icon: "ear", href: "#appointment" },
+  { name: "Ophthalmology", text: "Eye care and vision-related conditions", icon: "eye", href: "#appointment" },
+  { name: "Dental Surgery", text: "Dental treatments for different age groups", icon: "smile", href: "#appointment" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -359,38 +359,32 @@ export const PRACTO_STORIES: PractoStory[] = [
 
 export const HOMEPAGE_FAQS: Faq[] = [
   {
-    question: "How do I book an appointment at Cronus Multispeciality Hospital?",
+    question: "1. What medical specialities are available at Cronus Multispeciality Hospital?",
     answer:
-      "Fill in the appointment form on this page, call us or send us a WhatsApp message. Our team will call you back to confirm a suitable time with the right specialist.",
+      "Cronus offers 40+ medical specialities, including Orthopaedics, Spine Care, Obstetrics & Gynaecology, Urology, Cardiology, Internal Medicine, ENT, Ophthalmology, and General Surgery.",
   },
   {
-    question: "Is the emergency department open 24x7?",
+    question: "2. Does Cronus Hospital provide 24×7 emergency services?",
     answer:
-      "Yes. Our emergency department is open 24 hours a day, 7 days a week, for trauma and every other urgent medical need. Call our emergency number for immediate help.",
+      "Yes. Cronus Multispeciality Hospital provides round-the-clock emergency services for patients requiring urgent medical attention.",
   },
   {
-    question: "Which departments and specialities are available?",
+    question: "3. Can I book an appointment with a specific doctor?",
     answer:
-      "Cronus offers 40+ medical specialities, including Orthopaedics, Spine Care, Obstetrics & Gynaecology, General & Laparoscopic Surgery, Urology, Internal Medicine, Cardiology, Neuro Surgery, ENT, Ophthalmology and Dental Surgery.",
+      "Yes. You can mention your preferred doctor's name while filling out the appointment form or contact our team directly for assistance.",
   },
   {
-    question: "Do you accept health insurance and offer cashless treatment?",
-    answer:
-      "Cashless treatment is available with major insurance providers. It is subject to your insurance policy, the hospital network and the insurer's approval, so please share your policy details with our team to confirm.",
+    question: "4. Are diagnostic facilities available within the hospital?",
+    answer: "Yes. The hospital provides in-house pathology, X-ray, sonography, and stress testing facilities.",
   },
   {
-    question: "Are diagnostics and pharmacy available inside the hospital?",
+    question: "5. Does the hospital offer cashless insurance facilities?",
     answer:
-      "Yes. Pathology, X-ray, sonography and stress tests are done in-house, and our pharmacy is open round the clock.",
+      "Yes. Cashless treatment is available with major insurance providers, subject to your insurance policy and insurer approval.",
   },
   {
-    question: "Where is the hospital located?",
+    question: "6. Where is Cronus Multispeciality Hospital located?",
     answer:
-      "We are on 100 Feet Road, Phase 1, Chhatarpur Enclave Phase 2, Chhatarpur, New Delhi 110074. Use the Directions button on this page to open the route in Google Maps.",
-  },
-  {
-    question: "Can I choose a specific doctor?",
-    answer:
-      "Yes. Mention the doctor's name in the message field of the appointment form, or tell our team when they call you back, and we will try to book you with that doctor.",
+      "Cronus Multispeciality Hospital is located on 100 Feet Road, Chhatarpur, New Delhi, making it accessible to patients across South Delhi and nearby areas.",
   },
 ];

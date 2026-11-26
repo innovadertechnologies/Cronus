@@ -1,22 +1,23 @@
 import type { ReactNode } from "react";
-import { Award, Clock, ShieldCheck, Star, Stethoscope, Users } from "lucide-react";
+import { Award, Pill, Siren, Star, Stethoscope } from "lucide-react";
 import { CountUp } from "./count-up";
 
-type Props = { rating: string; count: string };
+type Props = { rating: string };
 
-// Same design as before; the numeric figures now count up from zero the
-// first time the strip scrolls into view. Figures come from the site's
-// existing content (and the live Google rating when configured).
-export function TrustStrip({ rating, count }: Props) {
+// Hospital Highlights: a separate horizontal strip below About. Same design
+// as before; the figures count up from zero the first time the strip scrolls
+// into view. The rating is the Google rating shown elsewhere on the page
+// (live from Google when configured).
+export function TrustStrip({ rating }: Props) {
   const items: { icon: typeof Award; value: ReactNode; label: string }[] = [
     {
       icon: Award,
       value: (
         <>
-          <CountUp value={20} />+ years
+          <CountUp value={20} />+
         </>
       ),
-      label: "Of trusted care",
+      label: "Years of Healthcare Experience",
     },
     {
       icon: Stethoscope,
@@ -25,35 +26,33 @@ export function TrustStrip({ rating, count }: Props) {
           <CountUp value={40} />+
         </>
       ),
-      label: "Medical specialities",
+      label: "Medical Specialities",
     },
-    {
-      icon: Users,
-      value: (
-        <>
-          <CountUp value={9999} />+
-        </>
-      ),
-      label: "Happy patients",
-    },
-    { icon: Clock, value: "24x7", label: "Emergency & pharmacy" },
+    { icon: Siren, value: "24×7", label: "Emergency Services" },
+    { icon: Pill, value: "24×7", label: "Pharmacy" },
     {
       icon: Star,
       value: (
         <>
-          <CountUp value={Number(rating)} decimals={1} /> / 5
+          <CountUp value={Number(rating)} decimals={1} />
+          /5
         </>
       ),
-      label: `${count} Google reviews`,
+      label: "Google Rating",
     },
-    { icon: ShieldCheck, value: "Cashless", label: "Insurance available*" },
   ];
 
   return (
-    <section aria-label="Why patients trust Cronus" className="bg-[#0B3446] text-white">
-      <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-white/10 sm:grid-cols-3 lg:grid-cols-6">
+    <section aria-label="Hospital Highlights" className="bg-[#0B3446] text-white">
+      {/* Five items, aligned with the page container: two per row on phones (the
+          last one spans the row, rows split by a hairline), one row from 640px
+          with dividers only between items. */}
+      <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 px-4 sm:grid-cols-5 sm:gap-x-0 sm:divide-x sm:divide-white/10 sm:px-8">
         {items.map(({ icon: Icon, value, label }) => (
-          <li key={label} className="flex flex-col gap-3 bg-[#0B3446] px-4 py-6 sm:px-6 sm:py-8">
+          <li
+            key={label}
+            className="flex flex-col gap-3 border-t border-white/10 py-6 last:col-span-2 [&:nth-child(-n+2)]:border-t-0 sm:border-t-0 sm:px-6 sm:py-8 sm:first:pl-0 sm:last:col-span-1 sm:last:pr-0"
+          >
             <Icon className="h-[18px] w-[18px] text-[#8FD3D8]" strokeWidth={1.5} aria-hidden="true" />
             <span>
               <span className="block text-2xl font-semibold tabular-nums">{value}</span>

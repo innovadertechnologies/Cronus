@@ -68,15 +68,15 @@ export function Departments() {
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeading
           id="homepage-departments-title"
-          eyebrow="Our departments"
-          title="Specialist care across 40+ specialities"
-          description="From joint replacement and maternity to urology and emergency care, find the right department for you."
+          eyebrow="OUR MEDICAL DEPARTMENTS"
+          title="Specialised Care for Every Health Need"
+          description="From preventive consultations to advanced surgical treatments, our departments bring together specialists to address a wide range of healthcare needs."
         />
         <a
           href="#appointment"
           className="inline-flex w-fit shrink-0 items-center gap-2 rounded-lg border border-[#0B3446]/20 px-5 py-2.5 text-[15px] font-semibold text-[#0B3446] transition-colors hover:border-[#0B3446]"
         >
-          Not sure? Ask us
+          Explore All Departments
           <ArrowRight className="h-4 w-4" />
         </a>
       </div>

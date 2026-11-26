@@ -1,10 +1,12 @@
-import { Clock, Siren } from "lucide-react";
+import { Phone, Siren } from "lucide-react";
 import { WhatsappIcon } from "@/app/components/social-icons";
 import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { TEL_HREF, WHATSAPP_HREF } from "../data";
 import { AppointmentForm } from "./appointment-form";
 import { SectionHeading } from "./section-heading";
 
+// Final appointment section. "Book an Appointment" is the form's own button;
+// calling and WhatsApp sit beside the text.
 export function BottomAppointment() {
   return (
     <section
@@ -16,55 +18,49 @@ export function BottomAppointment() {
         <div>
           <SectionHeading
             id="homepage-bottom-title"
-            eyebrow="We're here to help"
-            title="Ready to book your visit?"
-            description="Send us your details and our team will get back to you to confirm a time with the right specialist."
+            eyebrow="WE'RE HERE FOR YOUR HEALTH"
+            title="The Right Care Begins with the Right Consultation"
+            description={
+              <>
+                Whether you need a specialist consultation, diagnostic services, or medical treatment, Cronus
+                Multispeciality Hospital is here to guide you at every step.
+                <span className="mt-4 block">Connect with our team to schedule your appointment.</span>
+              </>
+            }
           />
-          <ul className="mt-8 space-y-4">
-            <li className="flex items-center gap-4 rounded-2xl bg-white p-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#D9443F]/10 text-[#D9443F]">
-                <Siren className="h-5 w-5" />
-              </span>
-              <span className="text-[15px] text-[#46575F]">
-                <span className="block font-semibold text-[#0B3446]">Emergency? Don&apos;t wait.</span>
-                Call us 24x7 on{" "}
-                <a href={TEL_HREF} className="font-semibold text-[#0B3446] underline underline-offset-4">
-                  {CLINIC_PHONE_DISPLAY}
-                </a>
-              </span>
-            </li>
-            <li className="flex items-center gap-4 rounded-2xl bg-white p-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1FA855]/10 text-[#1FA855]">
-                <WhatsappIcon className="h-5 w-5" />
-              </span>
-              <span className="text-[15px] text-[#46575F]">
-                <span className="block font-semibold text-[#0B3446]">Prefer to chat?</span>
-                <a
-                  href={WHATSAPP_HREF}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[#0B3446] underline underline-offset-4"
-                >
-                  Message us on WhatsApp
-                </a>
-              </span>
-            </li>
-            <li className="flex items-center gap-4 rounded-2xl bg-white p-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#E3F6F7] text-[#0B6A73]">
-                <Clock className="h-5 w-5" />
-              </span>
-              <span className="text-[15px] text-[#46575F]">
-                <span className="block font-semibold text-[#0B3446]">Open round the clock</span>
-                Emergency department and pharmacy, 7 days a week.
-              </span>
-            </li>
-          </ul>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              id="homepage-bottom-call-btn"
+              href={TEL_HREF}
+              className="inline-flex h-12 items-center gap-2 rounded-lg bg-[#0B3446] px-6 font-semibold tabular-nums text-white transition-colors hover:bg-[#0E7C86]"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              Call Now: {CLINIC_PHONE_DISPLAY}
+            </a>
+            <a
+              id="homepage-bottom-whatsapp-btn"
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-12 items-center gap-2 rounded-lg border border-[#0B3446]/20 bg-white px-6 font-semibold text-[#0B3446] transition-colors hover:border-[#0B3446]"
+            >
+              <WhatsappIcon className="h-4 w-4" />
+              WhatsApp Us
+            </a>
+          </div>
         </div>
 
         <AppointmentForm
           idPrefix="homepage-bottom-form"
-          title="Request a callback"
-          subtitle="We'll call you to confirm your appointment."
+          labelledBy="homepage-bottom-title"
+          labels={{ name: "Full Name", phone: "Phone Number", department: "Department", message: "Message" }}
+          submitLabel="Book an Appointment"
+          note={
+            <>
+              <Siren className="h-3.5 w-3.5 text-[#D9443F]" aria-hidden="true" />
+              Emergency Support: Available 24×7
+            </>
+          }
         />
       </div>
     </section>
