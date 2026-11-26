@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Loader2, Lock, MapPin, Navigation, Phone, Siren } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ChevronDown, Loader2, MapPin, Navigation, Phone, Siren } from "lucide-react";
 import { useLeadForm } from "@/app/lib/use-lead-form";
-import { CLINIC_ADDRESS, CLINIC_NAME, CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
+import { CLINIC_ADDRESS, CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { submitHomeLead, type HomeLeadFormState } from "@/app/home/actions";
 import { BOOKING_EVENT, type BookingRequest } from "@/app/home/components/booking";
 import { DIRECTIONS_URL, EMERGENCY_TEL_HREF, FORM_DEPARTMENTS, TEL_HREF } from "../data";
@@ -20,8 +20,15 @@ const infoIconClass =
 type Props = {
   // Prefix for input ids so two forms can live on one page.
   idPrefix: string;
-  title: string;
-  subtitle: string;
+  // Card heading; when left out, the form is labelled by `labelledBy` (the
+  // surrounding section heading) instead.
+  title?: string;
+  subtitle?: string;
+  labelledBy?: string;
+  labels: { name: string; phone: string; department: string; message: ReactNode };
+  submitLabel: string;
+  // Line under the submit button.
+  note: ReactNode;
   // "split" adds an info panel beside the form (hero); "plain" is the form alone.
   variant?: "split" | "plain";
   // Only one form reacts to "Book appointment" clicks (doctor cards etc.).
@@ -30,7 +37,17 @@ type Props = {
 
 // Appointment enquiry card. Submits through the existing home page server
 // action, so leads land in the same sheet and go to the same thank-you page.
-export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", listenForBooking = false }: Props) {
+export function AppointmentForm({
+  idPrefix,
+  title,
+  subtitle,
+  labelledBy,
+  labels,
+  submitLabel,
+  note,
+  variant = "plain",
+  listenForBooking = false,
+}: Props) {
   const { state, onSubmit, pending } = useLeadForm(submitHomeLead, initialState);
   const [department, setDepartment] = useState("");
   const [highlight, setHighlight] = useState(false);
@@ -56,25 +73,25 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
   const id = (field: string) => `${idPrefix}-${field}`;
   const split = variant === "split";
 
-  const heading = (
+  const heading = title ? (
     <div>
       <h2 id={id("title")} className="text-2xl font-semibold text-[#0B3446] sm:text-[1.75rem]">
         {title}
       </h2>
       <p className="mt-2 text-[15px] leading-relaxed text-[#5B6B73]">{subtitle}</p>
     </div>
-  );
+  ) : null;
 
   const form = (
     <form
       onSubmit={pending ? undefined : onSubmit}
       noValidate
-      aria-labelledby={id("title")}
+      aria-labelledby={title ? id("title") : labelledBy}
       className="grid gap-5 sm:grid-cols-2"
     >
       <div>
         <label htmlFor={id("name")} className={labelClass}>
-          Full name
+          {labels.name}
         </label>
         <input
           ref={nameRef}
@@ -89,7 +106,7 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
       </div>
       <div>
         <label htmlFor={id("phone")} className={labelClass}>
-          Phone number
+          {labels.phone}
         </label>
         <div className="relative">
           <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[15px] text-[#5B6B73]">
@@ -109,7 +126,7 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
       </div>
       <div className="sm:col-span-2">
         <label htmlFor={id("department")} className={labelClass}>
-          Department
+          {labels.department}
         </label>
         <div className="relative">
           <select
@@ -134,7 +151,7 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
       </div>
       <div className="sm:col-span-2">
         <label htmlFor={id("message")} className={labelClass}>
-          Message <span className="font-normal text-[#5B6B73]">(optional)</span>
+          {labels.message}
         </label>
         <textarea
           id={id("message")}
@@ -159,11 +176,10 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
           className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#0E7C86] px-6 text-base font-semibold text-white transition-colors hover:bg-[#0B6870] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {pending && <Loader2 className="h-5 w-5 animate-spin" />}
-          {pending ? "Sending" : "Book appointment"}
+          {pending ? "Sending" : submitLabel}
         </button>
         <p className="mt-3 flex items-center justify-center gap-1.5 text-[13px] text-[#5B6B73]">
-          <Lock className="h-3.5 w-3.5" aria-hidden="true" />
-          Your details are only used to arrange your visit
+          {note}
         </p>
       </div>
     </form>
@@ -178,7 +194,7 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
       <div className={cardClass}>
         <div className="p-6 sm:p-8">
           {heading}
-          <div className="mt-6 border-t border-[#0B3446]/10 pt-6">{form}</div>
+          <div className={heading ? "mt-6 border-t border-[#0B3446]/10 pt-6" : ""}>{form}</div>
         </div>
       </div>
     );
@@ -189,11 +205,6 @@ export function AppointmentForm({ idPrefix, title, subtitle, variant = "plain", 
       {/* Info panel */}
       <aside className="flex flex-col bg-[#F6F3EE] p-6 sm:p-8 lg:p-10">
         {heading}
-
-        <p className="mt-5 text-[15px] leading-relaxed text-[#46575F]">
-          {CLINIC_NAME} has cared for families in Chhatarpur and South Delhi for more than two decades, with 40+
-          specialities, ICU, in-house diagnostics and a round-the-clock pharmacy under one roof.
-        </p>
 
         <address className="mt-8 grid gap-5 border-t border-[#0B3446]/10 pt-6 not-italic">
           <div className="flex gap-4">

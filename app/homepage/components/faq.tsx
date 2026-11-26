@@ -13,9 +13,8 @@ export function Faq() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
             id="homepage-faq-title"
-            eyebrow="FAQs"
-            title="Frequently asked questions"
-            description="Answers to common questions about appointments, departments and visiting the hospital."
+            eyebrow="NEED MORE INFORMATION?"
+            title="Frequently Asked Questions"
           />
           <div className="mt-8 rounded-2xl bg-[#0B3446] p-6 text-white">
             <MessageCircleQuestion className="h-8 w-8 text-[#8FD3D8]" />

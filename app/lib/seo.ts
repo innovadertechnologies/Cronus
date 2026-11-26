@@ -430,3 +430,57 @@ export function homepageSchema(faqs: Faq[] = []) {
 
   return { "@context": "https://schema.org", "@graph": graph };
 }
+
+// ---------------------------------------------------------------------------
+// /blog – the health articles listing page.
+// ---------------------------------------------------------------------------
+
+export const BLOG = {
+  path: "/blog",
+  title: `Health Insights & Medical Blogs | ${CLINIC_NAME}`,
+  description:
+    "Health articles from Cronus Multispeciality Hospital, Chhatarpur: practical guidance on orthopaedics, spine care, pregnancy, urology, surgery and more, to help you make informed decisions about your health.",
+  ogImage: "/hptl.png",
+  ogImageAlt: `${CLINIC_NAME} building, Chhatarpur`,
+};
+
+export function blogMetadata(): Metadata {
+  const { path, title, description, ogImage, ogImageAlt } = BLOG;
+  return {
+    title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      url: path,
+      siteName: CLINIC_NAME,
+      locale: "en_IN",
+      title,
+      description,
+      images: [{ url: ogImage, width: 1254, height: 1254, alt: ogImageAlt }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
+  };
+}
+
+// Hospital + the listing page as a CollectionPage. Individual articles get
+// BlogPosting markup once their own pages exist.
+export function blogSchema() {
+  const url = absolute(BLOG.path);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      hospitalSchema(),
+      {
+        "@type": "CollectionPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: BLOG.title,
+        description: BLOG.description,
+        inLanguage: "en-IN",
+        about: { "@id": HOSPITAL_ID },
+        publisher: { "@id": HOSPITAL_ID },
+      },
+    ],
+  };
+}

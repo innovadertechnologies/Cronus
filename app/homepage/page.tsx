@@ -41,7 +41,7 @@ export default async function Homepage() {
         <IntroLine />
         <AppointmentSection />
         <About />
-        <TrustStrip rating={google.rating} count={google.count} />
+        <TrustStrip rating={google.rating} />
         <Location />
         <Departments />
         <Doctors />
