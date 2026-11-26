@@ -484,3 +484,81 @@ export function blogSchema() {
     ],
   };
 }
+
+// ---------------------------------------------------------------------------
+// /blog/[slug] – one article.
+// ---------------------------------------------------------------------------
+
+export type BlogArticleSeo = {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  publishedAt: string; // ISO date
+  image?: string;
+  imageAlt?: string;
+  wordCount: number;
+};
+
+const articlePath = (slug: string) => `${BLOG.path}/${slug}`;
+
+export function blogArticleMetadata(article: BlogArticleSeo): Metadata {
+  const path = articlePath(article.slug);
+  const title = `${article.title} | ${CLINIC_NAME}`;
+  const image = article.image ?? BLOG.ogImage;
+  const imageAlt = article.image ? (article.imageAlt ?? article.title) : BLOG.ogImageAlt;
+  return {
+    title,
+    description: article.description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      url: path,
+      siteName: CLINIC_NAME,
+      locale: "en_IN",
+      title,
+      description: article.description,
+      publishedTime: article.publishedAt,
+      section: article.category,
+      images: [{ url: image, alt: imageAlt }],
+    },
+    twitter: { card: "summary_large_image", title, description: article.description, images: [image] },
+  };
+}
+
+// The article as a BlogPosting (published by the hospital), plus its
+// breadcrumb trail: Home › Health blog › article.
+export function blogArticleSchema(article: BlogArticleSeo) {
+  const url = absolute(articlePath(article.slug));
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      hospitalSchema(),
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        mainEntityOfPage: url,
+        url,
+        headline: article.title,
+        description: article.description,
+        image: absolute(article.image ?? BLOG.ogImage),
+        datePublished: article.publishedAt,
+        dateModified: article.publishedAt,
+        articleSection: article.category,
+        wordCount: article.wordCount,
+        inLanguage: "en-IN",
+        author: { "@id": HOSPITAL_ID },
+        publisher: { "@id": HOSPITAL_ID },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absolute(HOMEPAGE.path) },
+          { "@type": "ListItem", position: 2, name: "Health blog", item: absolute(BLOG.path) },
+          { "@type": "ListItem", position: 3, name: article.title, item: url },
+        ],
+      },
+    ],
+  };
+}
