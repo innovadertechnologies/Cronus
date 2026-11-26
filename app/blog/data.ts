@@ -157,12 +157,27 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export const FEATURED_POST = BLOG_POSTS.find((p) => p.featured) ?? BLOG_POSTS[0];
 
-// No article pages exist yet, so "Read more" leads to the department's
-// existing page, or to the departments section of /homepage when it has none.
-// Switch this to `/blog/${post.slug}` once article pages are built.
 export function postHref(post: BlogPost) {
-  const dept = DEPARTMENT_CARDS.find((d) => d.name === post.category);
+  return `/blog/${post.slug}`;
+}
+
+export function getPost(slug: string) {
+  return BLOG_POSTS.find((p) => p.slug === slug);
+}
+
+// The department's own page when it has one, otherwise the departments
+// section of /homepage.
+export function departmentHref(category: BlogCategory) {
+  const dept = DEPARTMENT_CARDS.find((d) => d.name === category);
   return dept?.href.startsWith("/") ? dept.href : "/homepage#departments";
+}
+
+// Up to three other articles: same department first, then the newest.
+export function relatedPosts(post: BlogPost, count = 3) {
+  const others = BLOG_POSTS.filter((p) => p.id !== post.id);
+  const same = others.filter((p) => p.category === post.category);
+  const rest = others.filter((p) => p.category !== post.category);
+  return [...same, ...rest].slice(0, count);
 }
 
 export function departmentIcon(category: BlogCategory): Department["icon"] {
@@ -181,3 +196,16 @@ export const BLOG_NAV_LINKS = NAV_LINKS.map((link) => ({ ...link, href: `/homepa
 export const APPOINTMENT_HREF = "/homepage#appointment";
 
 export const POSTS_PER_PAGE = 6;
+
+// Reading time at ~200 words a minute, at least one minute.
+export function readingMinutes(words: number) {
+  return Math.max(1, Math.round(words / 200));
+}
+
+// "What you can do at home" → "what-you-can-do-at-home" (heading anchors).
+export function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
