@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Award, Pill, Siren, Star, Stethoscope } from "lucide-react";
+import { Award, ShieldCheck, Siren, Star, Stethoscope, Users } from "lucide-react";
 import { CountUp } from "./count-up";
 
 type Props = { rating: string };
@@ -28,8 +28,25 @@ export function TrustStrip({ rating }: Props) {
       ),
       label: "Medical Specialities",
     },
+    {
+      icon: Users,
+      value: (
+        <>
+          <CountUp value={50000} />+
+        </>
+      ),
+      label: "Patients Treated",
+    },
     { icon: Siren, value: "24×7", label: "Emergency Services" },
-    { icon: Pill, value: "24×7", label: "Pharmacy" },
+    {
+      icon: ShieldCheck,
+      value: (
+        <>
+          <CountUp value={100} />%
+        </>
+      ),
+      label: "Cashless Insurance Support",
+    },
     {
       icon: Star,
       value: (
@@ -44,14 +61,14 @@ export function TrustStrip({ rating }: Props) {
 
   return (
     <section aria-label="Hospital Highlights" className="bg-[#0B3446] text-white">
-      {/* Five items, aligned with the page container: two per row on phones (the
-          last one spans the row, rows split by a hairline), one row from 640px
-          with dividers only between items. */}
-      <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 px-4 sm:grid-cols-5 sm:gap-x-0 sm:divide-x sm:divide-white/10 sm:px-8">
+      {/* Six items, aligned with the page container: two per row on phones and
+          three per row on tablets (rows split by a hairline, dividers between
+          items in a row), one row of six from 1024px. */}
+      <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 px-4 sm:grid-cols-3 sm:gap-x-0 sm:px-8 lg:grid-cols-6">
         {items.map(({ icon: Icon, value, label }) => (
           <li
             key={label}
-            className="flex flex-col gap-3 border-t border-white/10 py-6 last:col-span-2 [&:nth-child(-n+2)]:border-t-0 sm:border-t-0 sm:px-6 sm:py-8 sm:first:pl-0 sm:last:col-span-1 sm:last:pr-0"
+            className="flex flex-col gap-3 border-white/10 py-6 max-sm:[&:nth-child(n+3)]:border-t sm:py-8 sm:max-lg:px-6 sm:max-lg:[&:nth-child(3n+1)]:pl-0 sm:max-lg:[&:nth-child(n+4)]:border-t sm:max-lg:[&:not(:nth-child(3n+1))]:border-l lg:px-5 lg:first:pl-0 lg:last:pr-0 lg:[&:not(:first-child)]:border-l"
           >
             <Icon className="h-[18px] w-[18px] text-[#8FD3D8]" strokeWidth={1.5} aria-hidden="true" />
             <span>

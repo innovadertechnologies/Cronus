@@ -74,33 +74,29 @@ export function Doctors() {
         />
 
         <div className="mt-8 grid gap-6 sm:mt-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-8">
-          <article className="flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-[#0B3446]/10 sm:flex-row">
-            {featured.image && (
-              <div className="relative aspect-[4/3] w-full shrink-0 bg-[#E3F6F7] sm:aspect-auto sm:w-[44%]">
-                <Portrait doctor={featured} sizes="(min-width: 1024px) 230px, (min-width: 640px) 44vw, 100vw" initialsClass="" />
-              </div>
-            )}
-            <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-8">
-              <div className="flex items-center gap-4">
-                {!featured.image && (
-                  <span
-                    aria-hidden="true"
-                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#E3F6F7] text-lg font-semibold text-[#0B6A73] ring-1 ring-[#0E7C86]/15"
-                  >
-                    {initials(featured.name)}
-                  </span>
-                )}
-                <div className="min-w-0">
-                  <p className="text-sm font-medium text-[#0B6A73]">Featured doctor</p>
-                  <p className="mt-0.5 text-sm text-[#5B6B73]">{featured.department}</p>
-                </div>
-              </div>
-
-              <h3 className="mt-6 text-2xl font-semibold leading-tight text-[#0B3446] sm:text-[1.75rem] sm:tracking-[-0.01em]">
+          <article className="flex overflow-hidden rounded-2xl bg-white ring-1 ring-[#0B3446]/10">
+            {/* Photo panel on the left, running to the card edge. Until a photo
+                is added (FEATURED_DOCTOR.image), it holds an initials avatar. */}
+            <div className="relative flex w-[42%] shrink-0 items-center justify-center bg-[#E3F6F7] sm:w-[48%]">
+              {featured.image ? (
+                <Portrait doctor={featured} sizes="(min-width: 1024px) 240px, (min-width: 640px) 48vw, 42vw" initialsClass="" />
+              ) : (
+                <span
+                  role="img"
+                  aria-label={`${featured.name} (photo coming soon)`}
+                  className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-xl font-semibold text-[#0B6A73] shadow-[0_8px_24px_rgba(11,52,70,0.08)] ring-1 ring-[#0E7C86]/15 sm:h-32 sm:w-32 sm:text-[2.25rem]"
+                >
+                  {initials(featured.name)}
+                </span>
+              )}
+            </div>
+            <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-6 lg:p-7">
+              <p className="text-xs font-medium text-[#0B6A73] sm:text-sm">Featured doctor</p>
+              <h3 className="mt-1 text-lg font-semibold leading-tight text-[#0B3446] sm:mt-2 sm:text-[1.75rem] sm:tracking-[-0.01em]">
                 {featured.name}
               </h3>
-              <p className="mt-2 text-base font-medium text-[#0B6A73]">{featured.speciality}</p>
-              <p className="mt-4 border-t border-[#0B3446]/10 pt-4 text-[15px] leading-relaxed text-[#46575F]">
+              <p className="mt-1 text-sm font-medium text-[#0B6A73] sm:mt-2 sm:text-base">{featured.speciality}</p>
+              <p className="mt-3 border-t border-[#0B3446]/10 pt-3 text-[13px] leading-snug text-[#46575F] sm:mt-4 sm:pt-4 sm:text-[15px] sm:leading-relaxed">
                 Providing consultation and medical care for chest and respiratory conditions.
               </p>
             </div>

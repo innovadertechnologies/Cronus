@@ -79,7 +79,7 @@ export function Reviews({ google }: Props) {
                 <p className="mt-0.5 flex flex-wrap items-center gap-2 text-sm text-[#5B6B73]">
                   <span className="text-xl font-semibold tabular-nums text-[#0B3446]">{google.rating}</span>
                   <Stars rating={Number(google.rating)} />
-                  <span>({google.count} reviews)</span>
+                  <span>(Based on {google.count} Google reviews)</span>
                 </p>
               </div>
             </div>
