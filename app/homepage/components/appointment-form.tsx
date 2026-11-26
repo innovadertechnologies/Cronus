@@ -185,9 +185,8 @@ export function AppointmentForm({
     </form>
   );
 
-  const cardClass = `overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(11,52,70,0.05),0_16px_40px_rgba(11,52,70,0.10)] ring-1 transition-[box-shadow] duration-300 ${
-    highlight ? "ring-2 ring-[#0E7C86]" : "ring-[#0B3446]/10"
-  }`;
+  const cardClass = `overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(11,52,70,0.05),0_16px_40px_rgba(11,52,70,0.10)] ring-1 transition-[box-shadow] duration-300 ${highlight ? "ring-2 ring-[#0E7C86]" : "ring-[#0B3446]/10"
+    }`;
 
   if (!split) {
     return (
@@ -206,7 +205,7 @@ export function AppointmentForm({
       <aside className="flex flex-col bg-[#F6F3EE] p-6 sm:p-8 lg:p-10">
         {heading}
 
-        <address className="mt-8 grid gap-5 border-t border-[#0B3446]/10 pt-6 not-italic">
+        {/* <address className="mt-8 grid gap-5 border-t border-[#0B3446]/10 pt-6 not-italic">
           <div className="flex gap-4">
             <span className={`${infoIconClass} text-[#D9443F]`}>
               <Siren className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
@@ -250,7 +249,7 @@ export function AppointmentForm({
               </a>
             </div>
           </div>
-        </address>
+        </address> */}
       </aside>
 
       {/* Form */}

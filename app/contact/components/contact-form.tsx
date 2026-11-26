@@ -86,7 +86,7 @@ export function ContactForm() {
             required
             value={department}
             onChange={(e) => setDepartment(e.target.value)}
-            className={`${inputClass} cursor-pointer appearance-none pr-12 ${department ? "" : "text-[#8A979D]"}`}
+            className={`${inputClass} cursor-pointer appearance-none pr-12 ${department ? "" : "text-[#5B6B73]"}`}
           >
             <option value="">Select department</option>
             {FORM_DEPARTMENTS.map((d) => (

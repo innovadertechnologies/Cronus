@@ -114,10 +114,7 @@ export function Footer() {
         <div>
           <h2 className={headingClass}>Contact us</h2>
           <address className="mt-5 space-y-4 text-[15px] not-italic text-white/70">
-            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="flex gap-3 hover:text-white">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#8FD3D8]" />
-              <span className="leading-relaxed">{CLINIC_ADDRESS}</span>
-            </a>
+
             <a href={TEL_HREF} className="flex items-center gap-3 font-semibold text-white hover:text-[#8FD3D8]">
               <Phone className="h-4 w-4 shrink-0 text-[#8FD3D8]" />
               {CLINIC_PHONE_DISPLAY}
@@ -126,9 +123,14 @@ export function Footer() {
               <Mail className="h-4 w-4 shrink-0 text-[#8FD3D8]" />
               {HOSPITAL_EMAIL}
             </a>
+            <h2 className={headingClass}>Location</h2>
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="flex gap-3 hover:text-white">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#8FD3D8]" />
+              <span className="leading-relaxed">{CLINIC_ADDRESS}</span>
+            </a>
             <p className="flex items-center gap-3">
               <Clock className="h-4 w-4 shrink-0 text-[#8FD3D8]" />
-              Emergency &amp; pharmacy: 24 hours, 7 days
+              Emergency &amp; pharmacy: 24x7 days
             </p>
           </address>
         </div>

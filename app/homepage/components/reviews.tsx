@@ -63,8 +63,8 @@ export function Reviews({ google }: Props) {
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <SectionHeading
           id="homepage-reviews-title"
-          eyebrow="Google reviews"
-          title="What our patients say"
+          eyebrow="PATIENT EXPERIENCES"
+          title="Trusted by Patients."
           description="Reviews from patients, published on Google."
         />
 

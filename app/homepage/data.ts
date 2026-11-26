@@ -49,17 +49,17 @@ export type Department = {
   name: string;
   text: string;
   icon:
-    | "stethoscope"
-    | "bone"
-    | "spine"
-    | "baby"
-    | "scissors"
-    | "droplet"
-    | "ear"
-    | "brain"
-    | "heart"
-    | "eye"
-    | "smile";
+  | "stethoscope"
+  | "bone"
+  | "spine"
+  | "baby"
+  | "scissors"
+  | "droplet"
+  | "ear"
+  | "brain"
+  | "heart"
+  | "eye"
+  | "smile";
   // Dedicated landing page when one exists, otherwise the appointment form.
   href: string;
 };
@@ -78,12 +78,6 @@ export const DEPARTMENT_CARDS: Department[] = [
   { name: "Ophthalmology", text: "Eye care and vision-related conditions", icon: "eye", href: "#appointment" },
   { name: "Dental Surgery", text: "Dental treatments for different age groups", icon: "smile", href: "#appointment" },
 ];
-
-// ---------------------------------------------------------------------------
-// Doctors (names, titles, qualifications and experience as published on the
-// existing landing pages; Dr. Chetan Kumar Gupta and Dr. Vibhuti only have a
-// speciality listed, so nothing more is shown for them)
-// ---------------------------------------------------------------------------
 
 export type HomepageDoctor = {
   name: string;

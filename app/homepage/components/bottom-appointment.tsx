@@ -18,6 +18,7 @@ export function BottomAppointment() {
         <div>
           <SectionHeading
             id="homepage-bottom-title"
+            align="left"
             eyebrow="WE'RE HERE FOR YOUR HEALTH"
             title="The Right Care Begins with the Right Consultation"
             description={

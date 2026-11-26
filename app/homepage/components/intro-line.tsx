@@ -1,3 +1,6 @@
+import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
+import { EMERGENCY_TEL_HREF } from "../data";
+
 // Heading and one paragraph directly under the hero images. It carries the
 // page's H1, since the hero itself is images only. No buttons here.
 export function IntroLine() {
@@ -14,6 +17,12 @@ export function IntroLine() {
           At Cronus Multispeciality Hospital Chhatarpur, we bring experienced specialists, advanced medical facilities,
           and compassionate care.
         </p>
+        <div className="mt-4 space-y-1 text-sm sm:text-[15px]">
+          <p className="font-medium text-[#0B3446]">
+            40+ Specialities <span aria-hidden="true" className="mx-1.5 text-[#5B6B73]">|</span> 24×7 Emergency{" "}
+            <span aria-hidden="true" className="mx-1.5 text-[#5B6B73]">|</span> Advanced Medical Care
+          </p>
+        </div>
       </div>
     </section>
   );
