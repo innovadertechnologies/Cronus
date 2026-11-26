@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { BLOG, LANDING_PAGES, SITE_URL } from "@/app/lib/seo";
+import { BLOG, CONTACT, LANDING_PAGES, SITE_URL } from "@/app/lib/seo";
 import { BLOG_POSTS } from "@/app/blog/data";
 
 // Served at /sitemap.xml
@@ -22,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...(post.image ? { images: [`${SITE_URL}${encodeURI(post.image)}`] } : {}),
     })),
   ];
+  const contact: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}${CONTACT.path}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly",
+    priority: 0.6,
+  };
 
   return [home, ...Object.values(LANDING_PAGES).map((page) => ({
     url: `${SITE_URL}${page.path}`,
@@ -29,5 +35,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 1,
     images: [`${SITE_URL}${page.ogImage}`],
-  })), ...blog];
+  })), ...blog, contact];
 }

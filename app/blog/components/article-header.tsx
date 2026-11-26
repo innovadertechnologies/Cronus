@@ -51,25 +51,25 @@ export function ArticleHeader({ post, minutes }: Props) {
             {post.title}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[#46575F] sm:text-xl">{post.excerpt}</p>
-          <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#5B6B73]">
-            <span>By {CLINIC_NAME}</span>
-            <span aria-hidden="true" className="text-[#0B3446]/25">
-              ·
+          <div className="mt-8 flex items-center gap-3 border-t border-[#0B3446]/10 pt-5">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-[#0B3446]/10">
+              <Image src="/logo.png" alt="" width={1353} height={742} sizes="32px" className="h-auto w-8" />
             </span>
-            <time dateTime={post.publishedAt} className="tabular-nums">
-              {formatDate(post.publishedAt)}
-            </time>
-            <span aria-hidden="true" className="text-[#0B3446]/25">
-              ·
-            </span>
-            <span className="tabular-nums">{minutes} min read</span>
-          </p>
+            <p className="text-sm leading-snug">
+              <span className="block font-medium text-[#0B3446]">By {CLINIC_NAME}</span>
+              <span className="mt-0.5 flex flex-wrap items-center gap-x-2 tabular-nums text-[#5B6B73]">
+                <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+                <span aria-hidden="true">·</span>
+                <span>{minutes} min read</span>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
 
       {post.image && (
         <div className="mx-auto -mt-16 max-w-5xl px-4 sm:-mt-28 sm:px-8">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-[#E9F1F5] ring-1 ring-[#0B3446]/10">
+          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-[#E9F1F5] shadow-[0_16px_40px_rgba(11,52,70,0.12)] ring-1 ring-[#0B3446]/10 lg:aspect-[2/1]">
             <Image
               src={post.image}
               alt={post.imageAlt ?? ""}

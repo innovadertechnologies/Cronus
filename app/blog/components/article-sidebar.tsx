@@ -56,10 +56,10 @@ export function ArticleSidebar({ category, headings }: Props) {
           {hasPage && (
             <Link
               href={href}
-              className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-[#0B6A73] transition-colors hover:text-[#0B3446]"
+              className="flex items-center justify-between gap-3 border-t border-[#0B3446]/10 pt-4 text-sm font-semibold leading-snug text-[#0B6A73] transition-colors hover:text-[#0B3446]"
             >
               About {category} at Cronus
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
             </Link>
           )}
         </div>

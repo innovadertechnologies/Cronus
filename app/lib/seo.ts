@@ -562,3 +562,79 @@ export function blogArticleSchema(article: BlogArticleSeo) {
     ],
   };
 }
+
+// ---------------------------------------------------------------------------
+// /contact – phone, WhatsApp, email, address and the enquiry form.
+// ---------------------------------------------------------------------------
+
+export const CONTACT = {
+  path: "/contact",
+  title: `Contact Us | ${CLINIC_NAME}, Chhatarpur`,
+  description:
+    "Contact Cronus Multispeciality Hospital, 100 Feet Road, Chhatarpur, New Delhi. Call or WhatsApp +91 96259 06617, 24x7 emergency, or send us a message and our team will call you back.",
+  ogImage: "/hptl.png",
+  ogImageAlt: `${CLINIC_NAME} building, Chhatarpur`,
+};
+
+export function contactMetadata(): Metadata {
+  const { path, title, description, ogImage, ogImageAlt } = CONTACT;
+  return {
+    title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      url: path,
+      siteName: CLINIC_NAME,
+      locale: "en_IN",
+      title,
+      description,
+      images: [{ url: ogImage, width: 1254, height: 1254, alt: ogImageAlt }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
+  };
+}
+
+// Hospital (with its contact point) + the ContactPage + breadcrumbs.
+export function contactSchema() {
+  const url = absolute(CONTACT.path);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        ...hospitalSchema(),
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: CLINIC_PHONE_TEL,
+          contactType: "customer service",
+          areaServed: "IN",
+          hoursAvailable: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            opens: "00:00",
+            closes: "23:59",
+          },
+        },
+      },
+      {
+        "@type": "ContactPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: CONTACT.title,
+        description: CONTACT.description,
+        inLanguage: "en-IN",
+        about: { "@id": HOSPITAL_ID },
+        publisher: { "@id": HOSPITAL_ID },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absolute(HOMEPAGE.path) },
+          { "@type": "ListItem", position: 2, name: "Contact us", item: url },
+        ],
+      },
+    ],
+  };
+}
