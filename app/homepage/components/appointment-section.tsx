@@ -15,7 +15,7 @@ export function AppointmentSection() {
         <AppointmentForm
           idPrefix="homepage-hero-form"
           title="Your Health Deserves Timely Attention"
-          subtitle="Connect with the right specialist at Cronus Multispeciality Hospital. Share your details, and our team will help schedule your consultation."
+          subtitle="Not sure which doctor to see? Share your details with us and our team at Cronus Multispeciality Hospital will call you, understand your problem and book your appointment with the right specialist. From children to senior citizens, our doctors across more than 40 specialities are here to help you and your family with care, respect and no unnecessary waiting."
           labels={{
             name: "Full Name",
             phone: "Phone Number",

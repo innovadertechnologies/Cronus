@@ -13,31 +13,10 @@ export function Faq() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
             id="homepage-faq-title"
+            align="left"
             eyebrow="NEED MORE INFORMATION?"
             title="Frequently Asked Questions"
           />
-          <div className="mt-8 rounded-2xl bg-[#0B3446] p-6 text-white">
-            <MessageCircleQuestion className="h-8 w-8 text-[#8FD3D8]" />
-            <p className="mt-3 text-lg font-semibold">Still have questions?</p>
-            <p className="mt-1 text-[15px] text-white/75">Our team is happy to help, 24x7.</p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a
-                href={TEL_HREF}
-                className="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-[#0B3446] transition-colors hover:bg-[#E3F6F7]"
-              >
-                Call {CLINIC_PHONE_DISPLAY}
-              </a>
-              <a
-                href={WHATSAPP_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/30 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                <WhatsappIcon className="h-4 w-4" />
-                WhatsApp
-              </a>
-            </div>
-          </div>
         </div>
 
         <FaqAccordion faqs={HOMEPAGE_FAQS} />

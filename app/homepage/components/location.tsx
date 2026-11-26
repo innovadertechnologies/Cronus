@@ -30,7 +30,7 @@ export function Location() {
                   <MapPin className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="text-sm font-medium text-[#5B6B73]">Address</h3>
+                  <h3 className="text-base font-semibold text-[#0B6A73]">Address</h3>
                   <p className="mt-1 text-[15px] leading-relaxed text-[#1B2936]">{CLINIC_ADDRESS}</p>
                 </div>
               </div>
@@ -39,7 +39,7 @@ export function Location() {
                   <Phone className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="text-sm font-medium text-[#5B6B73]">Phone (24x7)</h3>
+                  <h3 className="text-base font-semibold text-[#0B6A73]">Call Us</h3>
                   <a href={TEL_HREF} className="mt-1 block text-lg font-semibold text-[#0B3446] hover:text-[#0B6A73]">
                     {CLINIC_PHONE_DISPLAY}
                   </a>
@@ -50,7 +50,7 @@ export function Location() {
                   <Mail className="h-5 w-5" />
                 </span>
                 <div className="min-w-0">
-                  <h3 className="text-sm font-medium text-[#5B6B73]">Email</h3>
+                  <h3 className="text-base font-semibold text-[#0B6A73]">Email</h3>
                   <a
                     href={`mailto:${HOSPITAL_EMAIL}`}
                     className="mt-1 block break-all text-[15px] font-semibold text-[#0B3446] hover:text-[#0B6A73]"
@@ -64,7 +64,7 @@ export function Location() {
                   <Clock className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="text-sm font-medium text-[#5B6B73]">Hours</h3>
+                  <h3 className="text-base font-semibold text-[#0B6A73]">Hours</h3>
                   <p className="mt-1 text-[15px] text-[#1B2936]">Emergency &amp; pharmacy open 24 hours, 7 days a week</p>
                 </div>
               </div>

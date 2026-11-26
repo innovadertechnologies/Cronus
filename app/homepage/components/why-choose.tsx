@@ -55,30 +55,12 @@ export function WhyChoose({ rating, count }: { rating: string; count: string }) 
             description="Finding the right medical care should not mean visiting multiple locations. At Cronus, essential healthcare services and specialists are available under one roof."
           />
 
-          <div className="mt-8 flex items-center gap-4">
-            <span className="text-4xl font-semibold tabular-nums">{rating}</span>
-            <span>
-              <span className="flex gap-0.5" aria-hidden="true">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-[#FBBC05] text-[#FBBC05]" />
-                ))}
-              </span>
-              <span className="mt-1 block text-sm text-white/70">From {count} reviews on Google</span>
-            </span>
-          </div>
-
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#appointment"
               className="inline-flex h-12 items-center rounded-lg bg-white px-6 font-semibold text-[#0B3446] transition-colors hover:bg-[#E3F6F7]"
             >
               Schedule Your Consultation
-            </a>
-            <a
-              href={TEL_HREF}
-              className="inline-flex h-12 items-center rounded-lg border border-white/30 px-6 font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              Call {CLINIC_PHONE_DISPLAY}
             </a>
           </div>
         </div>
