@@ -49,6 +49,7 @@ export function WhyChoose({ rating, count }: { rating: string; count: string }) 
           <SectionHeading
             id="homepage-why-title"
             tone="dark"
+            align="left"
             eyebrow="THE CRONUS APPROACH TO HEALTHCARE"
             title="Healthcare That Brings Everything Together"
             description="Finding the right medical care should not mean visiting multiple locations. At Cronus, essential healthcare services and specialists are available under one roof."

@@ -16,7 +16,7 @@ export function Location() {
           id="homepage-location-title"
           eyebrow="Visit us"
           title="Location & contact details"
-          description="Located on 100 Feet Road in Chhatarpur, easily reachable from across South Delhi and Delhi-NCR."
+          description=""
         />
 
         {/* One card: a small square map on the left of the details (stacked on phones) */}
