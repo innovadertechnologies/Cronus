@@ -84,6 +84,16 @@ body {
   }
 }
 
+/* Countdown bar (homepage doctor cards): grows from left to right once. */
+@keyframes fill-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.2s ease-out both;
 }

@@ -14,7 +14,6 @@ import { Departments } from "./components/departments";
 import { Doctors } from "./components/doctors";
 import { WhyChoose } from "./components/why-choose";
 import { Reviews } from "./components/reviews";
-import { PractoReviews } from "./components/practo-reviews";
 import { Faq } from "./components/faq";
 import { QuickActions } from "./components/quick-actions";
 import { WhatsappButton } from "./components/whatsapp-button";
@@ -34,9 +33,9 @@ export default async function Homepage() {
   const google = await getGoogleReviews();
 
   return (
-    // Bottom padding matches the mobile quick-action bar so it never covers the
-    // footer. On desktop the bar is a side dock, so no padding is needed.
-    <div className="pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
+    // Bottom padding matches the quick-action bar so it never covers the
+    // footer. From 1376px the bar is a side dock, so no padding is needed.
+    <div className="pb-[calc(4rem+env(safe-area-inset-bottom))] min-[1376px]:pb-0">
       <JsonLd data={schema} />
       <Header />
       <main>
@@ -49,8 +48,8 @@ export default async function Homepage() {
         <Departments />
         <Doctors />
         <WhyChoose rating={google.rating} count={google.count} />
+        {/* Google and Practo reviews, one section */}
         <Reviews google={google} />
-        <PractoReviews />
         <Faq />
         <BottomAppointment />
       </main>
