@@ -61,14 +61,15 @@ export function TrustStrip({ rating }: Props) {
 
   return (
     <section aria-label="Hospital Highlights" className="bg-[#0B3446] text-white">
-      {/* Six items, aligned with the page container: two per row on phones and
-          three per row on tablets (rows split by a hairline, dividers between
-          items in a row), one row of six from 1024px. */}
-      <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 px-4 sm:grid-cols-3 sm:gap-x-0 sm:px-8 lg:grid-cols-6">
+      {/* Six items: two per row on phones and three per row on tablets (rows
+          split by a hairline, dividers between items in a row), one row of six
+          from 1024px. Every item is centred in its cell, so both sides get
+          the same space. */}
+      <ul className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:grid-cols-3 sm:px-8 lg:grid-cols-6">
         {items.map(({ icon: Icon, value, label }) => (
           <li
             key={label}
-            className="flex flex-col gap-3 border-white/10 py-6 max-sm:[&:nth-child(n+3)]:border-t sm:py-8 sm:max-lg:px-6 sm:max-lg:[&:nth-child(3n+1)]:pl-0 sm:max-lg:[&:nth-child(n+4)]:border-t sm:max-lg:[&:not(:nth-child(3n+1))]:border-l lg:px-5 lg:first:pl-0 lg:last:pr-0 lg:[&:not(:first-child)]:border-l"
+            className="flex flex-col items-center gap-3 border-white/10 px-2 py-6 text-center max-sm:[&:nth-child(even)]:border-l max-sm:[&:nth-child(n+3)]:border-t sm:py-8 sm:max-lg:px-4 sm:max-lg:[&:nth-child(n+4)]:border-t sm:max-lg:[&:not(:nth-child(3n+1))]:border-l lg:px-4 lg:[&:not(:first-child)]:border-l"
           >
             <Icon className="h-[18px] w-[18px] text-[#8FD3D8]" strokeWidth={1.5} aria-hidden="true" />
             <span>

@@ -201,56 +201,8 @@ export function AppointmentForm({
 
   return (
     <div className={`${cardClass} grid lg:grid-cols-[0.8fr_1.2fr]`}>
-      {/* Info panel. Hidden on phones so the form comes first; it stays in the
-          DOM, and the form keeps its accessible name from the title in it. */}
-      <aside className="hidden flex-col justify-center bg-[#F6F3EE] p-6 sm:flex sm:p-8 lg:p-10">
+      <aside className="hidden flex-col justify-center bg-[#F6F3EE] p-6 lg:flex sm:p-8 lg:p-10">
         {heading}
-
-        {/* <address className="mt-8 grid gap-5 border-t border-[#0B3446]/10 pt-6 not-italic">
-          <div className="flex gap-4">
-            <span className={`${infoIconClass} text-[#D9443F]`}>
-              <Siren className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
-            </span>
-            <div>
-              <p className="text-sm text-[#5B6B73]">Emergency, 24x7</p>
-              <a
-                href={EMERGENCY_TEL_HREF}
-                className="text-lg font-semibold tabular-nums text-[#0B3446] hover:text-[#D9443F]"
-              >
-                {CLINIC_PHONE_DISPLAY}
-              </a>
-            </div>
-          </div>
-          <div className="flex gap-4">
-            <span className={infoIconClass}>
-              <Phone className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
-            </span>
-            <div>
-              <p className="text-sm text-[#5B6B73]">Appointments &amp; enquiries</p>
-              <a href={TEL_HREF} className="text-[15px] font-semibold tabular-nums text-[#0B3446] hover:text-[#0B6A73]">
-                {CLINIC_PHONE_DISPLAY}
-              </a>
-            </div>
-          </div>
-          <div className="flex gap-4">
-            <span className={infoIconClass}>
-              <MapPin className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
-            </span>
-            <div>
-              <p className="text-sm text-[#5B6B73]">Location</p>
-              <p className="text-[15px] leading-relaxed text-[#1B2936]">{CLINIC_ADDRESS}</p>
-              <a
-                href={DIRECTIONS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B6A73] hover:text-[#0B6870]"
-              >
-                <Navigation className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
-                Get directions
-              </a>
-            </div>
-          </div>
-        </address> */}
       </aside>
 
       {/* Form */}

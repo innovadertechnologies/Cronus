@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { initials } from "@/app/home/data";
 import { requestBooking } from "@/app/home/components/booking";
 import { FEATURED_DOCTOR, OTHER_DOCTORS, OUR_DOCTORS_URL, type HomepageDoctor } from "../data";
@@ -50,14 +50,24 @@ function Portrait({ doctor, sizes }: { doctor: HomepageDoctor; sizes: string }) 
 }
 
 // Name, speciality, qualifications and introduction, plus the doctor's page
-// (or the appointment form when there is no page).
+// (or the appointment form when there is no page). Desktop cards.
 function DoctorInfo({ doctor }: { doctor: HomepageDoctor }) {
-  const meta = [doctor.qualifications, doctor.experience && `${doctor.experience} experience`].filter(Boolean).join(" · ");
   return (
     <>
       <p className="text-sm font-medium text-[#0B6A73]">{doctor.department}</p>
       <h3 className="mt-2 text-xl font-semibold leading-tight text-[#0B3446] xl:text-2xl xl:tracking-[-0.01em]">{doctor.name}</h3>
       <p className="mt-1 text-[15px] font-medium text-[#0B6A73]">{doctor.speciality}</p>
+      <DoctorDetails doctor={doctor} />
+    </>
+  );
+}
+
+// Qualifications, introduction and link: everything below the name. Shared by
+// the desktop cards and the mobile accordion.
+function DoctorDetails({ doctor }: { doctor: HomepageDoctor }) {
+  const meta = [doctor.qualifications, doctor.experience && `${doctor.experience} experience`].filter(Boolean).join(" · ");
+  return (
+    <>
       {meta && <p className="mt-3 text-[13px] leading-snug text-[#5B6B73]">{meta}</p>}
       {doctor.intro && (
         <p className="mt-4 border-t border-[#0B3446]/10 pt-4 text-[15px] leading-relaxed text-[#46575F]">{doctor.intro}</p>
@@ -86,29 +96,50 @@ function DoctorInfo({ doctor }: { doctor: HomepageDoctor }) {
 
 export function Doctors() {
   const [active, setActive] = useState(0);
+  // Desktop: the mouse is over the cards.
   const [hovering, setHovering] = useState(false);
+  // Mobile: a finger is on the list, or the reader tapped a doctor. A tapped
+  // card stays open until the list has left the screen, so it never closes
+  // while it is being read.
+  const [touching, setTouching] = useState(false);
+  const [held, setHeld] = useState(false);
 
-  const rotating = !hovering;
+  const rotating = !hovering && !touching && !held;
   useEffect(() => {
     if (!rotating) return;
     const timer = window.setTimeout(() => setActive((i) => (i + 1) % DOCTORS.length), ROTATE_MS);
     return () => window.clearTimeout(timer);
   }, [rotating, active]);
 
-  // Phone/tablet details box: follow the content's height (doctor change,
-  // text wrapping on rotate or resize) so the box can animate to it. Until
-  // this runs (server render, first paint) the box simply uses auto height.
-  const panelContent = useRef<HTMLDivElement>(null);
-  const [panelHeight, setPanelHeight] = useState<number>();
+  const mobileList = useRef<HTMLUListElement>(null);
   useEffect(() => {
-    const el = panelContent.current;
+    const el = mobileList.current;
     if (!el) return;
-    const observer = new ResizeObserver(() => setPanelHeight(el.offsetHeight));
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) setHeld(false);
+    });
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
+  // Mobile accordion: every details panel gets the height of the tallest one,
+  // so one card opening while another closes keeps the list the same height
+  // and nothing below it moves.
+  const detailRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [detailHeight, setDetailHeight] = useState<number>();
+  useEffect(() => {
+    const els = detailRefs.current.filter((el): el is HTMLDivElement => el !== null);
+    const measure = () => setDetailHeight(Math.max(...els.map((el) => el.offsetHeight)));
+    const observer = new ResizeObserver(measure);
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const choose = (index: number) => setActive(index);
+  const tap = (index: number) => {
+    setActive(index);
+    setHeld(true);
+  };
   const isMouse = (e: PointerEvent) => e.pointerType === "mouse";
 
   return (
@@ -175,58 +206,75 @@ export function Doctors() {
           })}
         </ul>
 
-        {/* Phones and tablets: photo tabs, then the active doctor's details */}
-        <div className="mt-8 lg:hidden">
-          <ul className="grid grid-cols-4 gap-2 sm:gap-4">
-            {DOCTORS.map((doctor, i) => {
-              const on = i === active;
-              return (
-                <li key={doctor.id} className="min-w-0">
+        {/* Phones and tablets: a vertical accordion. Each card shows the photo,
+            name and speciality; the open card slides down its details. */}
+        <ul
+          ref={mobileList}
+          onPointerDown={(e) => !isMouse(e) && setTouching(true)}
+          onPointerUp={() => setTouching(false)}
+          onPointerCancel={() => setTouching(false)}
+          className="mx-auto mt-8 max-w-2xl space-y-3 lg:hidden"
+        >
+          {DOCTORS.map((doctor, i) => {
+            const on = i === active;
+            const panelId = `homepage-doctor-${doctor.id}`;
+            return (
+              <li
+                key={doctor.id}
+                className={`relative overflow-hidden rounded-2xl bg-white ring-1 transition-[box-shadow] duration-500 motion-reduce:transition-none ${on ? "shadow-[0_1px_2px_rgba(11,52,70,0.05),0_12px_32px_rgba(11,52,70,0.08)] ring-[#0E7C86]/30" : "ring-[#0B3446]/10"
+                  }`}
+              >
+                <h3>
                   <button
                     type="button"
-                    onClick={() => choose(i)}
-                    aria-pressed={on}
-                    aria-label={`${doctor.name}, ${doctor.speciality}`}
-                    className="block w-full rounded-xl text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7C86]"
+                    onClick={() => tap(i)}
+                    aria-expanded={on}
+                    aria-controls={panelId}
+                    className="flex w-full items-center gap-4 p-3 text-left focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#0E7C86] sm:p-4"
                   >
-                    <span
-                      className={`relative block aspect-[3/4] overflow-hidden rounded-xl bg-[#E3F6F7] ring-2 transition-[box-shadow,opacity] duration-300 ${on ? "ring-[#0E7C86]" : "opacity-70 ring-transparent"
-                        }`}
-                    >
-                      <Portrait doctor={doctor} sizes="(min-width: 640px) 170px, 25vw" />
+                    <span className="relative h-24 w-20 shrink-0 overflow-hidden rounded-xl bg-[#E3F6F7]">
+                      <Portrait doctor={doctor} sizes="80px" />
                     </span>
-                    <span
-                      className={`mt-2 line-clamp-2 text-[12px] font-semibold leading-snug sm:text-sm ${on ? "text-[#0B3446]" : "text-[#5B6B73]"
-                        }`}
-                    >
-                      {doctor.name}
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[13px] font-medium text-[#0B6A73]">{doctor.department}</span>
+                      <span className="mt-0.5 block text-base font-semibold leading-snug text-[#0B3446] sm:text-lg">{doctor.name}</span>
+                      <span className="mt-0.5 block text-sm leading-snug text-[#5B6B73]">{doctor.speciality}</span>
                     </span>
+                    <ChevronDown
+                      className={`mr-1 h-5 w-5 shrink-0 text-[#0B6A73] transition-transform duration-500 ${EASE} motion-reduce:transition-none ${on ? "rotate-180" : ""
+                        }`}
+                      strokeWidth={1.75}
+                      aria-hidden="true"
+                    />
                   </button>
-                </li>
-              );
-            })}
-          </ul>
-
-          {/* Only the active doctor's details are shown, so the box is as
-              tall as that doctor's content. The box's height is measured and
-              animated, so it grows and shrinks smoothly; the details fade in. */}
-          <div
-            style={{ height: panelHeight }}
-            className={`relative mt-4 overflow-hidden rounded-2xl bg-white ring-1 ring-[#0B3446]/10 transition-[height] duration-500 ${EASE} motion-reduce:transition-none sm:mt-6`}
-          >
-            <div ref={panelContent} className="p-5 sm:p-7">
-              {DOCTORS.map((doctor, i) => {
-                const on = i === active;
-                return (
-                  <div key={doctor.id} hidden={!on} className={on ? "animate-fade-in" : undefined}>
-                    <DoctorInfo doctor={doctor} />
+                </h3>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-label={doctor.name}
+                  inert={!on}
+                  className={`grid transition-[grid-template-rows] duration-500 ${EASE} motion-reduce:transition-none ${on ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                >
+                  <div className="min-h-0 overflow-hidden">
+                    <div style={{ minHeight: detailHeight }}>
+                      <div
+                        ref={(el) => {
+                          detailRefs.current[i] = el;
+                        }}
+                        className={`px-4 pb-5 transition-[opacity,transform] duration-500 ${EASE} motion-reduce:transition-none sm:px-5 ${on ? "translate-y-0 opacity-100 delay-150" : "-translate-y-2 opacity-0"
+                          }`}
+                      >
+                        <DoctorDetails doctor={doctor} />
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-            <Countdown running={rotating} restartKey={active} />
-          </div>
-        </div>
+                </div>
+                {on && <Countdown running={rotating} restartKey={active} />}
+              </li>
+            );
+          })}
+        </ul>
 
         <div className="mt-8 flex justify-center sm:mt-10">
           <a

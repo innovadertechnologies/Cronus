@@ -1,9 +1,10 @@
 import { WhatsappIcon } from "@/app/components/social-icons";
 import { WHATSAPP_HREF } from "../data";
 
-// Fixed WhatsApp button, bottom-right, from 1376px only: there the side
-// gutter beside the content column is wide enough that it never covers
-// content. Below that, WhatsApp is a cell in the quick-action bar.
+// Fixed WhatsApp button, bottom-right, from 1024px (with the side dock). The
+// section containers keep 80px clear at both edges there (globals.css), and
+// the button stays inside that gutter: 16px in on laptops, 24px from 1376px.
+// Below 1024px, WhatsApp is a cell in the quick-action bar.
 export function WhatsappButton() {
   return (
     <a
@@ -12,7 +13,7 @@ export function WhatsappButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-[#1FA855] text-white shadow-[0_8px_24px_rgba(11,52,70,0.25)] transition-colors hover:bg-[#178A45] active:scale-[0.97] min-[1376px]:flex"
+      className="fixed bottom-4 right-4 z-40 min-[1376px]:bottom-6 min-[1376px]:right-6 hidden h-14 w-14 items-center justify-center rounded-full bg-[#1FA855] text-white shadow-[0_8px_24px_rgba(11,52,70,0.25)] transition-colors hover:bg-[#178A45] active:scale-[0.97] lg:flex"
     >
       <WhatsappIcon className="h-7 w-7" />
     </a>

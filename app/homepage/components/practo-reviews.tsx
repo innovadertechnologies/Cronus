@@ -1,12 +1,12 @@
 import { ThumbsUp } from "lucide-react";
-import { PRACTO_REVIEWS_URL, PRACTO_STORIES, type PractoStory } from "../data";
+import { PRACTO_RATING, PRACTO_REVIEWS_URL, PRACTO_STORIES, type PractoStory } from "../data";
 import { PractoMark } from "./rating-icons";
-import { MarqueeClone } from "./marquee-clone";
 import { ReviewCarousel, SourceBar } from "./review-parts";
 
 // Same card as the Google reviews. Practo stories carry no star rating, so
 // the top line shows the patient's recommendation instead of stars.
-function StoryCard({ story }: { story: PractoStory }) {
+// `copy`: the second, decorative copy of the row (seamless loop).
+function StoryCard({ story, copy = false }: { story: PractoStory; copy?: boolean }) {
   return (
     <li className="w-[300px] shrink-0 sm:w-[360px]">
       <figure className="flex h-72 flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10">
@@ -27,6 +27,7 @@ function StoryCard({ story }: { story: PractoStory }) {
           </span>
           <a
             href={PRACTO_REVIEWS_URL}
+            tabIndex={copy ? -1 : undefined}
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 text-sm font-semibold text-[#0B6A73] underline underline-offset-4"
@@ -50,7 +51,12 @@ export function PractoReviews() {
       <SourceBar
         icon={<PractoMark className="h-5 w-5 text-[11px]" />}
         title="Practo Reviews"
-        cta={{ id: "homepage-practo-stories-btn", href: PRACTO_REVIEWS_URL, label: "See all on Practo" }}
+        meta={
+          <>
+            <span className="font-semibold tabular-nums text-[#0B3446]">{PRACTO_RATING.count} patient stories</span> on Practo
+          </>
+        }
+        cta={{ id: "homepage-practo-stories-btn", href: PRACTO_REVIEWS_URL, label: "Read More Patient Reviews", ariaLabel: "Read more patient reviews on Practo" }}
       />
       <ReviewCarousel label="Practo patient stories carousel">
         <ul className="flex gap-5 pr-5">
@@ -58,7 +64,11 @@ export function PractoReviews() {
             <StoryCard key={story.author} story={story} />
           ))}
         </ul>
-        <MarqueeClone className="flex gap-5 pr-5 motion-reduce:hidden" />
+        <ul aria-hidden="true" className="flex gap-5 pr-5 motion-reduce:hidden">
+          {PRACTO_STORIES.map((story) => (
+            <StoryCard key={story.author} story={story} copy />
+          ))}
+        </ul>
       </ReviewCarousel>
     </>
   );

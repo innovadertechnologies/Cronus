@@ -1,14 +1,14 @@
 import type { Review } from "../data";
 import type { GoogleReviewsData } from "../google-reviews";
 import { GoogleIcon, PractoMark, Stars } from "./rating-icons";
-import { MarqueeClone } from "./marquee-clone";
 import { PractoReviews } from "./practo-reviews";
 import { ReviewCarousel, SourceBar } from "./review-parts";
 import { SectionHeading } from "./section-heading";
 
 const sourceLabel: Record<Review["source"], string> = { google: "Google", practo: "Practo" };
 
-function ReviewCard({ review }: { review: Review }) {
+// `copy`: the second, decorative copy of the row (seamless loop).
+function ReviewCard({ review, copy = false }: { review: Review; copy?: boolean }) {
   const isGoogle = review.source === "google";
   return (
     <li className="w-[300px] shrink-0 sm:w-[360px]">
@@ -34,6 +34,7 @@ function ReviewCard({ review }: { review: Review }) {
           {review.link && (
             <a
               href={review.link}
+              tabIndex={copy ? -1 : undefined}
               target="_blank"
               rel="noopener noreferrer"
               className="shrink-0 text-sm font-semibold text-[#0B6A73] underline underline-offset-4"
@@ -71,7 +72,16 @@ export function Reviews({ google }: Props) {
         <SourceBar
           icon={<GoogleIcon className="h-5 w-5" />}
           title="Google Reviews"
-          cta={{ id: "homepage-reviews-google-btn", href: google.url, label: "See all on Google" }}
+          meta={
+            <>
+              <span className="flex items-center gap-1.5">
+                <span className="font-semibold tabular-nums text-[#0B3446]">{google.rating}/5</span>
+                <Stars rating={Number(google.rating)} className="h-3.5" />
+              </span>
+              <span className="mt-0.5 block">Based on {google.count} Google reviews</span>
+            </>
+          }
+          cta={{ id: "homepage-reviews-google-btn", href: google.url, label: "Read More Patient Reviews", ariaLabel: "Read more patient reviews on Google" }}
         />
         <ReviewCarousel label="Google reviews carousel">
           <ul className="flex gap-5 pr-5">
@@ -79,11 +89,14 @@ export function Reviews({ google }: Props) {
               <ReviewCard key={`${review.author}-${review.date}`} review={review} />
             ))}
           </ul>
-          <MarqueeClone className="flex gap-5 pr-5 motion-reduce:hidden" />
+          <ul aria-hidden="true" className="flex gap-5 pr-5 motion-reduce:hidden">
+            {reviews.map((review) => (
+              <ReviewCard key={`${review.author}-${review.date}`} review={review} copy />
+            ))}
+          </ul>
         </ReviewCarousel>
       </div>
 
-      {/* 3–4. Practo Reviews label, then the Practo review cards */}
       <div className="mt-12 sm:mt-16">
         <PractoReviews />
       </div>

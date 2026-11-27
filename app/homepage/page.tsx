@@ -34,11 +34,13 @@ export default async function Homepage() {
 
   return (
     // Bottom padding matches the quick-action bar so it never covers the
-    // footer. From 1376px the bar is a side dock, so no padding is needed.
-    <div className="pb-[calc(4rem+env(safe-area-inset-bottom))] min-[1376px]:pb-0">
+    // footer. From 1024px the bar is a side dock, so no padding is needed;
+    // instead the sections keep their content clear of the dock
+    // (.homepage-main in globals.css).
+    <div className="pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
       <JsonLd data={schema} />
       <Header />
-      <main>
+      <main className="homepage-main">
         <Hero rating={google.rating} count={google.count} googleUrl={google.url} />
         <IntroLine />
         <AppointmentSection />

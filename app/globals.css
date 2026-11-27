@@ -94,6 +94,19 @@ body {
   }
 }
 
+/* /homepage, 1024px and up: the quick-action dock sits fixed at the left edge
+   (16px in, 48px wide, so it ends at 64px). Section containers keep their
+   content at least 80px from both edges; on wide screens, where the centred
+   container already leaves that gap, their normal 32px padding applies. */
+@media (min-width: 1024px) {
+  .homepage-main .mx-auto.max-w-7xl {
+    padding-inline: max(2rem, calc(5rem - max(0px, (100vw - 80rem) / 2)));
+  }
+  .homepage-main .mx-auto.max-w-6xl {
+    padding-inline: max(2rem, calc(5rem - max(0px, (100vw - 72rem) / 2)));
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.2s ease-out both;
 }
