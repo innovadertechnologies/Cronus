@@ -23,11 +23,12 @@ export function Faq() {
 
         <div className="relative hidden aspect-[4/5] overflow-hidden rounded-2xl bg-[#E3F6F7] ring-1 ring-[#0B3446]/10 lg:sticky lg:top-28 lg:block">
           <Image
-            src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=1000&q=75"
-            alt="Doctor explaining a scan on screen to a patient"
+            src="/faq.jpg"
+            alt="Doctor examining a young patient's eyes with a slit lamp at Cronus Multispeciality Hospital"
             fill
             sizes="(min-width: 1280px) 460px, 38vw"
-            className="object-cover object-[62%_center]"
+            // Landscape photo in a portrait frame: keep the doctor and the patient in view.
+            className="object-cover object-[66%_center]"
           />
         </div>
       </div>

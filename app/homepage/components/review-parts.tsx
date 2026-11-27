@@ -2,30 +2,31 @@ import type { ReactNode } from "react";
 import { ExternalLink } from "lucide-react";
 
 type SourceBarProps = {
-  // Small source logo shown before the heading.
   icon: ReactNode;
   title: string;
-  cta: { id: string; href: string; label: string };
+  meta?: ReactNode;
+  cta: { id: string; href: string; label: string; ariaLabel?: string };
 };
 
-// Label row for one review source: logo and name on the left, a quiet
-// "See all on …" button on the right, a hairline under both. Google and
-// Practo use the same row, so the two groups read as parts of one section.
-export function SourceBar({ icon, title, cta }: SourceBarProps) {
+export function SourceBar({ icon, title, meta, cta }: SourceBarProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-8">
-      <div className="flex items-center justify-between gap-3 border-b border-[#0B3446]/10 pb-4 sm:gap-6">
-        <h3 className="flex min-w-0 items-center gap-2 whitespace-nowrap text-base font-semibold leading-tight text-[#0B3446] sm:gap-3 sm:text-xl">
-          <span className="flex h-8 w-8 shrink-0 sm:h-9 sm:w-9 items-center justify-center rounded-lg bg-white ring-1 ring-[#0B3446]/10">
+      <div className="flex flex-col items-stretch gap-4 border-b border-[#0B3446]/10 pb-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white ring-1 ring-[#0B3446]/10 sm:h-10 sm:w-10">
             {icon}
           </span>
-          {title}
-        </h3>
+          <div className="min-w-0">
+            <h3 className="whitespace-nowrap text-base font-semibold leading-tight text-[#0B3446] sm:text-xl">{title}</h3>
+            {meta && <div className="mt-1 text-[13px] leading-snug text-[#5B6B73] sm:text-sm">{meta}</div>}
+          </div>
+        </div>
         <a
           id={cta.id}
           href={cta.href}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={cta.ariaLabel}
           className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-white px-3.5 text-[13px] font-semibold text-[#0B3446] ring-1 ring-[#0B3446]/15 transition-colors hover:text-[#0B6A73] hover:ring-[#0E7C86]/50 sm:px-4 sm:text-sm"
         >
           {cta.label}
@@ -36,12 +37,13 @@ export function SourceBar({ icon, title, cta }: SourceBarProps) {
   );
 }
 
-// Full-width, continuous right-to-left row of review cards (the list is
-// rendered twice and moved by half its width). Pauses on hover, focus or
-// touch; with reduced motion it is a plain, swipeable row.
 export function ReviewCarousel({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div role="region" aria-label={label} className="mt-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div
+      role="region"
+      aria-label={label}
+      className="mt-6 overflow-x-clip motion-reduce:overflow-x-auto [scrollbar-width:none] lg:[mask-image:linear-gradient(to_right,transparent_64px,black_128px)] [&::-webkit-scrollbar]:hidden"
+    >
       <div className="flex w-max animate-[marquee_70s_linear_infinite] py-2 hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] active:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:px-4 sm:motion-reduce:px-8">
         {children}
       </div>

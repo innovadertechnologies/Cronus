@@ -65,6 +65,9 @@ export type Department = {
   // Card photo (homepage departments section). The icon is still used by the blog.
   image: string;
   imageAlt: string;
+  // "contain" for illustrations on a white background, so the whole organ
+  // stays in the 16:10 frame instead of being cropped.
+  imageFit?: "cover" | "contain";
 };
 
 // Same crop helper as the home page (images.unsplash.com is allowed in next.config).
@@ -108,32 +111,33 @@ export const DEPARTMENT_CARDS: Department[] = [
     text: "Laparoscopic gallbladder procedures",
     icon: "scissors",
     href: "/gallbladder-surgery",
-    image: "/gbc1.png",
-    imageAlt: "Illustration of a gallbladder containing gallstones",
+    image: "/gbc4.png",
+    imageAlt: "Medical illustration of an inflamed gallbladder with gallstones and the bile duct",
+    imageFit: "contain",
   },
   {
     name: "Urology",
     text: "Kidney stones, prostate and urinary conditions",
     icon: "droplet",
     href: "/urology",
-    image: "/kidney_stone.png",
-    imageAlt: "Illustration of a kidney with kidney stones and their treatment",
+    image: "/Kidney and Urinary Surgery Infographic.png",
+    imageAlt: "Illustration of the urinary system – kidneys, ureters and bladder – with urological procedures",
   },
   {
     name: "Internal Medicine",
     text: "General medicine, chest conditions and TB",
     icon: "stethoscope",
     href: "#appointment",
-    image: unsplash("1584982751601-97dcc096659c"),
-    imageAlt: "Stethoscope on a white surface",
+    image: unsplash("1584308666744-24d5c474f2ae"),
+    imageAlt: "Blister packs of prescription tablets",
   },
   {
     name: "Cardiology",
     text: "Heart health evaluation and treatment",
     icon: "heart",
     href: "#appointment",
-    image: unsplash("1530026405186-ed1f139313f8"),
-    imageAlt: "Anatomical model of the human heart",
+    image: "/cardiology.jpg",
+    imageAlt: "Anatomical model of the human heart showing the coronary arteries",
   },
   {
     name: "Neuro Surgery",

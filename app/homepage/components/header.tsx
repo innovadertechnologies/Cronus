@@ -122,7 +122,7 @@ export function Header() {
           scrolled ? "border-transparent shadow-[0_1px_2px_rgba(11,52,70,0.06),0_8px_24px_rgba(11,52,70,0.06)]" : "border-[#0B3446]/10"
         }`}
       >
-        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-4 sm:h-20 sm:px-8">
+        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-4 max-[359px]:gap-2 sm:h-20 sm:px-8">
           <a href="#hero" aria-label={`${CLINIC_NAME} – back to top`} className="shrink-0">
             <Image
               src="/logo.png"
