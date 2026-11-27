@@ -202,7 +202,7 @@ export function AppointmentForm({
   return (
     <div className={`${cardClass} grid lg:grid-cols-[0.8fr_1.2fr]`}>
       {/* Info panel */}
-      <aside className="flex flex-col bg-[#F6F3EE] p-6 sm:p-8 lg:p-10">
+      <aside className="flex flex-col justify-center bg-[#F6F3EE] p-6 sm:p-8 lg:p-10">
         {heading}
 
         {/* <address className="mt-8 grid gap-5 border-t border-[#0B3446]/10 pt-6 not-italic">

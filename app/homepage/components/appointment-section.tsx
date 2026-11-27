@@ -1,9 +1,6 @@
 import { Lock } from "lucide-react";
 import { AppointmentForm } from "./appointment-form";
 
-// Main appointment form, with hospital contact details beside it (see the
-// "split" variant of AppointmentForm). Every "Book appointment" link on the
-// page targets #appointment.
 export function AppointmentSection() {
   return (
     <section

@@ -23,7 +23,10 @@ import { getGoogleReviews } from "./google-reviews";
 
 export const metadata: Metadata = homepageMetadata();
 
-const schema = homepageSchema(HOMEPAGE_FAQS);
+// The on-page questions are numbered ("1. …"); search engines get them without the number.
+const schema = homepageSchema(
+  HOMEPAGE_FAQS.map((faq) => ({ ...faq, question: faq.question.replace(/^\d+\.\s*/, "") }))
+);
 
 export default async function Homepage() {
   // Live from the Google Places API when configured, otherwise the rating and
