@@ -10,7 +10,7 @@ type Props = {
 };
 
 const control =
-  "inline-flex h-10 min-w-10 items-center justify-center rounded-lg px-3 text-sm font-semibold tabular-nums transition-colors";
+  "inline-flex h-11 min-w-11 items-center sm:h-10 sm:min-w-10 justify-center rounded-lg px-3 text-sm font-semibold tabular-nums transition-colors";
 
 // Numbered pages with previous / next, plus "1–6 of 11 articles".
 export function BlogPagination({ page, pages, from, to, total, onPage }: Props) {

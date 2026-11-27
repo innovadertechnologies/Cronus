@@ -80,7 +80,7 @@ export function BlogListing({ intro, items, featured, categories, perPage }: Pro
     <>
       {/* Hero */}
       <section aria-labelledby="blog-title" className="border-b border-[#0B3446]/10 bg-[#F6F3EE]">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8 sm:py-12 lg:py-14">{intro}</div>
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-8 sm:py-10 lg:py-12">{intro}</div>
       </section>
 
       {/* Listing */}
@@ -118,7 +118,7 @@ export function BlogListing({ intro, items, featured, categories, perPage }: Pro
             )}
           </div>
 
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10">
             {items.map((item) => (
               <li key={item.id} hidden={!visible.has(item.id)}>
                 {item.card}

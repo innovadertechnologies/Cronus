@@ -20,7 +20,7 @@ export function BlogPageHeader() {
           </li>
         </ol>
       </nav>
-      <p className="mt-6 text-sm font-medium text-[#0B6A73]">HEALTH LIBRARY</p>
+      <p className="mt-5 text-sm font-medium text-[#0B6A73]">HEALTH LIBRARY</p>
       <h1
         id="blog-title"
         className="mt-3 text-balance text-[2rem] font-semibold leading-tight text-[#0B3446] sm:text-[2.75rem] sm:tracking-[-0.02em] lg:text-5xl"
