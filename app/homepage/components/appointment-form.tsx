@@ -201,8 +201,9 @@ export function AppointmentForm({
 
   return (
     <div className={`${cardClass} grid lg:grid-cols-[0.8fr_1.2fr]`}>
-      {/* Info panel */}
-      <aside className="flex flex-col justify-center bg-[#F6F3EE] p-6 sm:p-8 lg:p-10">
+      {/* Info panel. Hidden on phones so the form comes first; it stays in the
+          DOM, and the form keeps its accessible name from the title in it. */}
+      <aside className="hidden flex-col justify-center bg-[#F6F3EE] p-6 sm:flex sm:p-8 lg:p-10">
         {heading}
 
         {/* <address className="mt-8 grid gap-5 border-t border-[#0B3446]/10 pt-6 not-italic">
@@ -253,7 +254,7 @@ export function AppointmentForm({
       </aside>
 
       {/* Form */}
-      <div className="p-6 sm:p-8 lg:p-10">{form}</div>
+      <div className="p-5 sm:p-8 lg:p-10">{form}</div>
     </div>
   );
 }

@@ -1,55 +1,37 @@
+import Image from "next/image";
 import Link from "next/link";
-import {
-  Activity,
-  ArrowRight,
-  Baby,
-  Bone,
-  Brain,
-  Droplet,
-  Ear,
-  Eye,
-  HeartPulse,
-  Scissors,
-  Smile,
-  Stethoscope,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { DEPARTMENT_CARDS, type Department } from "../data";
 import { MarqueeClone } from "./marquee-clone";
 import { SectionHeading } from "./section-heading";
 
-const ICONS: Record<Department["icon"], LucideIcon> = {
-  stethoscope: Stethoscope,
-  bone: Bone,
-  spine: Activity,
-  baby: Baby,
-  scissors: Scissors,
-  droplet: Droplet,
-  ear: Ear,
-  brain: Brain,
-  heart: HeartPulse,
-  eye: Eye,
-  smile: Smile,
-};
-
+// Photo on top (same 16:10 frame on every card), then name, text and link.
+// Hover: teal ring, a soft shadow and a slow zoom of the photo inside its frame.
 function DepartmentCard({ department }: { department: Department }) {
-  const Icon = ICONS[department.icon];
   const hasPage = department.href.startsWith("/");
   return (
     <li className="w-64 shrink-0 py-2 sm:w-72">
       <Link
         href={department.href}
-        className="group flex h-full flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10 transition-[box-shadow] duration-150 hover:ring-[#0E7C86]/50"
+        className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-[#0B3446]/10 transition-[box-shadow] duration-300 hover:shadow-[0_12px_32px_rgba(11,52,70,0.10)] hover:ring-[#0E7C86]/50"
       >
-        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#E3F6F7] text-[#0B6A73]">
-          <Icon className="h-5 w-5" strokeWidth={1.5} />
-        </span>
-        <h3 className="mt-5 text-lg font-semibold text-[#0B3446]">{department.name}</h3>
-        <p className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5B6B73]">{department.text}</p>
-        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B6A73]">
-          {hasPage ? "Learn more" : "Book a consultation"}
-          <ArrowRight className="h-4 w-4" />
-        </span>
+        <div className="relative aspect-[16/10] overflow-hidden bg-[#E3F6F7]">
+          <Image
+            src={department.image}
+            alt={department.imageAlt}
+            fill
+            sizes="(min-width: 640px) 288px, 256px"
+            className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none"
+          />
+        </div>
+        <div className="flex flex-1 flex-col p-5 sm:p-6">
+          <h3 className="text-lg font-semibold text-[#0B3446]">{department.name}</h3>
+          <p className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5B6B73]">{department.text}</p>
+          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B6A73]">
+            {hasPage ? "Learn more" : "Book a consultation"}
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </span>
+        </div>
       </Link>
     </li>
   );

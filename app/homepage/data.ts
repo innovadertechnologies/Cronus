@@ -62,21 +62,151 @@ export type Department = {
   | "smile";
   // Dedicated landing page when one exists, otherwise the appointment form.
   href: string;
+  // Card photo (homepage departments section). The icon is still used by the blog.
+  image: string;
+  imageAlt: string;
 };
 
+// Same crop helper as the home page (images.unsplash.com is allowed in next.config).
+const unsplash = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=75`;
+
 export const DEPARTMENT_CARDS: Department[] = [
-  { name: "Orthopaedics", text: "Bone, joint and fracture care", icon: "bone", href: "/knee-and-hip" },
-  { name: "Spine Care", text: "Back pain, sciatica and slipped disc treatment", icon: "spine", href: "/spine" },
-  { name: "Obstetrics & Gynaecology", text: "Pregnancy, delivery and women's healthcare", icon: "baby", href: "/maternity" },
-  { name: "Hernia Surgery", text: "Surgical management of hernia", icon: "scissors", href: "/hernia" },
-  { name: "Gallbladder Surgery", text: "Laparoscopic gallbladder procedures", icon: "scissors", href: "/gallbladder-surgery" },
-  { name: "Urology", text: "Kidney stones, prostate and urinary conditions", icon: "droplet", href: "/urology" },
-  { name: "Internal Medicine", text: "General medicine, chest conditions and TB", icon: "stethoscope", href: "#appointment" },
-  { name: "Cardiology", text: "Heart health evaluation and treatment", icon: "heart", href: "#appointment" },
-  { name: "Neuro Surgery", text: "Brain and nerve-related surgical care", icon: "brain", href: "#appointment" },
-  { name: "ENT", text: "Ear, nose, and throat treatments", icon: "ear", href: "#appointment" },
-  { name: "Ophthalmology", text: "Eye care and vision-related conditions", icon: "eye", href: "#appointment" },
-  { name: "Dental Surgery", text: "Dental treatments for different age groups", icon: "smile", href: "#appointment" },
+  {
+    name: "Orthopaedics",
+    text: "Bone, joint and fracture care",
+    icon: "bone",
+    href: "/knee-and-hip",
+    image: "/knee.png",
+    imageAlt: "Illustration of a knee joint showing the bones and cartilage",
+  },
+  {
+    name: "Spine Care",
+    text: "Back pain, sciatica and slipped disc treatment",
+    icon: "spine",
+    href: "/spine",
+    image: "/sp1.png",
+    imageAlt: "Man holding his lower back with the spine highlighted where it hurts",
+  },
+  {
+    name: "Obstetrics & Gynaecology",
+    text: "Pregnancy, delivery and women's healthcare",
+    icon: "baby",
+    href: "/maternity",
+    image: "/First_Consultation.png",
+    imageAlt: "Gynaecologist consulting a pregnant woman",
+  },
+  {
+    name: "Hernia Surgery",
+    text: "Surgical management of hernia",
+    icon: "scissors",
+    href: "/hernia",
+    image: "/compimg.jpeg",
+    imageAlt: "Surgeons performing a laparoscopic abdominal operation",
+  },
+  {
+    name: "Gallbladder Surgery",
+    text: "Laparoscopic gallbladder procedures",
+    icon: "scissors",
+    href: "/gallbladder-surgery",
+    image: "/gbc1.png",
+    imageAlt: "Illustration of a gallbladder containing gallstones",
+  },
+  {
+    name: "Urology",
+    text: "Kidney stones, prostate and urinary conditions",
+    icon: "droplet",
+    href: "/urology",
+    image: "/kidney_stone.png",
+    imageAlt: "Illustration of a kidney with kidney stones and their treatment",
+  },
+  {
+    name: "Internal Medicine",
+    text: "General medicine, chest conditions and TB",
+    icon: "stethoscope",
+    href: "#appointment",
+    image: unsplash("1584982751601-97dcc096659c"),
+    imageAlt: "Stethoscope on a white surface",
+  },
+  {
+    name: "Cardiology",
+    text: "Heart health evaluation and treatment",
+    icon: "heart",
+    href: "#appointment",
+    image: unsplash("1530026405186-ed1f139313f8"),
+    imageAlt: "Anatomical model of the human heart",
+  },
+  {
+    name: "Neuro Surgery",
+    text: "Brain and nerve-related surgical care",
+    icon: "brain",
+    href: "#appointment",
+    image: unsplash("1559757148-5c350d0d3c56"),
+    imageAlt: "Anatomical model of the human brain",
+  },
+  {
+    name: "ENT",
+    text: "Ear, nose, and throat treatments",
+    icon: "ear",
+    href: "#appointment",
+    image: unsplash("1741174844812-c59239e677be"),
+    imageAlt: "Doctor examining a patient's ear with an otoscope",
+  },
+  {
+    name: "Ophthalmology",
+    text: "Eye care and vision-related conditions",
+    icon: "eye",
+    href: "#appointment",
+    image: unsplash("1539036776273-021ec1d78bec"),
+    imageAlt: "Patient having an eye test with a phoropter",
+  },
+  {
+    name: "Dental Surgery",
+    text: "Dental treatments for different age groups",
+    icon: "smile",
+    href: "#appointment",
+    image: unsplash("1629909613654-28e377c37b09"),
+    imageAlt: "Dental clinic with a treatment chair",
+  },
+];
+
+// Facilities at a Glance (what is physically inside the building).
+export const FACILITIES = [
+  {
+    name: "General & Special Rooms",
+    note: "Comfortable patient accommodation",
+    image: unsplash("1538108149393-fbbd81895907"),
+    imageAlt: "Hospital ward with made-up patient beds",
+  },
+  {
+    name: "ICU & NICU",
+    note: "Critical care and monitoring",
+    image: unsplash("1580281657702-257584239a55"),
+    imageAlt: "Intensive care room with a monitored patient bed",
+  },
+  {
+    name: "Maternity Section",
+    note: "Pregnancy and postnatal care",
+    image: "/deliverycare.png",
+    imageAlt: "New mother with her baby and family, cared for by a nurse",
+  },
+  {
+    name: "Pathology & X-ray",
+    note: "In-house diagnostic services",
+    image: unsplash("1581595219315-a187dd40c322"),
+    imageAlt: "Doctor reviewing X-ray scans",
+  },
+  {
+    name: "Sonography",
+    note: "Imaging and diagnostic support",
+    image: unsplash("1691935071222-c008a4ccc2ca"),
+    imageAlt: "Ultrasound machine with its monitor and probes",
+  },
+  {
+    name: "Pharmacy & Blood Bank",
+    note: "Essential services available round the clock",
+    image: unsplash("1587854692152-cbe660dbde88"),
+    imageAlt: "Medicine capsules spilling from a pill bottle",
+  },
 ];
 
 export type HomepageDoctor = {
@@ -87,12 +217,17 @@ export type HomepageDoctor = {
   experience?: string;
   image?: string;
   profileHref?: string;
+  // Short introduction for the doctors section, taken from the doctor's
+  // existing profile on the landing pages.
+  intro?: string;
 };
 
 export const FEATURED_DOCTOR: HomepageDoctor = {
   name: "Dr. Chetan Kumar Gupta",
   speciality: "TB & Chest Specialist",
   department: "Internal Medicine",
+  image: "/dr-chetan-gupta.avif",
+  intro: "Providing consultation and medical care for chest and respiratory conditions.",
 };
 
 export const OTHER_DOCTORS: HomepageDoctor[] = [
@@ -104,6 +239,7 @@ export const OTHER_DOCTORS: HomepageDoctor[] = [
     experience: "27+ years",
     image: "/dheeraj.png",
     profileHref: "/knee-and-hip",
+    intro: "Specialises in knee and hip replacement, joint replacement and arthritis management.",
   },
   {
     name: "Dr. Sandeep Singh",
@@ -113,6 +249,8 @@ export const OTHER_DOCTORS: HomepageDoctor[] = [
     experience: "30+ years",
     image: "/spdoc.jpeg",
     profileHref: "/spine",
+    intro:
+      "With extensive experience in Orthopaedics and Spine care, Dr. Sandeep Singh specializes in spine surgery, spinal deformity correction, orthopaedic surgery and pain management.",
   },
   {
     name: "Dr. Kumkum Sharma",
@@ -122,6 +260,7 @@ export const OTHER_DOCTORS: HomepageDoctor[] = [
     experience: "42+ years",
     image: "/DR KUMKUM SHARMA.png",
     profileHref: "/maternity",
+    intro: "Provides pregnancy and maternity care, obstetric care and gynaecological care.",
   },
   {
     name: "Dr. Shiv Chopra",

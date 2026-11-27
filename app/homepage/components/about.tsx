@@ -1,16 +1,7 @@
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { ABOUT_US_URL } from "../data";
+import { ABOUT_US_URL, FACILITIES } from "../data";
 import { SectionHeading } from "./section-heading";
-
-// Facilities at a Glance (what is physically inside the building).
-const facilities = [
-  { name: "General & Special Rooms", note: "Comfortable patient accommodation" },
-  { name: "ICU & NICU", note: "Critical care and monitoring" },
-  { name: "Maternity Section", note: "Pregnancy and postnatal care" },
-  { name: "Pathology & X-ray", note: "In-house diagnostic services" },
-  { name: "Sonography", note: "Imaging and diagnostic support" },
-  { name: "Pharmacy & Blood Bank", note: "Essential services available round the clock" },
-];
 
 // Text-only About section; "Know More About Us" opens the existing About Us
 // page on the main hospital website (no duplicate page is created here).
@@ -23,11 +14,17 @@ export function About() {
           <h3 className="mt-10 text-2xl font-bold leading-tight text-[#0B3446] sm:text-[1.75rem] sm:tracking-[-0.01em]">
             Facilities at a Glance
           </h3>
+          {/* Each facility: a photo of the same size, then its name and note */}
           <dl className="mt-4 grid border-t border-[#0B3446]/10 sm:grid-cols-2 sm:gap-x-8">
-            {facilities.map((f) => (
-              <div key={f.name} className="border-b border-[#0B3446]/10 py-3">
-                <dt className="text-[15px] font-medium text-[#1B2936]">{f.name}</dt>
-                <dd className="mt-0.5 text-sm text-[#5B6B73]">{f.note}</dd>
+            {FACILITIES.map((f) => (
+              <div key={f.name} className="flex items-center gap-4 border-b border-[#0B3446]/10 py-3">
+                <div className="relative aspect-[4/3] w-20 shrink-0 overflow-hidden rounded-lg bg-[#E3F6F7] ring-1 ring-[#0B3446]/10">
+                  <Image src={f.image} alt={f.imageAlt} fill sizes="80px" className="object-cover" />
+                </div>
+                <div className="min-w-0">
+                  <dt className="text-[15px] font-medium text-[#1B2936]">{f.name}</dt>
+                  <dd className="mt-0.5 text-sm text-[#5B6B73]">{f.note}</dd>
+                </div>
               </div>
             ))}
           </dl>

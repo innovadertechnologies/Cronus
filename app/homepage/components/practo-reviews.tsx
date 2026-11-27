@@ -1,8 +1,8 @@
-import { ExternalLink, ThumbsUp } from "lucide-react";
-import { PRACTO_RATING, PRACTO_REVIEWS_URL, PRACTO_STORIES, type PractoStory } from "../data";
-import { PractoMark, Stars } from "./rating-icons";
+import { ThumbsUp } from "lucide-react";
+import { PRACTO_REVIEWS_URL, PRACTO_STORIES, type PractoStory } from "../data";
+import { PractoMark } from "./rating-icons";
 import { MarqueeClone } from "./marquee-clone";
-import { SectionHeading } from "./section-heading";
+import { ReviewCarousel, SourceBar } from "./review-parts";
 
 // Same card as the Google reviews. Practo stories carry no star rating, so
 // the top line shows the patient's recommendation instead of stars.
@@ -40,68 +40,26 @@ function StoryCard({ story }: { story: PractoStory }) {
   );
 }
 
-// Practo, laid out exactly like the Google reviews section. Practo offers no
-// embed, widget or public API, so this shows its rating and short excerpts of
-// real patient stories as published there (kept in data.ts), each linking to
-// the full stories on Practo.
+// Practo part of the Reviews section, placed right after the Google reviews.
+// Practo offers no embed, widget or public API, so this shows its rating and
+// short excerpts of real patient stories as published there (kept in
+// data.ts), each linking to the full stories on Practo.
 export function PractoReviews() {
   return (
-    <section
-      id="practo-reviews"
-      aria-labelledby="homepage-practo-title"
-      className="scroll-mt-24 overflow-hidden bg-[#F6F3EE] py-16 sm:py-24"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-8">
-        <SectionHeading
-          id="homepage-practo-title"
-          eyebrow="Practo reviews"
-          title="Patient stories on Practo"
-          description="Stories from patients, published on Practo."
-        />
-
-        <div className="mt-10">
-          <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-            <div className="flex items-center gap-4">
-              <PractoMark className="h-14 w-14 rounded-xl text-xl" />
-              <div>
-                <h3 className="text-lg font-semibold text-[#0B3446]">Practo Reviews</h3>
-                <p className="mt-0.5 flex flex-wrap items-center gap-2 text-sm text-[#5B6B73]">
-                  <span className="text-xl font-semibold tabular-nums text-[#0B3446]">{PRACTO_RATING.score}</span>
-                  <Stars rating={Number(PRACTO_RATING.score)} />
-                  <span>({PRACTO_RATING.count} patient stories)</span>
-                </p>
-              </div>
-            </div>
-            <a
-              id="homepage-practo-stories-btn"
-              href={PRACTO_REVIEWS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-[#0B3446] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0E7C86]"
-            >
-              See all on Practo
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Continuous right-to-left carousel, same seamless two-half loop as the
-          Google reviews. Pauses on hover, focus or touch. */}
-      <div
-        role="region"
-        aria-label="Practo patient stories carousel"
-        className="mt-8 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        <div className="flex w-max animate-[marquee_70s_linear_infinite] py-2 hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] active:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:px-4 sm:motion-reduce:px-8">
-          <ul className="flex gap-5 pr-5">
-            {PRACTO_STORIES.map((story) => (
-              <StoryCard key={story.author} story={story} />
-            ))}
-          </ul>
-          <MarqueeClone className="flex gap-5 pr-5 motion-reduce:hidden" />
-        </div>
-      </div>
-    </section>
+    <>
+      <SourceBar
+        icon={<PractoMark className="h-5 w-5 text-[11px]" />}
+        title="Practo Reviews"
+        cta={{ id: "homepage-practo-stories-btn", href: PRACTO_REVIEWS_URL, label: "See all on Practo" }}
+      />
+      <ReviewCarousel label="Practo patient stories carousel">
+        <ul className="flex gap-5 pr-5">
+          {PRACTO_STORIES.map((story) => (
+            <StoryCard key={story.author} story={story} />
+          ))}
+        </ul>
+        <MarqueeClone className="flex gap-5 pr-5 motion-reduce:hidden" />
+      </ReviewCarousel>
+    </>
   );
 }
