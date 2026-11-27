@@ -65,7 +65,7 @@ export function Reviews({ google }: Props) {
           id="homepage-reviews-title"
           eyebrow="PATIENT EXPERIENCES"
           title="Trusted by Patients."
-          description="Reviews from patients, published on Google."
+          description="Every patient's experience matters to us. Read what patients have shared about their consultations, treatments, and hospital experience."
         />
 
         <div className="mt-10">
