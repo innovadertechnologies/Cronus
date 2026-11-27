@@ -17,7 +17,7 @@ type Props = {
 export function BlogCategories({ options, active, onSelect }: Props) {
   return (
     <nav aria-label="Article categories" className="-mx-4 sm:-mx-8 lg:mx-0">
-      <ul className="flex gap-2 overflow-x-auto px-4 py-1 [scrollbar-width:none] sm:px-8 lg:flex-wrap lg:justify-center lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden">
+      <ul className="flex gap-2 overflow-x-auto px-4 py-1 [scrollbar-width:none] sm:px-8 lg:flex-wrap lg:justify-center lg:gap-x-2.5 lg:gap-y-3 lg:overflow-visible lg:px-0 scroll-smooth overscroll-x-contain [&::-webkit-scrollbar]:hidden">
         {options.map(({ value, label, count, icon }) => {
           const selected = value === active;
           const Icon = icon ? DEPARTMENT_ICONS[icon] : LibraryBig;
@@ -27,7 +27,7 @@ export function BlogCategories({ options, active, onSelect }: Props) {
                 type="button"
                 aria-pressed={selected}
                 onClick={() => onSelect(value)}
-                className={`flex h-10 items-center gap-2 whitespace-nowrap rounded-full px-4 text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7C86] ${
+                className={`flex h-10 items-center gap-2 whitespace-nowrap pr-3.5 rounded-full px-4 text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7C86] ${
                   selected
                     ? "bg-[#0E7C86] text-white"
                     : "bg-white text-[#0B3446] ring-1 ring-inset ring-[#0B3446]/15 hover:bg-[#E3F6F7] hover:ring-[#0E7C86]/40"
@@ -39,7 +39,7 @@ export function BlogCategories({ options, active, onSelect }: Props) {
                   className={`h-4 w-4 shrink-0 ${selected ? "text-white" : "text-[#5B6B73]"}`}
                 />
                 {label}
-                <span className={`tabular-nums ${selected ? "text-white/75" : "text-[#8A979D]"}`}>{count}</span>
+                <span className={`text-xs tabular-nums ${selected ? "text-white/70" : "text-[#8A979D]"}`}>{count}</span>
               </button>
             </li>
           );

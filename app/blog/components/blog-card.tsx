@@ -25,7 +25,8 @@ export function BlogCard({ post, minutes }: Props) {
         <div>
           <CategoryBadge category={post.category} />
         </div>
-        <h3 className="mt-4 text-lg font-semibold leading-snug text-[#0B3446]">
+        {/* Two lines reserved, so descriptions start on one line across a row */}
+        <h3 className="mt-4 min-h-[2lh] text-lg font-semibold leading-snug text-[#0B3446]">
           <Link
             href={postHref(post)}
             className="line-clamp-2 outline-none transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-[#0B6A73]"
