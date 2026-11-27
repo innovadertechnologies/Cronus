@@ -3,7 +3,6 @@ import { JsonLd } from "@/app/components/json-ld";
 import { blogMetadata, blogSchema } from "@/app/lib/seo";
 import { BlogHeader } from "./components/blog-header";
 import { BlogFooter } from "./components/blog-footer";
-import { BlogPageHeader } from "./components/blog-page-header";
 import { BlogGrid } from "./components/blog-grid";
 import { BlogCta } from "./components/blog-cta";
 
@@ -19,7 +18,6 @@ export default function BlogPage() {
       <JsonLd data={schema} />
       <BlogHeader />
       <main>
-        <BlogPageHeader />
         <BlogGrid />
         <BlogCta />
       </main>

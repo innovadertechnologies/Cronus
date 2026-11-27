@@ -12,8 +12,6 @@ function ReviewCard({ review }: { review: Review }) {
   return (
     <li className="w-[300px] shrink-0 sm:w-[360px]">
       <figure
-        // relative: keeps the sr-only rating inside the card (and inside the
-        // scroll container) even when the carousel is not transformed.
         className="relative flex h-72 flex-col rounded-2xl bg-white p-6 ring-1 ring-[#0B3446]/10"
       >
         <div className="flex items-center gap-2">
@@ -51,10 +49,7 @@ function ReviewCard({ review }: { review: Review }) {
 
 type Props = { google: GoogleReviewsData };
 
-// Platform summaries plus a continuous right-to-left carousel of reviews.
-// Google data is live from the Places API when configured, otherwise the
-// genuine reviews already published on the site (see google-reviews.ts).
-// Practo has its own section (practo-reviews.tsx).
+
 export function Reviews({ google }: Props) {
   const reviews = google.reviews;
 
@@ -97,9 +92,6 @@ export function Reviews({ google }: Props) {
         </div>
       </div>
 
-      {/* Continuous right-to-left carousel. Two identical halves, each with its
-          own trailing gap, move by -50% so the loop is seamless. Pauses on
-          hover, focus or touch; becomes a swipeable row with reduced motion. */}
       <div
         role="region"
         aria-label="Patient reviews carousel"
