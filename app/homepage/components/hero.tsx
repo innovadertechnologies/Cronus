@@ -94,7 +94,7 @@ export function Hero({ rating, count, googleUrl }: Props) {
       id="hero"
       aria-roledescription="carousel"
       aria-label="Cronus Multispeciality Hospital"
-      className="relative h-[37.5svh] min-h-[200px] overflow-hidden bg-[#E9F1F5] lg:h-[clamp(320px,min(40vw,calc(100svh_-_289px)),620px)]"
+      className="relative h-[42svh] min-h-[220px] overflow-hidden bg-[#E9F1F5] lg:h-[clamp(340px,min(44vw,calc(100svh_-_268px)),660px)]"
       // Pause only for keyboard focus; a mouse click on a dot must not stop it.
       onFocus={(e) => setFocused(e.target.matches(":focus-visible"))}
       onBlur={() => setFocused(false)}
