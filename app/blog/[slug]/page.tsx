@@ -4,7 +4,7 @@ import { JsonLd } from "@/app/components/json-ld";
 import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { blogArticleMetadata, blogArticleSchema, type BlogArticleSeo } from "@/app/lib/seo";
 import { TEL_HREF } from "@/app/homepage/data";
-import { ARTICLE_BODIES } from "../articles";
+import { ARTICLE_BODIES, articleMinutes, articleWordCount } from "../articles";
 import { BLOG_POSTS, getPost, readingMinutes, relatedPosts, type BlogPost } from "../data";
 import { BlogHeader } from "../components/blog-header";
 import { BlogFooter } from "../components/blog-footer";
@@ -21,13 +21,6 @@ export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
 }
 
-function wordCount(post: BlogPost) {
-  const text = (ARTICLE_BODIES[post.slug] ?? [])
-    .map((b) => (b.type === "ul" ? b.items.join(" ") : b.text))
-    .join(" ");
-  return text.split(/\s+/).filter(Boolean).length;
-}
-
 function seoFor(post: BlogPost): BlogArticleSeo {
   return {
     slug: post.slug,
@@ -37,7 +30,7 @@ function seoFor(post: BlogPost): BlogArticleSeo {
     publishedAt: post.publishedAt,
     image: post.image,
     imageAlt: post.imageAlt,
-    wordCount: wordCount(post),
+    wordCount: articleWordCount(post.slug),
   };
 }
 
@@ -100,7 +93,7 @@ export default async function BlogArticlePage({ params }: PageProps<"/blog/[slug
               <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {related.map((p) => (
                   <li key={p.id}>
-                    <BlogCard post={p} />
+                    <BlogCard post={p} minutes={articleMinutes(p.slug)} />
                   </li>
                 ))}
               </ul>

@@ -196,7 +196,6 @@ export const BLOG_NAV_LINKS = NAV_LINKS.map((link) => ({ ...link, href: `/homepa
 export const APPOINTMENT_HREF = "/homepage#appointment";
 
 export const POSTS_PER_PAGE = 6;
-
 // Reading time at ~200 words a minute, at least one minute.
 export function readingMinutes(words: number) {
   return Math.max(1, Math.round(words / 200));

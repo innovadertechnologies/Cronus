@@ -1,5 +1,20 @@
 // Full text of each blog article, keyed by slug (see BLOG_POSTS in data.ts).
 
+import { readingMinutes } from "./data";
+
+function blockText(block: ArticleBlock) {
+  return block.type === "ul" ? block.items.join(" ") : block.text;
+}
+
+export function articleWordCount(slug: string) {
+  const text = (ARTICLE_BODIES[slug] ?? []).map(blockText).join(" ");
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
+// Reading time from the real article text; undefined when there is no body.
+export function articleMinutes(slug: string) {
+  return ARTICLE_BODIES[slug] ? readingMinutes(articleWordCount(slug)) : undefined;
+}
 export type ArticleBlock =
   | { type: "h2"; text: string }
   | { type: "p"; text: string }

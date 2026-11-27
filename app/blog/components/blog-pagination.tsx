@@ -16,8 +16,8 @@ const control =
 export function BlogPagination({ page, pages, from, to, total, onPage }: Props) {
   if (total === 0) return null;
   return (
-    <div className="mt-12 flex flex-col items-center gap-4 border-t border-[#0B3446]/10 pt-8 sm:flex-row sm:justify-between">
-      <p aria-live="polite" className="text-sm tabular-nums text-[#5B6B73]">
+    <div className="mt-10 flex flex-col items-center gap-4 border-t border-[#0B3446]/10 pt-6 sm:flex-row sm:justify-between">
+      <p className="text-sm tabular-nums text-[#5B6B73]">
         {from}–{to} of {total} {total === 1 ? "article" : "articles"}
       </p>
       {pages > 1 && (
@@ -43,7 +43,7 @@ export function BlogPagination({ page, pages, from, to, total, onPage }: Props) 
                   aria-label={`Page ${n}`}
                   aria-current={n === page ? "page" : undefined}
                   className={`${control} ${
-                    n === page ? "bg-[#0B3446] text-white" : "text-[#0B3446] hover:bg-[#F6F3EE]"
+                    n === page ? "bg-[#0E7C86] text-white" : "text-[#0B3446] hover:bg-[#E3F6F7]"
                   }`}
                 >
                   {n}
