@@ -7,7 +7,6 @@ import { SectionHeading } from "./section-heading";
 
 const sourceLabel: Record<Review["source"], string> = { google: "Google", practo: "Practo" };
 
-// `copy`: the second, decorative copy of the row (seamless loop).
 function ReviewCard({ review, copy = false }: { review: Review; copy?: boolean }) {
   const isGoogle = review.source === "google";
   return (
@@ -51,7 +50,6 @@ function ReviewCard({ review, copy = false }: { review: Review; copy?: boolean }
 
 type Props = { google: GoogleReviewsData };
 
-
 export function Reviews({ google }: Props) {
   const reviews = google.reviews;
 
@@ -67,7 +65,6 @@ export function Reviews({ google }: Props) {
 
       </div>
 
-      {/* 1–2. Google Reviews label, then the Google review cards */}
       <div className="mt-10">
         <SourceBar
           icon={<GoogleIcon className="h-5 w-5" />}

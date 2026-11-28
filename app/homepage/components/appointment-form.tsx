@@ -18,25 +18,17 @@ const infoIconClass =
   "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-[#0B6A73] ring-1 ring-[#0B3446]/10";
 
 type Props = {
-  // Prefix for input ids so two forms can live on one page.
   idPrefix: string;
-  // Card heading; when left out, the form is labelled by `labelledBy` (the
-  // surrounding section heading) instead.
   title?: string;
   subtitle?: string;
   labelledBy?: string;
   labels: { name: string; phone: string; department: string; message: ReactNode };
   submitLabel: string;
-  // Line under the submit button.
   note: ReactNode;
-  // "split" adds an info panel beside the form (hero); "plain" is the form alone.
   variant?: "split" | "plain";
-  // Only one form reacts to "Book appointment" clicks (doctor cards etc.).
   listenForBooking?: boolean;
 };
 
-// Appointment enquiry card. Submits through the existing home page server
-// action, so leads land in the same sheet and go to the same thank-you page.
 export function AppointmentForm({
   idPrefix,
   title,
@@ -205,7 +197,6 @@ export function AppointmentForm({
         {heading}
       </aside>
 
-      {/* Form */}
       <div className="p-5 sm:p-8 lg:p-10">{form}</div>
     </div>
   );

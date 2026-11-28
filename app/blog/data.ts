@@ -1,14 +1,3 @@
-// Content for the /blog listing page.
-//
-// Categories are the hospital's departments exactly as the site already
-// names them (the /homepage Departments section), so spelling and order stay
-// in step with the rest of the site.
-//
-// The articles below are SAMPLE entries for the static listing. Have them
-// written and medically reviewed before publishing real content. The shape
-// (id, slug, title, excerpt, category, image, publishedAt, featured) is ready
-// to be filled from a CMS or API later.
-
 import { DEPARTMENT_CARDS, NAV_LINKS, type Department } from "@/app/homepage/data";
 
 export type BlogCategory = Department["name"];
@@ -21,11 +10,16 @@ export type BlogPost = {
   title: string;
   excerpt: string;
   category: BlogCategory;
-  // Placeholder images from /public; without one the card shows the
-  // department's icon instead. Replace with article images later.
   image?: string;
   imageAlt?: string;
   publishedAt: string; // ISO date
+  updatedAt?: string;
+  reviewer?: {
+    name: string;
+    speciality: string;
+    image?: string;
+    href?: string;
+  };
   featured?: boolean;
 };
 
@@ -115,6 +109,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "Not all chest pain is a heart attack, but some signs should never wait. Learn which symptoms mean you should call for emergency help straight away.",
     category: "Cardiology",
+    image: "/cardiology.jpg",
+    imageAlt: "Anatomical model of the human heart",
     publishedAt: "2026-09-30",
   },
   {
@@ -165,14 +161,11 @@ export function getPost(slug: string) {
   return BLOG_POSTS.find((p) => p.slug === slug);
 }
 
-// The department's own page when it has one, otherwise the departments
-// section of /homepage.
 export function departmentHref(category: BlogCategory) {
   const dept = DEPARTMENT_CARDS.find((d) => d.name === category);
   return dept?.href.startsWith("/") ? dept.href : "/homepage#departments";
 }
 
-// Up to three other articles: same department first, then the newest.
 export function relatedPosts(post: BlogPost, count = 3) {
   const others = BLOG_POSTS.filter((p) => p.id !== post.id);
   const same = others.filter((p) => p.category === post.category);
@@ -184,24 +177,20 @@ export function departmentIcon(category: BlogCategory): Department["icon"] {
   return DEPARTMENT_CARDS.find((d) => d.name === category)?.icon ?? "stethoscope";
 }
 
-// Fixed format ("18 Nov 2026"), the same on server and client.
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export function formatDate(iso: string) {
   const [y, m, d] = iso.split("-").map(Number);
   return `${d} ${MONTHS[m - 1]} ${y}`;
 }
 
-// Header and footer links point at the /homepage sections they come from.
 export const BLOG_NAV_LINKS = NAV_LINKS.map((link) => ({ ...link, href: `/homepage${link.href}` }));
 export const APPOINTMENT_HREF = "/homepage#appointment";
 
 export const POSTS_PER_PAGE = 6;
-// Reading time at ~200 words a minute, at least one minute.
 export function readingMinutes(words: number) {
   return Math.max(1, Math.round(words / 200));
 }
 
-// "What you can do at home" → "what-you-can-do-at-home" (heading anchors).
 export function slugify(text: string) {
   return text
     .toLowerCase()

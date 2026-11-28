@@ -1,19 +1,3 @@
-// Live Google rating and reviews through the official Google Places API (New).
-// Runs on the server only: the API key is read from the environment and never
-// reaches the browser.
-//
-// To switch it on, set both in the hosting environment (e.g. Hostinger's
-// environment variables) and redeploy:
-//   GOOGLE_PLACES_API_KEY  – a key with "Places API (New)" enabled, restricted
-//                            to that API (it is used server-side, not in a browser)
-//   GOOGLE_PLACE_ID        – the hospital's Place ID (find it with Google's
-//                            Place ID Finder)
-//
-// The Places API returns the overall rating, the review count and up to 5
-// reviews chosen by Google. Until it is configured (or if a request fails),
-// the page shows the rating and the genuine Google reviews already published
-// on the site, so nothing is ever invented.
-
 import { GOOGLE_RATING, GOOGLE_REVIEWS, MAP_SEARCH_URL, type Review } from "./data";
 
 export type GoogleReviewsData = {
@@ -21,7 +5,6 @@ export type GoogleReviewsData = {
   count: string;
   url: string;
   reviews: Review[];
-  // true when the data came from the Places API just now.
   live: boolean;
 };
 
@@ -60,7 +43,6 @@ export async function getGoogleReviews(): Promise<GoogleReviewsData> {
         "X-Goog-Api-Key": key,
         "X-Goog-FieldMask": "rating,userRatingCount,googleMapsUri,reviews",
       },
-      // Refresh at most once a day.
       next: { revalidate: 86400 },
     });
     if (!res.ok) throw new Error(`Places API HTTP ${res.status}`);
@@ -81,7 +63,6 @@ export async function getGoogleReviews(): Promise<GoogleReviewsData> {
       rating: place.rating != null ? place.rating.toFixed(1) : FALLBACK.rating,
       count: place.userRatingCount != null ? place.userRatingCount.toLocaleString("en-IN") : FALLBACK.count,
       url: place.googleMapsUri ?? FALLBACK.url,
-      // Google returns at most 5; keep the published ones as well if it returns none.
       reviews: reviews.length > 0 ? reviews : FALLBACK.reviews,
       live: true,
     };

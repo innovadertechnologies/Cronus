@@ -1,21 +1,11 @@
-// Content for the /homepage route. Everything here comes from content that
-// already exists elsewhere on the site (home/data.ts, lib/seo.ts and the
-// landing pages) – nothing is invented for this page.
-
 import { CLINIC_ADDRESS, CLINIC_NAME, CLINIC_PHONE_TEL } from "@/app/lib/site-config";
 import { DEPARTMENTS } from "@/app/home/data";
 import type { Faq } from "@/app/lib/seo";
-
-// ---------------------------------------------------------------------------
-// Contact links
-// ---------------------------------------------------------------------------
 
 export const TEL_HREF = `tel:${CLINIC_PHONE_TEL}`;
 export const WHATSAPP_HREF = `https://wa.me/${CLINIC_PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(
   `Hello ${CLINIC_NAME}, I would like to book an appointment.`
 )}`;
-// The site has a single hospital number; emergency and ambulance requests
-// go to the same 24x7 line. Swap in a dedicated number here if one exists.
 export const EMERGENCY_TEL_HREF = TEL_HREF;
 export const AMBULANCE_TEL_HREF = TEL_HREF;
 
@@ -26,7 +16,6 @@ export const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destinatio
   `${CLINIC_NAME}, ${CLINIC_ADDRESS}`
 )}`;
 
-// In-page navigation used by the header and footer.
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Departments", href: "#departments" },
@@ -37,12 +26,6 @@ export const NAV_LINKS = [
   { label: "Contact", href: "#location" },
 ];
 
-// ---------------------------------------------------------------------------
-// Departments
-// ---------------------------------------------------------------------------
-
-// The appointment form offers the home page departments plus Urology,
-// which has its own landing page.
 export const FORM_DEPARTMENTS = [...DEPARTMENTS, "Urology"];
 
 export type Department = {
@@ -60,17 +43,12 @@ export type Department = {
   | "heart"
   | "eye"
   | "smile";
-  // Dedicated landing page when one exists, otherwise the appointment form.
   href: string;
-  // Card photo (homepage departments section). The icon is still used by the blog.
   image: string;
   imageAlt: string;
-  // "contain" for illustrations on a white background, so the whole organ
-  // stays in the 16:10 frame instead of being cropped.
   imageFit?: "cover" | "contain";
 };
 
-// Same crop helper as the home page (images.unsplash.com is allowed in next.config).
 const unsplash = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=75`;
 
 export const DEPARTMENT_CARDS: Department[] = [
@@ -173,7 +151,6 @@ export const DEPARTMENT_CARDS: Department[] = [
   },
 ];
 
-// Facilities at a Glance (what is physically inside the building).
 export const FACILITIES = [
   {
     name: "General & Special Rooms",
@@ -221,8 +198,6 @@ export type HomepageDoctor = {
   experience?: string;
   image?: string;
   profileHref?: string;
-  // Short introduction for the doctors section, taken from the doctor's
-  // existing profile on the landing pages.
   intro?: string;
 };
 
@@ -299,12 +274,6 @@ export const OTHER_DOCTORS: HomepageDoctor[] = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Reviews (real Google reviews already published on the landing pages)
-// ---------------------------------------------------------------------------
-
-// Overall Google rating as already published on the landing pages. Used
-// until the Google Places API is configured (see ./google-reviews.ts).
 export const GOOGLE_RATING = { score: "4.2", count: "1,012" };
 
 export type Review = {
@@ -312,15 +281,10 @@ export type Review = {
   author: string;
   rating: number;
   text: string;
-  // Relative ("8 months ago") as shown by the platform.
   date: string;
   link?: string;
 };
 
-// Genuine Google reviews already published on the knee & hip, maternity and
-// spine pages, copied verbatim with their Google share links. Shown only
-// when live reviews from the Google Places API are not available. The
-// relative dates are as they were when the reviews were captured.
 export const GOOGLE_REVIEWS: Review[] = [
   {
     source: "google",
@@ -396,10 +360,6 @@ export const GOOGLE_REVIEWS: Review[] = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Hero carousel (existing banner images from the landing pages)
-// ---------------------------------------------------------------------------
-
 export const HERO_SLIDES = [
   {
     src: "/gbhbanner.png",
@@ -428,29 +388,20 @@ export const HERO_SLIDES = [
   },
 ];
 
-// Existing pages on the main hospital website.
 export const ABOUT_US_URL = "https://cronushospitals.com/about-us/";
 export const OUR_DOCTORS_URL = "https://cronushospitals.com/our-doctors/";
 
-// Practo has no embed, widget or public API for reviews, so the page shows the
-// hospital's Practo rating and links to its patient stories there. Figures as
-// shown on the Practo profile on 2026-11-25 – update them here when they change.
 export const PRACTO_PROFILE_URL = "https://www.practo.com/delhi/hospital/cronus-multispeciality-hospital-chattarpur-1";
 export const PRACTO_REVIEWS_URL = `${PRACTO_PROFILE_URL}/reviews`;
-// score = patient rating; excellence = Practo's separate "Hospital Excellence Rating".
 export const PRACTO_RATING = { score: "3.5", count: "334", excellence: "4.2" };
 
 export type PractoStory = {
   author: string;
   date: string;
   doctor: string;
-  // A short excerpt quoted exactly as written on Practo (full story is linked).
   excerpt: string;
 };
 
-// Patient stories from the hospital's Practo profile (all marked "I recommend
-// the doctor" there). Short excerpts only, quoted exactly as published, each
-// linking to the full stories on Practo. Dates are as shown on 2026-11-25.
 export const PRACTO_STORIES: PractoStory[] = [
   {
     author: "Ishani Sachdeva",
@@ -489,10 +440,6 @@ export const PRACTO_STORIES: PractoStory[] = [
     excerpt: "Highly recommended.",
   },
 ];
-
-// ---------------------------------------------------------------------------
-// FAQs
-// ---------------------------------------------------------------------------
 
 export const HOMEPAGE_FAQS: Faq[] = [
   {

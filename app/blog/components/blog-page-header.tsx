@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-// Centred blog hero: breadcrumb, label, H1 and intro.
 export function BlogPageHeader() {
   return (
     <div className="text-center">

@@ -1,9 +1,6 @@
 import { CalendarCheck } from "lucide-react";
 import { APPOINTMENT_HREF } from "../data";
 
-// Appointment prompt before the footer, stacked and centred. Books through the
-// appointment form on /homepage; call and WhatsApp live in the footer band
-// right below.
 export function BlogCta() {
   return (
     <section aria-labelledby="blog-cta-title" className="bg-white pb-16 sm:pb-20">

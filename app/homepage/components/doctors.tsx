@@ -40,7 +40,6 @@ function Portrait({ doctor, sizes }: { doctor: HomepageDoctor; sizes: string }) 
       className="object-cover object-top"
     />
   ) : (
-    // Until a photo is added (data.ts), a quiet initials avatar.
     <span role="img" aria-label={`${doctor.name} (photo coming soon)`} className="absolute inset-0 flex items-center justify-center">
       <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-xl font-semibold text-[#0B6A73] ring-1 ring-[#0E7C86]/15 sm:h-24 sm:w-24 sm:text-3xl">
         {initials(doctor.name)}
@@ -49,8 +48,6 @@ function Portrait({ doctor, sizes }: { doctor: HomepageDoctor; sizes: string }) 
   );
 }
 
-// Name, speciality, qualifications and introduction, plus the doctor's page
-// (or the appointment form when there is no page). Desktop cards.
 function DoctorInfo({ doctor }: { doctor: HomepageDoctor }) {
   return (
     <>
@@ -62,8 +59,6 @@ function DoctorInfo({ doctor }: { doctor: HomepageDoctor }) {
   );
 }
 
-// Qualifications, introduction and link: everything below the name. Shared by
-// the desktop cards and the mobile accordion.
 function DoctorDetails({ doctor }: { doctor: HomepageDoctor }) {
   const meta = [doctor.qualifications, doctor.experience && `${doctor.experience} experience`].filter(Boolean).join(" · ");
   return (
@@ -96,11 +91,8 @@ function DoctorDetails({ doctor }: { doctor: HomepageDoctor }) {
 
 export function Doctors() {
   const [active, setActive] = useState(0);
-  // Desktop: the mouse is over the cards.
   const [hovering, setHovering] = useState(false);
-  // Mobile: a finger is on the list, or the reader tapped a doctor. A tapped
-  // card stays open until the list has left the screen, so it never closes
-  // while it is being read.
+
   const [touching, setTouching] = useState(false);
   const [held, setHeld] = useState(false);
 
@@ -122,9 +114,6 @@ export function Doctors() {
     return () => observer.disconnect();
   }, []);
 
-  // Mobile accordion: every details panel gets the height of the tallest one,
-  // so one card opening while another closes keeps the list the same height
-  // and nothing below it moves.
   const detailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [detailHeight, setDetailHeight] = useState<number>();
   useEffect(() => {
@@ -152,7 +141,6 @@ export function Doctors() {
           description="Our doctors combine their medical expertise and experience to provide guidance, diagnosis, and treatment across specialties."
         />
 
-        {/* Desktop: expanding cards */}
         <ul
           onPointerEnter={(e) => isMouse(e) && setHovering(true)}
           onPointerLeave={(e) => isMouse(e) && setHovering(false)}
@@ -206,8 +194,6 @@ export function Doctors() {
           })}
         </ul>
 
-        {/* Phones and tablets: a vertical accordion. Each card shows the photo,
-            name and speciality; the open card slides down its details. */}
         <ul
           ref={mobileList}
           onPointerDown={(e) => !isMouse(e) && setTouching(true)}

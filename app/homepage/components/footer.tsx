@@ -20,7 +20,6 @@ const linkClass = "text-[15px] text-white/70 transition-colors hover:text-white"
 export function Footer() {
   return (
     <footer className="bg-[#082736] text-white">
-      {/* Emergency band */}
       <div className="bg-[#0E7C86]">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 sm:px-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">

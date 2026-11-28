@@ -1,6 +1,3 @@
-// Copy of app/homepage/components/footer.tsx for /blog (kept separate on
-// purpose for now). Only the links differ: in-page anchors point back to
-// the /homepage sections, and ids are prefixed "blog-".
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock, Mail, MapPin, Phone, Siren } from "lucide-react";
@@ -24,7 +21,6 @@ const linkClass = "text-[15px] text-white/70 transition-colors hover:text-white"
 export function BlogFooter() {
   return (
     <footer className="bg-[#082736] text-white">
-      {/* Emergency band */}
       <div className="bg-[#0E7C86]">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 sm:px-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">

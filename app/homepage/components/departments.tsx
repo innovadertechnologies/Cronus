@@ -2,12 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { DEPARTMENT_CARDS, type Department } from "../data";
+import { AutoScrollRow } from "./auto-scroll-row";
 import { SectionHeading } from "./section-heading";
 
-// Photo on top (same 16:10 frame on every card), then name, text and link.
-// Hover: teal ring, a soft shadow and a slow zoom of the photo inside its frame.
-// `copy`: the second, decorative copy of the list that makes the loop
-// seamless. It stays clickable but is out of the tab order and has no headings.
 function DepartmentCard({ department, copy = false }: { department: Department; copy?: boolean }) {
   const hasPage = department.href.startsWith("/");
   const Title = copy ? "p" : "h3";
@@ -40,9 +37,6 @@ function DepartmentCard({ department, copy = false }: { department: Department; 
   );
 }
 
-// Cards drift right-to-left in a seamless CSS loop (the list is rendered
-// twice and moved by half its width). Hover or keyboard focus pauses it;
-// with reduced motion it becomes a plain, swipeable row.
 export function Departments() {
   return (
     <section
@@ -60,30 +54,21 @@ export function Departments() {
       </div>
 
       <div className="relative mt-10">
-        {/* Edge fades */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-transparent sm:w-24" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-transparent sm:w-24" />
 
-        {/* While it moves, the row cannot be scrolled at all (overflow clip,
-            not even by focus or find-in-page), so it never runs past the
-            cards into empty space. With reduced motion it is a plain row
-            that can be swiped. */}
-        <div className="overflow-x-clip motion-reduce:overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex w-max animate-[marquee_60s_linear_infinite] hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] active:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:px-4 sm:motion-reduce:px-8">
-            <ul className="flex gap-5 pr-5">
-              {DEPARTMENT_CARDS.map((d) => (
-                <DepartmentCard key={d.name} department={d} />
-              ))}
-            </ul>
-            {/* Second copy, rendered with the page: the track moves by half
-                its width, then starts again, so the loop never shows a gap. */}
-            <ul aria-hidden="true" className="flex gap-5 pr-5 motion-reduce:hidden">
-              {DEPARTMENT_CARDS.map((d) => (
-                <DepartmentCard key={d.name} department={d} copy />
-              ))}
-            </ul>
-          </div>
-        </div>
+        <AutoScrollRow label="Medical departments">
+          <ul className="flex gap-5 pr-5">
+            {DEPARTMENT_CARDS.map((d) => (
+              <DepartmentCard key={d.name} department={d} />
+            ))}
+          </ul>
+          <ul aria-hidden="true" className="flex gap-5 pr-5">
+            {DEPARTMENT_CARDS.map((d) => (
+              <DepartmentCard key={d.name} department={d} copy />
+            ))}
+          </ul>
+        </AutoScrollRow>
 
       </div>
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-8 lg:flex-row justify-center mt-4">

@@ -3,14 +3,10 @@ import { ArrowUpRight } from "lucide-react";
 import { ABOUT_US_URL, FACILITIES } from "../data";
 import { SectionHeading } from "./section-heading";
 
-// About Cronus first, then Facilities at a Glance below it, in the same order
-// on every screen size. "Know More About Us" opens the existing About Us page
-// on the main hospital website (no duplicate page is created here).
 export function About() {
   return (
     <section id="about" aria-labelledby="homepage-about-title" className="scroll-mt-24 bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
-        {/* About: heading, then the text across the full width */}
         <div>
           <SectionHeading
             id="homepage-about-title"
@@ -42,8 +38,6 @@ export function About() {
           </div>
         </div>
 
-        {/* Facilities at a Glance: compact cards, photo on the left and text
-            on the right. 2 per row on phones, 3 from 768px. */}
         <div className="mt-14 border-t border-[#0B3446]/10 pt-14 sm:mt-16 sm:pt-16">
           <h3 className="text-center text-[1.75rem] font-semibold leading-tight text-[#0B3446] sm:text-[2.5rem] sm:tracking-[-0.02em]">
             Facilities at a Glance
@@ -54,7 +48,6 @@ export function About() {
                 key={f.name}
                 className="flex flex-col gap-2.5 rounded-xl bg-white p-2 ring-1 ring-[#0B3446]/10 sm:flex-row sm:items-center sm:gap-4 sm:p-3"
               >
-                {/* Phones: photo on top, text below. From 640px: photo on the left. */}
                 <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-lg bg-[#E3F6F7] sm:aspect-auto sm:h-16 sm:w-16 lg:h-24 lg:w-28">
                   <Image src={f.image} alt={f.imageAlt} fill sizes="(min-width: 1024px) 112px, (min-width: 640px) 64px, 50vw" className="object-cover" />
                 </div>

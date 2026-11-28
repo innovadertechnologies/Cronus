@@ -1,8 +1,6 @@
 import { departmentIcon, type BlogCategory } from "../data";
 import { DEPARTMENT_ICONS } from "./department-icons";
 
-// Department label on article cards: the department's own icon (the same one
-// as on the homepage and in the filter pills) on a light teal tag.
 export function CategoryBadge({ category }: { category: BlogCategory }) {
   const Icon = DEPARTMENT_ICONS[departmentIcon(category)];
   return (

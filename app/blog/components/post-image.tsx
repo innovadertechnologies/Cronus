@@ -9,8 +9,6 @@ type Props = {
   className?: string;
 };
 
-// Article image filling its (aspect-ratio) box. Articles without an image yet
-// get a quiet tile with the department icon, so the grid stays even.
 export function PostImage({ post, sizes, priority = false, className = "" }: Props) {
   if (post.image) {
     return (

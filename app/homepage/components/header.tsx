@@ -11,9 +11,6 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Shadow once the page has scrolled. An observer on an 8px marker at the
-  // top of the page, instead of reading window.scrollY on every scroll event:
-  // no layout reads on the main thread, so no forced reflows.
   const topMarker = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = topMarker.current;
@@ -32,11 +29,7 @@ export function Header() {
 
   return (
     <>
-      {/* Top-of-page marker for the scroll shadow (positioned against the page). */}
       <div ref={topMarker} aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-2 w-px" />
-      {/* Utility strip – mobile & tablet: one line scrolling right to left.
-          Two identical halves, each with its own trailing gap, move by -50%
-          (the global `marquee` keyframes), so the loop has no jump or gap. */}
       <div className="overflow-hidden bg-[#0B3446] text-[13px] text-white/80 lg:hidden">
         <div className="flex w-max animate-[marquee_30s_linear_infinite] py-2 hover:[animation-play-state:paused] active:[animation-play-state:paused] motion-reduce:animate-none">
           {[0, 1].map((copy) => (
@@ -82,7 +75,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* Utility strip – desktop (unchanged) */}
       <div className="hidden bg-[#0B3446] text-[13px] text-white/80 lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-8">
           <div className="flex items-center gap-5">

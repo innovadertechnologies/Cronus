@@ -19,7 +19,6 @@ export function Location() {
           description=""
         />
 
-        {/* One card: a small square map on the left of the details (stacked on phones) */}
         <div className="mt-10 grid gap-6 rounded-2xl bg-white p-4 ring-1 ring-[#0B3446]/10 sm:grid-cols-[200px_1fr] sm:items-start sm:p-6 lg:grid-cols-[240px_1fr] lg:gap-10 lg:p-8">
           <LazyMap className="aspect-[16/9] w-full rounded-xl! sm:aspect-square" />
 

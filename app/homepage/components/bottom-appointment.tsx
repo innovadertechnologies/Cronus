@@ -5,8 +5,6 @@ import { TEL_HREF, WHATSAPP_HREF } from "../data";
 import { AppointmentForm } from "./appointment-form";
 import { SectionHeading } from "./section-heading";
 
-// Final appointment section. "Book an Appointment" is the form's own button;
-// calling and WhatsApp sit beside the text.
 export function BottomAppointment() {
   return (
     <section

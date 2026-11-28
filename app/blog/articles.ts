@@ -1,5 +1,3 @@
-// Full text of each blog article, keyed by slug (see BLOG_POSTS in data.ts).
-
 import { readingMinutes } from "./data";
 
 function blockText(block: ArticleBlock) {
@@ -11,13 +9,13 @@ export function articleWordCount(slug: string) {
   return text.split(/\s+/).filter(Boolean).length;
 }
 
-// Reading time from the real article text; undefined when there is no body.
 export function articleMinutes(slug: string) {
   return ARTICLE_BODIES[slug] ? readingMinutes(articleWordCount(slug)) : undefined;
 }
 export type ArticleBlock =
   | { type: "h2"; text: string }
   | { type: "p"; text: string }
+  | { type: "note"; text: string }
   | { type: "ul"; items: string[] };
 
 export const ARTICLE_BODIES: Record<string, ArticleBlock[]> = {
@@ -43,7 +41,7 @@ export const ARTICLE_BODIES: Record<string, ArticleBlock[]> = {
       text: "Gentle, regular activity helps keep the joint moving and the muscles around it strong. Walking on level ground, cycling and simple strengthening exercises are often suggested. Keeping a healthy weight reduces the load on the knees, and short periods of rest help when the joint is sore.",
     },
     {
-      type: "p",
+      type: "note",
       text: "Avoid starting new pain medicines without advice, especially if you have other health conditions or take regular medication.",
     },
     { type: "h2", text: "When to see an orthopaedic specialist" },

@@ -4,10 +4,6 @@ import { CountUp } from "./count-up";
 
 type Props = { rating: string };
 
-// Hospital Highlights: a separate horizontal strip below About. Same design
-// as before; the figures count up from zero the first time the strip scrolls
-// into view. The rating is the Google rating shown elsewhere on the page
-// (live from Google when configured).
 export function TrustStrip({ rating }: Props) {
   const items: { icon: typeof Award; value: ReactNode; label: string }[] = [
     {
@@ -61,10 +57,6 @@ export function TrustStrip({ rating }: Props) {
 
   return (
     <section aria-label="Hospital Highlights" className="bg-[#0B3446] text-white">
-      {/* Six items: two per row on phones and three per row on tablets (rows
-          split by a hairline, dividers between items in a row), one row of six
-          from 1024px. Every item is centred in its cell, so both sides get
-          the same space. */}
       <ul className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:grid-cols-3 sm:px-8 lg:grid-cols-6">
         {items.map(({ icon: Icon, value, label }) => (
           <li

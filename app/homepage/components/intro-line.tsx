@@ -1,8 +1,6 @@
 import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { EMERGENCY_TEL_HREF } from "../data";
 
-// Heading and one paragraph directly under the hero images. It carries the
-// page's H1, since the hero itself is images only. No buttons here.
 export function IntroLine() {
   return (
     <section aria-labelledby="homepage-title" className="border-b border-[#0B3446]/10 bg-white">

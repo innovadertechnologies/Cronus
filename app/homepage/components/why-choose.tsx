@@ -3,7 +3,6 @@ import { CLINIC_PHONE_DISPLAY } from "@/app/lib/site-config";
 import { TEL_HREF } from "../data";
 import { SectionHeading } from "./section-heading";
 
-// Why Choose Cronus Multispeciality Hospital? (six feature blocks)
 const reasons = [
   {
     icon: HeartHandshake,
@@ -65,8 +64,6 @@ export function WhyChoose({ rating, count }: { rating: string; count: string }) 
           </div>
         </div>
 
-        {/* Dividers only between rows: the first row (first item on mobile,
-            first two on sm+) has no top line, and nothing has a bottom line. */}
         <div className="lg:self-center">
           <h3 className="mb-8 text-xl font-semibold sm:text-2xl">Why Choose Cronus Multispeciality Hospital?</h3>
           <ul className="grid gap-y-7 sm:grid-cols-2 sm:gap-x-10">
