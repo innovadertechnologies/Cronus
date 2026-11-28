@@ -3,9 +3,6 @@ import { PRACTO_RATING, PRACTO_REVIEWS_URL, PRACTO_STORIES, type PractoStory } f
 import { PractoMark } from "./rating-icons";
 import { ReviewCarousel, SourceBar } from "./review-parts";
 
-// Same card as the Google reviews. Practo stories carry no star rating, so
-// the top line shows the patient's recommendation instead of stars.
-// `copy`: the second, decorative copy of the row (seamless loop).
 function StoryCard({ story, copy = false }: { story: PractoStory; copy?: boolean }) {
   return (
     <li className="w-[300px] shrink-0 sm:w-[360px]">
@@ -41,10 +38,6 @@ function StoryCard({ story, copy = false }: { story: PractoStory; copy?: boolean
   );
 }
 
-// Practo part of the Reviews section, placed right after the Google reviews.
-// Practo offers no embed, widget or public API, so this shows its rating and
-// short excerpts of real patient stories as published there (kept in
-// data.ts), each linking to the full stories on Practo.
 export function PractoReviews() {
   return (
     <>

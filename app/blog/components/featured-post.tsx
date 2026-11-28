@@ -5,10 +5,6 @@ import { CategoryBadge } from "./category-badge";
 import { PostImage } from "./post-image";
 import { PostMeta } from "./post-meta";
 
-// The featured article: large image left, text right from 1024px; stacked
-// below that. One link (the title) stretched over the card, so the whole card
-// is clickable. Its image is the page's LCP element, so it is the only one
-// loaded with high priority.
 export function FeaturedPost({ post, minutes }: { post: BlogPost; minutes?: number }) {
   return (
     <article className="group relative grid overflow-hidden rounded-2xl bg-white ring-1 ring-[#0B3446]/10 transition-shadow duration-300 hover:shadow-[0_1px_2px_rgba(11,52,70,0.04),0_16px_40px_rgba(11,52,70,0.10)] focus-within:ring-2 focus-within:ring-[#0E7C86] lg:grid-cols-2 xl:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">

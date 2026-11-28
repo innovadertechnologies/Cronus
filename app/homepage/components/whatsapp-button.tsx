@@ -1,10 +1,6 @@
 import { WhatsappIcon } from "@/app/components/social-icons";
 import { WHATSAPP_HREF } from "../data";
 
-// Fixed WhatsApp button, bottom-right, from 1024px (with the side dock). The
-// section containers keep 80px clear at both edges there (globals.css), and
-// the button stays inside that gutter: 16px in on laptops, 24px from 1376px.
-// Below 1024px, WhatsApp is a cell in the quick-action bar.
 export function WhatsappButton() {
   return (
     <a

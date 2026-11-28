@@ -10,15 +10,12 @@ export type ListingItem = {
   id: string;
   category: string;
   featured: boolean;
-  // Server-rendered <BlogCard>, so card markup never ships as client JS.
   card: ReactNode;
 };
 
 type Props = {
-  // Server-rendered breadcrumb, H1 and intro for the hero.
   intro: ReactNode;
   items: ListingItem[];
-  // Server-rendered featured card.
   featured: ReactNode;
   categories: { name: string; icon: DepartmentIconKey }[];
   perPage: number;
@@ -27,13 +24,6 @@ type Props = {
 const ALL = "all";
 const HEADING_ID = "blog-latest-title";
 
-// Department filter and pagination over static, server-rendered cards. Every
-// card stays in the HTML (others use the hidden attribute), so all article
-// links are crawlable and hidden images are never fetched.
-//
-// "All articles" shows the featured article in its own card on page 1 and
-// leaves it out of the grid on every page. A department lists every article
-// in it, featured one included.
 export function BlogListing({ intro, items, featured, categories, perPage }: Props) {
   const [category, setCategory] = useState(ALL);
   const [page, setPage] = useState(1);
@@ -54,8 +44,6 @@ export function BlogListing({ intro, items, featured, categories, perPage }: Pro
   ];
   const activeLabel = options.find((o) => o.value === category)?.label ?? "";
 
-  // Back to the top of the results, with focus on their heading, so keyboard
-  // and screen reader users continue from the new results.
   function returnToList() {
     const el = document.getElementById(HEADING_ID);
     if (!el) return;
@@ -71,19 +59,15 @@ export function BlogListing({ intro, items, featured, categories, perPage }: Pro
 
   function goTo(next: number) {
     setPage(Math.min(Math.max(next, 1), pages));
-    // Next frame: after React has rendered the new page (the featured card
-    // may have just been hidden, which moves the heading up).
     requestAnimationFrame(returnToList);
   }
 
   return (
     <>
-      {/* Hero */}
       <section aria-labelledby="blog-title" className="border-b border-[#0B3446]/10 bg-[#F6F3EE]">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-8 sm:py-10 lg:py-12">{intro}</div>
       </section>
 
-      {/* Listing */}
       <section aria-label="Articles" className="bg-white py-10 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-8">
           <BlogCategories options={options} active={category} onSelect={selectCategory} />

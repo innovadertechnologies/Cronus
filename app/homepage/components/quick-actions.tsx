@@ -9,9 +9,7 @@ type Action = {
   href: string;
   icon: ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>;
   external?: boolean;
-  // Mobile bar colours / desktop icon colours.
   tone: "emergency" | "default" | "primary" | "whatsapp";
-  // Bar only: from 1024px WhatsApp is its own round button (whatsapp-button.tsx).
   barOnly?: boolean;
 };
 
@@ -30,17 +28,8 @@ const toneClass: Record<Action["tone"], string> = {
   whatsapp: "text-[#178A45]",
 };
 
-// Below 1024px: a bar fixed to the bottom of the screen (icon above label).
-// The page reserves its height (page.tsx), so it never covers content.
-// From 1024px: a vertical dock fixed to the left edge (16px gap + 48px icon).
-// The section containers keep their content 80px from the edge at these
-// widths (.homepage-main in globals.css), so the dock never sits on top of
-// headings, text or buttons. Each round icon widens on hover or keyboard
-// focus to reveal its label.
 const itemClass = [
-  // bar cell
   "group flex h-full flex-col items-center justify-center gap-1 px-1 py-2.5 text-[11px] font-semibold leading-tight transition-colors max-[359px]:text-[10px] sm:text-xs",
-  // dock pill
   "lg:h-12 lg:w-12 lg:flex-row lg:justify-start lg:gap-0 lg:overflow-hidden lg:rounded-full lg:p-0 lg:text-sm",
   "lg:shadow-[0_4px_16px_rgba(11,52,70,0.14)] lg:ring-1 lg:ring-[#0B3446]/10",
   "lg:transition-[width,background-color] lg:duration-200 lg:ease-[cubic-bezier(0.22,1,0.36,1)]",

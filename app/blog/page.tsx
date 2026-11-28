@@ -10,8 +10,6 @@ export const metadata: Metadata = blogMetadata();
 
 const schema = blogSchema();
 
-// Static blog listing. Header and footer are copies of the /homepage ones
-// (see components/blog-header.tsx and blog-footer.tsx).
 export default function BlogPage() {
   return (
     <div>

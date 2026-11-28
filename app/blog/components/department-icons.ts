@@ -14,8 +14,6 @@ import {
 } from "lucide-react";
 import type { Department } from "@/app/homepage/data";
 
-// One icon per department, the same as the /homepage Departments section.
-// Used by the category sidebar and by cards that have no image yet.
 export const DEPARTMENT_ICONS: Record<Department["icon"], LucideIcon> = {
   stethoscope: Stethoscope,
   bone: Bone,

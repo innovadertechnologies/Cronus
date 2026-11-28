@@ -9,7 +9,6 @@ type Props = {
   tone?: "light" | "dark";
 };
 
-// Quiet label + H2 + intro used by every /homepage section.
 export function SectionHeading({ eyebrow, title, description, id, align = "center", tone = "light" }: Props) {
   const center = align === "center";
   const dark = tone === "dark";

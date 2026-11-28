@@ -4,16 +4,12 @@ import { useId, useState } from "react";
 import { Plus } from "lucide-react";
 import type { Faq } from "@/app/lib/seo";
 
-// "3. Can I book…" → number "03" in its own column, question without the prefix.
 function splitNumber(question: string, index: number) {
   const match = question.match(/^(\d+)\.\s*(.*)$/);
   const n = match ? Number(match[1]) : index + 1;
   return { number: String(n).padStart(2, "0"), text: match ? match[2] : question };
 }
 
-// One question open at a time, as a single list split by hairlines. The
-// answer animates open and closed by transitioning its grid row from 0fr to
-// 1fr, so it works for any answer length without measuring heights.
 export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
   const [open, setOpen] = useState<number | null>(0);
   const baseId = useId();
@@ -64,9 +60,7 @@ export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
                 isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               }`}
             >
-              {/* `inert` keeps links in a closed answer out of the tab order */}
               <div className="overflow-hidden" inert={!isOpen}>
-                {/* Indented to line up with the question text */}
                 <p className="max-w-[62ch] pb-6 pl-11 pr-9 text-[15px] leading-relaxed text-[#46575F] sm:pl-14 sm:pr-11 sm:text-base">
                   {faq.answer}
                 </p>

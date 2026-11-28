@@ -9,11 +9,6 @@ type Props = {
   onSelect: (value: string) => void;
 };
 
-// Filter pills. Phones and tablets: one horizontally scrolling row that bleeds
-// to the screen edges (the page itself never scrolls sideways). Desktop: the
-// pills wrap onto as many centred rows as they need. Each department keeps its
-// own icon (the same as the homepage Departments section); the selected pill
-// takes the brand teal.
 export function BlogCategories({ options, active, onSelect }: Props) {
   return (
     <nav aria-label="Article categories" className="-mx-4 sm:-mx-8 lg:mx-0">

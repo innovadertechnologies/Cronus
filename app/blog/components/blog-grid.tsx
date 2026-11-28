@@ -5,9 +5,6 @@ import { BlogListing } from "./blog-listing";
 import { BlogPageHeader } from "./blog-page-header";
 import { FeaturedPost } from "./featured-post";
 
-// Hero, filter pills, featured article, the latest articles grid and
-// pagination. Cards are rendered here on the server; the listing only shows
-// and hides them.
 export function BlogGrid() {
   const items = BLOG_POSTS.map((post) => ({
     id: post.id,

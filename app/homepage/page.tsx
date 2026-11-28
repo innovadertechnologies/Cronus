@@ -22,21 +22,14 @@ import { getGoogleReviews } from "./google-reviews";
 
 export const metadata: Metadata = homepageMetadata();
 
-// The on-page questions are numbered ("1. …"); search engines get them without the number.
 const schema = homepageSchema(
   HOMEPAGE_FAQS.map((faq) => ({ ...faq, question: faq.question.replace(/^\d+\.\s*/, "") }))
 );
 
 export default async function Homepage() {
-  // Live from the Google Places API when configured, otherwise the rating and
-  // reviews already published on the site. Cached for a day.
   const google = await getGoogleReviews();
 
   return (
-    // Bottom padding matches the quick-action bar so it never covers the
-    // footer. From 1024px the bar is a side dock, so no padding is needed;
-    // instead the sections keep their content clear of the dock
-    // (.homepage-main in globals.css).
     <div className="pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
       <JsonLd data={schema} />
       <Header />
@@ -50,7 +43,6 @@ export default async function Homepage() {
         <Departments />
         <Doctors />
         <WhyChoose rating={google.rating} count={google.count} />
-        {/* Google and Practo reviews, one section */}
         <Reviews google={google} />
         <Faq />
         <BottomAppointment />

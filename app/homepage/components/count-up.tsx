@@ -2,10 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// Like app/home/components/count-up.tsx, plus decimals (for the 4.2 rating).
-// The final value is server-rendered (correct without JS and for crawlers);
-// the first time the number scrolls into view it counts up from 0. It runs
-// once only, so scrolling away and back does not restart it.
 export function CountUp({
   value,
   decimals = 0,

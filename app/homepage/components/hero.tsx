@@ -9,9 +9,6 @@ import { GoogleIcon, Stars } from "./rating-icons";
 const INTERVAL = 4000;
 const SLIDE_MS = 700; // matches duration-700 on the track
 const COUNT = HERO_SLIDES.length;
-// The first slide is repeated at the end so the last → first step keeps
-// sliding the same way; once it lands, the track jumps back to the real first
-// slide without animation.
 const TRACK = [...HERO_SLIDES, HERO_SLIDES[0]];
 
 type Props = {
@@ -20,21 +17,12 @@ type Props = {
   googleUrl: string;
 };
 
-// Image-only hero: existing banners slide right-to-left automatically. It
-// keeps running on hover; it pauses only with the pause button or while a
-// control inside it has keyboard focus. With reduced motion the slides still
-// change, just without the sliding animation (see globals.css).
 export function Hero({ rating, count, googleUrl }: Props) {
   const [index, setIndex] = useState(0); // 0..COUNT (COUNT = the repeated first slide)
   const [animate, setAnimate] = useState(true);
   const [paused, setPaused] = useState(false);
   const [focused, setFocused] = useState(false);
 
-  // Only the first slide is in the server HTML (preloaded, high priority) so
-  // it is the LCP image with nothing competing. The rest mount a moment after
-  // the page has loaded (or on the first interaction), still well before the
-  // first slide change at 4s. Fetching them right at load put them inside the
-  // LCP window, which Lighthouse counts against the hero image.
   const [loadRest, setLoadRest] = useState(false);
   useEffect(() => {
     let timer: number | undefined;
@@ -58,16 +46,11 @@ export function Hero({ rating, count, googleUrl }: Props) {
     if (paused || focused) return;
     const timer = setTimeout(() => {
       setAnimate(true);
-      // Never step past the repeated first slide: beyond it the track is empty.
       setIndex((i) => Math.min(i + 1, COUNT));
     }, INTERVAL);
     return () => clearTimeout(timer);
   }, [index, paused, focused]);
 
-  // After landing on the repeated first slide, snap back to the real one.
-  // A timer, not transitionend: that event never fires in a background tab
-  // or when the transition is cut short, which used to leave the track
-  // stuck past the last slide (a blank banner).
   useEffect(() => {
     if (index !== COUNT) return;
     const timer = setTimeout(() => {
@@ -77,7 +60,6 @@ export function Hero({ rating, count, googleUrl }: Props) {
     return () => clearTimeout(timer);
   }, [index]);
 
-  // Re-enable the animation on the frame after the snap.
   useEffect(() => {
     if (animate) return;
     const frame = requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
@@ -95,7 +77,6 @@ export function Hero({ rating, count, googleUrl }: Props) {
       aria-roledescription="carousel"
       aria-label="Cronus Multispeciality Hospital"
       className="relative h-[42svh] min-h-[220px] overflow-hidden bg-[#E9F1F5] lg:h-[clamp(340px,min(44vw,calc(100svh_-_268px)),660px)]"
-      // Pause only for keyboard focus; a mouse click on a dot must not stop it.
       onFocus={(e) => setFocused(e.target.matches(":focus-visible"))}
       onBlur={() => setFocused(false)}
     >
@@ -128,9 +109,6 @@ export function Hero({ rating, count, googleUrl }: Props) {
                   src={slide.src}
                   alt={i === COUNT ? "" : slide.alt}
                   fill
-                  // Eager: off-screen slides sit sideways in the track, where
-                  // lazy loading would wait until they slide in. The loop copy
-                  // of slide 1 is lazy: its file is already cached.
                   loading={i === COUNT ? "lazy" : "eager"}
                   sizes="100vw"
                   className={`object-cover ${slide.position}`}
@@ -141,7 +119,6 @@ export function Hero({ rating, count, googleUrl }: Props) {
         ))}
       </div>
 
-      {/* Google rating, top-left */}
       <a
         id="homepage-hero-google-rating"
         href={googleUrl}
@@ -158,13 +135,10 @@ export function Hero({ rating, count, googleUrl }: Props) {
             </span>
             <Stars rating={Number(rating)} className="h-3.5 sm:h-4" />
           </span>
-          {/* Visible text doubles as the link's accessible name, so voice
-              control ("click 1,012 Google reviews") works. */}
           <span className="block text-xs text-[#5B6B73]">{count} Google reviews</span>
         </span>
       </a>
 
-      {/* Slide dots + pause/play */}
       <div className="absolute inset-x-0 bottom-3 z-10 flex items-center justify-center gap-1">
         {HERO_SLIDES.map((slide, i) => (
           <button
